@@ -18,10 +18,13 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
       - name: Install & Build
         run: >
+          npm i -g hexo-cli
+
           npm i
-          npm i hexo-cli -g
+          
           git ls-files -z | while read -d '' path; do touch -d "$(git log -1
           --format="@%ct" "$path")" "$path"; done
+          
           hexo g
 
       - name: NPM Publish Pre Set
