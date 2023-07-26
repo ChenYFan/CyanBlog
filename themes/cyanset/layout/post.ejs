@@ -6,6 +6,7 @@
     <%- partial('_partial/categories') %>
 <% } else { %>
 <article class="post">
+    <canvas id='map'></canvas>
     <div class="meta">
         <% if (page.categories && page.categories.length) { %>
         <div class="categories<%= theme.uppercase_categories ? ' text-uppercase' : '' %>">

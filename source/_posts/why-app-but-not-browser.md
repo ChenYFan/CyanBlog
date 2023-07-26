@@ -43,9 +43,7 @@ date: 2021-07-28 13:24:15
 ## 隐私
 
 
-app对隐私的疯狂到了什么地步？我也就不贴知乎链接了，就贴一个今天cctv的内容吧：
-
-<https://tv.cctv.com/live/cctv13/index.shtml?spm=C28340.P1dzdfA9CsHZ.E1oxZyG629bH.79&stime=1627446780&etime=1627448400&type=lbacks>
+app对隐私的疯狂到了什么地步？
 
 在安卓环境【尤其是国内某些套壳系统】下，app的权限不算小，有些时候可以在没有提醒的情况下把你的浏览器记录翻个遍。
 
