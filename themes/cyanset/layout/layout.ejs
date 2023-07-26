@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="<%= config.language %>">
+    <%- partial('_partial/head') %>
+    
+    <body
+        data-color-scheme="<%= theme.color_scheme %>"
+        data-uppercase-categories="<%= theme.uppercase_categories %>"
+        <% if (theme.rainbow_banner == true) { %>
+        data-rainbow-banner="<%= theme.rainbow_banner %>"
+        data-rainbow-banner-shown="<%= theme.rainbow_banner_shown %>"
+        data-rainbow-banner-month="<%= theme.rainbow_banner_month %>"
+        data-rainbow-banner-colors="<%= theme.rainbow_banner_colors %>"
+        <% } %>
+        data-config-root="<%- config.root %>"
+        <% if (theme.toc == true) { %>
+        data-toc="<%= theme.toc %>"
+        data-toc-max-depth="<%= theme.toc_max_depth %>"
+        <% } %>
+        <% if (theme.search == true && page.type == 'search') { %>
+        data-search-path="<%= theme.search_path %>"
+        <% } %>
+    >
+        <%- partial('_partial/nav') %>
+        <%- body %>
+        <%- partial('_partial/footer') %>
+
+        <%- js('js/main.js') %>
+        <% if (theme.search == true && page.type == 'search') { %>
+        <%- js('js/search.js') %>
+        <% } %>
+        <% if (config.tidio) { %> 
+        <%- js(config.tidio) %> 
+        <% } %>
+        <% if (config.ackee) { %>
+        <%- config.ackee %>
+        <% } %>
+        <script src="https://registry.npmmirror.com/@chenyfan/cache-db/0.0.4/files/index.js"></script>
+        <script src="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.js"></script>
+        <script>
+            window.notyf = new Notyf({
+                duration: 3000,
+                position: {
+                    x: 'right',
+                    y: 'bottom'
+                },
+                ripple: true,
+                dismissible: true
+            });
+            window.db = new CacheDB('CyanAcc');
+        </script>
+        <script>
+            (async () => {
+                    if ('serviceWorker' in navigator) {
+                        if (await db.read('install_time') === null ||
+                            new Date().getTime() > Number(await db.read('install_time')) + 1000 * 60 * 60 * 4) {
+                            await db.write('install_time', new Date().getTime())
+                            await db.write('needInstall', 'true')
+                        }
+                        if (await db.read('needInstall') === 'true') {
+                            navigator.serviceWorker.register(`/CyanAcc.js?time=${new Date().getTime()}`)
+                                .then(async reg => {
+                                    const CyanAcc_Checker = setInterval(() => {
+                                        fetch('/CyanAcc/api',{
+                                            method: 'POST',
+                                            body:JSON.stringify({
+                                                action: 'PING'
+                                            })
+                                        })
+                                        .then(res => res.text())
+                                        .then(async res=>{
+                                            if(res==="PONG"){
+                                                notyf.success('CyanAcc安装/更新成功！')
+                                                clearInterval(CyanAcc_Checker)
+                                                await db.write('needInstall', 'false')
+                                            }
+                                        })
+                                    }, 1000);
+                                }).catch(async err => {
+                                    notyf.error({
+                                        message: `CyanAcc安装失败！</br>将不会再尝试启动CyanAcc</br>请点击右上角设置手动安装</br>详细信息请查看控制台`,
+                                        duration: 10000
+                                    })
+                                    console.error(err)
+                                    await db.write('neverInstall', 'never')
+                                })
+                        } else if (await db.read('neverInstall') === 'never') {
+                            console.log('CyanAcc已禁用')
+                        } else {
+                            console.log('CyanAcc暂时无需更新')
+                        }
+                    } else {
+                        notyf.error('浏览器不支持ServiceWorker</br>CyanAcc将自动禁用')
+                    }
+                })();
+        </script>
+    </body>
+</html>

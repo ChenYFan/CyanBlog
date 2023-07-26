@@ -1,0 +1,27 @@
+<footer>
+    <div class="inner">
+        <div class="links">
+            <% for (const i in theme.footer) { %>
+                <div class="group">
+                    <h2 class="title">
+                        <%= i %>
+                    </h2>
+                    <% for (const n in theme.footer[i]) { %>
+                        <a href="<%- theme.footer[i][n] %>" class="item">
+                            <%= n %>
+                        </a>
+                        <% } %>
+                </div>
+                <% } %>
+        </div>
+        <span>&copy; <%= date(new Date(), 'YYYY' ) %>
+                <%= config.author || config.title %><br> </span>
+                <span>Hexo Powered | NPMMirror CDN Supported</span></br>
+                <span>鄂ICP备2022012450号-11</span></div>
+        <% if (theme.footer_extra_description) { %>
+            <br>
+            <span class="footer-extra-description"><%- theme.footer_extra_description %></span>
+            <% } %>
+
+    </div>
+</footer>

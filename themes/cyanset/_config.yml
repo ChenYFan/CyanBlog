@@ -1,0 +1,81 @@
+# REMEMBER TO EDIT THIS BEFORE DEPLOYING!!!
+
+# the path to your blog's icon:
+favicon: https://registry.npmmirror.com/chenyfan-oss/6.0.0/files/32.png
+
+# the path to manifest.json
+manifest: 
+
+# [Open Graph Protocol](https://ogp.me/)
+og_enabled: true
+og_image: /favicon.png
+og:
+  # customize og properties here which will replace the defaults
+
+# show excerpt on post list
+show_excerpt: true
+
+# light/dark/auto color scheme
+color_scheme: auto
+
+# show floating color theme toggle
+show_color_scheme_toggle: true
+
+# uppercase categories
+uppercase_categories: true
+
+# capitalize tag names on tags page
+capitalize_tags: true
+
+# add hashtag prefix before tags
+hashtag_prefix_before_tags: true
+hashtag_prefix: <svg t="1689914194799" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1646" id="mx_n_1689914194800" width="14" height="14"><path d="M483.2 790.3L861.4 412c1.7-1.7 2.5-4 2.3-6.3l-25.5-301.4c-0.7-7.8-6.8-13.9-14.6-14.6L522.2 64.3c-2.3-0.2-4.7 0.6-6.3 2.3L137.7 444.8c-3.1 3.1-3.1 8.2 0 11.3l334.2 334.2c3.1 3.2 8.2 3.2 11.3 0z m122.7-533.4c18.7-18.7 49.1-18.7 67.9 0 18.7 18.7 18.7 49.1 0 67.9-18.7 18.7-49.1 18.7-67.9 0-18.7-18.7-18.7-49.1 0-67.9z" p-id="1647" fill="#1296db"></path><path d="M889.7 539.8l-39.6-39.5c-3.1-3.1-8.2-3.1-11.3 0l-362 361.3-237.6-237c-3.1-3.1-8.2-3.1-11.3 0l-39.6 39.5c-3.1 3.1-3.1 8.2 0 11.3l243.2 242.8 39.6 39.5c3.1 3.1 8.2 3.1 11.3 0l407.3-406.6c3.1-3.1 3.1-8.2 0-11.3z" p-id="1648" fill="#1296db"></path></svg>
+# rainbow!
+rainbow_banner: false
+rainbow_banner_colors:
+  - '#e50000'
+  - '#ff8d00'
+  - '#ffee00'
+  - '#008121'
+  - '#004cff'
+  - '#760188'
+# choose from [auto, always]
+rainbow_banner_shown: always
+# Pride Month by default
+rainbow_banner_month: 6
+
+# TOC - table of contents
+toc: true
+toc_max_depth: 4
+
+# scroll reveal (https://scrollrevealjs.org/) - animating elements as they enter/leave the viewport
+scroll_reveal: true
+
+# navigation config
+nav:
+  # the title displays in the upper left corner which won't change
+  title: Eureka Cyan!
+  # the items displays in the upper right corner
+  items:
+    # these items will display as a link
+    归档: /archives
+    友链: /friends
+    分类: /categories
+    项目主页: https://eurekac.cn
+    设置: /CyanAcc
+
+
+# footer extra description
+# footer_extra_description: something will be shown at the bottom of the footer
+
+# the license your posts under
+license: CC BY-NC 4.0
+# the link of your license
+license_link: https://creativecommons.org/licenses/by-nc/4.0
+
+# search
+# based on [hexo-generator-search](https://github.com/wzpan/hexo-generator-search)
+search: true
+search_path: search.json
+
+# REMEMBER TO EDIT THIS BEFORE DEPLOYING!!!
