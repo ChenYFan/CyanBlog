@@ -40,4 +40,4 @@ jobs:
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM }}
-          package: ./public
+          package: ./public/package.json
