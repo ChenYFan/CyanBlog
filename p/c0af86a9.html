@@ -19,7 +19,7 @@
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:url" content="https://testup.215213344.xyz/p/c0af86a9.html" />
+  <meta property="og:url" content="https://blog.eurekac.cn/p/c0af86a9.html" />
   
   <meta property="og:image" content="https://npm.elemecdn.com/chenyfan-oss@2.0.4" />
   
@@ -142,6 +142,7 @@
 </nav>
         
 <article class="post">
+    <canvas id='map'></canvas>
     <div class="meta">
         
         <div class="categories text-uppercase">
@@ -177,8 +178,7 @@
 <p>退出了浏览器，我不禁陷入了沉思。我还记得不久前拿到朋友的新鸿蒙手机，划开屏幕一看，第一个界面全是百度系列：百度、百度搜索、百度智能浏览器、百度贴吧、百度知道…一个个功能冗余的百度app赫然显示在我的眼前，当我一脸震惊地看向朋友，他耸耸肩：点进去就自己下载的，不安装就没办法看了。</p>
 <p>看着自己苹果手机中的两个一个浏览器：Safari和Alook，我停止了思考，当一个大厂天天为自己的免费网盘带宽叫屈，下载一个3M的电子书被限成一副狗样时，你还能相信他有这么大的带宽给用户推自己的动辄100MB的APP？这能算是本末倒置吗？</p>
 <p>从此，我在手机上再也没有用过百度系。必应和谷歌，DogeDoge和DuckDuckGo成为了我的搜索主力。</p>
-<h1 id="为什么是APP"><a href="#为什么是APP" class="headerlink" title="为什么是APP"></a>为什么是APP</h1><h2 id="隐私"><a href="#隐私" class="headerlink" title="隐私"></a>隐私</h2><p>app对隐私的疯狂到了什么地步？我也就不贴知乎链接了，就贴一个今天cctv的内容吧：</p>
-<p><a target="_blank" rel="noopener" href="https://tv.cctv.com/live/cctv13/index.shtml?spm=C28340.P1dzdfA9CsHZ.E1oxZyG629bH.79&amp;stime=1627446780&amp;etime=1627448400&amp;type=lbacks">https://tv.cctv.com/live/cctv13/index.shtml?spm=C28340.P1dzdfA9CsHZ.E1oxZyG629bH.79&amp;stime=1627446780&amp;etime=1627448400&amp;type=lbacks</a></p>
+<h1 id="为什么是APP"><a href="#为什么是APP" class="headerlink" title="为什么是APP"></a>为什么是APP</h1><h2 id="隐私"><a href="#隐私" class="headerlink" title="隐私"></a>隐私</h2><p>app对隐私的疯狂到了什么地步？</p>
 <p>在安卓环境【尤其是国内某些套壳系统】下，app的权限不算小，有些时候可以在没有提醒的情况下把你的浏览器记录翻个遍。</p>
 <p>ios其实相对安卓来说，至少系统能主动提醒用户是否给予其访问权利。</p>
 <p>这一点我也十分佩服MIUI，能在这种隐私岁随意获取风气下站住来守住用户的底线，无论其目的如何，这一点已经赢得了我的好感【虽然我不用安卓】</p>
@@ -318,6 +318,59 @@
         
         
         
+        <script src="https://registry.npmmirror.com/pagemap/1.4.0/files/dist/pagemap.min.js"></script>
+        
+        <script>
+           window.loadPageMap = (dark, redraw) => {
+                if (redraw) {
+                    document.querySelector('#map').id = 'map-predelete'
+                    let newMap = document.createElement('canvas')
+                    newMap.id = 'map'
+                    document.querySelector('#map-predelete').insertAdjacentElement('afterend', newMap)
+                    document.querySelector('#map-predelete').remove()
+                }
+                let initColor = dark ? '255,255,255' : '0,0,0'
+                pagemap(document.querySelector('#map'), {
+                    viewport: null,
+                    styles: {
+                        'header,footer,section,article': 'rgba(' + initColor + ',0.08)',
+                        'h1': 'rgba(' + initColor + ',0.10)',
+                        'h2,h3,h4': 'rgba(' + initColor + ',0.08)',
+                        'pre': 'rgba(' + initColor + ',0.05)'
+                    },
+                    back: 'rgba(' + initColor + ',0.02)',
+                    view: 'rgba(' + initColor + ',0.05)',
+                    drag: 'rgba(' + initColor + ',0.10)',
+                    interval: null
+                });
+                document.querySelector('#map').addEventListener('mouseover', () => {
+                    document.querySelector('#map').classList.remove('fadeout')
+                    document.querySelector('#map').classList.add('fadein')
+                });
+                document.querySelector('#map').addEventListener('mouseout', () => {
+                    document.querySelector('#map').classList.remove('fadein')
+                    document.querySelector('#map').classList.add('fadeout')
+                });
+                let map = document.querySelector('#map')
+                let mapTimeout = null
+                document.addEventListener('scroll', () => {
+                    map.classList.remove('fadeout')
+                    map.classList.add('fadein')
+                    if (mapTimeout) clearTimeout(mapTimeout)
+                    mapTimeout = setTimeout(() => {
+                        map.classList.remove('fadein')
+                        map.classList.add('fadeout')
+                    }, 1000)
+                })
+            }
+
+            if (!!document.querySelector('#map')) {
+
+                loadPageMap(ColorScheme.getReal() === "dark", false)
+
+            }
+        
+        </script>
         <script src="https://registry.npmmirror.com/@chenyfan/cache-db/0.0.4/files/index.js"></script>
         <script src="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.js"></script>
         <script>
@@ -334,6 +387,10 @@
         </script>
         <script>
             (async () => {
+                    if (await db.read('needInstall') === 'never') {
+                        console.log('CyanAcc已禁用')
+                        return;
+                    }
                     if ('serviceWorker' in navigator) {
                         if (await db.read('install_time') === null ||
                             new Date().getTime() > Number(await db.read('install_time')) + 1000 * 60 * 60 * 4) {
@@ -344,20 +401,20 @@
                             navigator.serviceWorker.register(`/CyanAcc.js?time=${new Date().getTime()}`)
                                 .then(async reg => {
                                     const CyanAcc_Checker = setInterval(() => {
-                                        fetch('/CyanAcc/api',{
+                                        fetch('/CyanAcc/api', {
                                             method: 'POST',
-                                            body:JSON.stringify({
+                                            body: JSON.stringify({
                                                 action: 'PING'
                                             })
                                         })
-                                        .then(res => res.text())
-                                        .then(async res=>{
-                                            if(res==="PONG"){
-                                                notyf.success('CyanAcc安装/更新成功！')
-                                                clearInterval(CyanAcc_Checker)
-                                                await db.write('needInstall', 'false')
-                                            }
-                                        })
+                                            .then(res => res.text())
+                                            .then(async res => {
+                                                if (res === "PONG") {
+                                                    notyf.success('CyanAcc安装/更新成功！')
+                                                    clearInterval(CyanAcc_Checker)
+                                                    await db.write('needInstall', 'false')
+                                                }
+                                            })
                                     }, 1000);
                                 }).catch(async err => {
                                     notyf.error({
@@ -365,15 +422,18 @@
                                         duration: 10000
                                     })
                                     console.error(err)
-                                    await db.write('neverInstall', 'never')
+                                    await db.write('needInstall', 'never')
                                 })
-                        } else if (await db.read('neverInstall') === 'never') {
-                            console.log('CyanAcc已禁用')
                         } else {
                             console.log('CyanAcc暂时无需更新')
                         }
                     } else {
-                        notyf.error('浏览器不支持ServiceWorker</br>CyanAcc将自动禁用')
+                        //https?
+                        if(location.protocol !== 'https:') notyf.error('请使用HTTPS协议以启用CyanAcc')
+                        else {
+                            notyf.error('您的浏览器不支持或被广告插件禁用ServiceWorker</br>已直接禁用CyanAcc')
+                            await db.write('needInstall', 'never')
+                        }
                     }
                 })();
         </script>

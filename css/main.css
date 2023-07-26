@@ -117,3 +117,41 @@ a:visited {
 
     position: absolute;
 }
+
+#map {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 100;
+    opacity: 0;
+}
+
+.fadein { 
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
+}
+
+@keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+     } 
+}
+.fadeout { 
+    animation: fadeOutAnimation ease 1s;
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
+}
+@keyframes fadeOutAnimation { 
+    0% { 
+        opacity: 1;
+    } 
+    100% { 
+        opacity: 0;
+     } 
+}

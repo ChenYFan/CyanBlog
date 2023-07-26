@@ -19,7 +19,7 @@
   
   <meta property="og:type" content="website" />
   
-  <meta property="og:url" content="https://testup.215213344.xyz/CyanAcc/index.html" />
+  <meta property="og:url" content="https://blog.eurekac.cn/CyanAcc/index.html" />
   
   <meta property="og:image" content="/favicon.png" />
   
@@ -138,6 +138,7 @@
 </nav>
         
 <article class="post">
+    <canvas id='map'></canvas>
     <div class="meta">
         
 
@@ -216,6 +217,59 @@
         
         
         
+        <script src="https://registry.npmmirror.com/pagemap/1.4.0/files/dist/pagemap.min.js"></script>
+        
+        <script>
+           window.loadPageMap = (dark, redraw) => {
+                if (redraw) {
+                    document.querySelector('#map').id = 'map-predelete'
+                    let newMap = document.createElement('canvas')
+                    newMap.id = 'map'
+                    document.querySelector('#map-predelete').insertAdjacentElement('afterend', newMap)
+                    document.querySelector('#map-predelete').remove()
+                }
+                let initColor = dark ? '255,255,255' : '0,0,0'
+                pagemap(document.querySelector('#map'), {
+                    viewport: null,
+                    styles: {
+                        'header,footer,section,article': 'rgba(' + initColor + ',0.08)',
+                        'h1': 'rgba(' + initColor + ',0.10)',
+                        'h2,h3,h4': 'rgba(' + initColor + ',0.08)',
+                        'pre': 'rgba(' + initColor + ',0.05)'
+                    },
+                    back: 'rgba(' + initColor + ',0.02)',
+                    view: 'rgba(' + initColor + ',0.05)',
+                    drag: 'rgba(' + initColor + ',0.10)',
+                    interval: null
+                });
+                document.querySelector('#map').addEventListener('mouseover', () => {
+                    document.querySelector('#map').classList.remove('fadeout')
+                    document.querySelector('#map').classList.add('fadein')
+                });
+                document.querySelector('#map').addEventListener('mouseout', () => {
+                    document.querySelector('#map').classList.remove('fadein')
+                    document.querySelector('#map').classList.add('fadeout')
+                });
+                let map = document.querySelector('#map')
+                let mapTimeout = null
+                document.addEventListener('scroll', () => {
+                    map.classList.remove('fadeout')
+                    map.classList.add('fadein')
+                    if (mapTimeout) clearTimeout(mapTimeout)
+                    mapTimeout = setTimeout(() => {
+                        map.classList.remove('fadein')
+                        map.classList.add('fadeout')
+                    }, 1000)
+                })
+            }
+
+            if (!!document.querySelector('#map')) {
+
+                loadPageMap(ColorScheme.getReal() === "dark", false)
+
+            }
+        
+        </script>
         <script src="https://registry.npmmirror.com/@chenyfan/cache-db/0.0.4/files/index.js"></script>
         <script src="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.js"></script>
         <script>
@@ -232,6 +286,10 @@
         </script>
         <script>
             (async () => {
+                    if (await db.read('needInstall') === 'never') {
+                        console.log('CyanAcc已禁用')
+                        return;
+                    }
                     if ('serviceWorker' in navigator) {
                         if (await db.read('install_time') === null ||
                             new Date().getTime() > Number(await db.read('install_time')) + 1000 * 60 * 60 * 4) {
@@ -242,20 +300,20 @@
                             navigator.serviceWorker.register(`/CyanAcc.js?time=${new Date().getTime()}`)
                                 .then(async reg => {
                                     const CyanAcc_Checker = setInterval(() => {
-                                        fetch('/CyanAcc/api',{
+                                        fetch('/CyanAcc/api', {
                                             method: 'POST',
-                                            body:JSON.stringify({
+                                            body: JSON.stringify({
                                                 action: 'PING'
                                             })
                                         })
-                                        .then(res => res.text())
-                                        .then(async res=>{
-                                            if(res==="PONG"){
-                                                notyf.success('CyanAcc安装/更新成功！')
-                                                clearInterval(CyanAcc_Checker)
-                                                await db.write('needInstall', 'false')
-                                            }
-                                        })
+                                            .then(res => res.text())
+                                            .then(async res => {
+                                                if (res === "PONG") {
+                                                    notyf.success('CyanAcc安装/更新成功！')
+                                                    clearInterval(CyanAcc_Checker)
+                                                    await db.write('needInstall', 'false')
+                                                }
+                                            })
                                     }, 1000);
                                 }).catch(async err => {
                                     notyf.error({
@@ -263,15 +321,18 @@
                                         duration: 10000
                                     })
                                     console.error(err)
-                                    await db.write('neverInstall', 'never')
+                                    await db.write('needInstall', 'never')
                                 })
-                        } else if (await db.read('neverInstall') === 'never') {
-                            console.log('CyanAcc已禁用')
                         } else {
                             console.log('CyanAcc暂时无需更新')
                         }
                     } else {
-                        notyf.error('浏览器不支持ServiceWorker</br>CyanAcc将自动禁用')
+                        //https?
+                        if(location.protocol !== 'https:') notyf.error('请使用HTTPS协议以启用CyanAcc')
+                        else {
+                            notyf.error('您的浏览器不支持或被广告插件禁用ServiceWorker</br>已直接禁用CyanAcc')
+                            await db.write('needInstall', 'never')
+                        }
                     }
                 })();
         </script>

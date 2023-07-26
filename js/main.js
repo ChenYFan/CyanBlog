@@ -74,6 +74,7 @@
             }
             document.body.setAttribute('data-current-color-scheme', current)
             if (typeof Artalk !== "undefined") { Artalk.setDarkMode(ColorScheme.getReal() === "dark") }
+            if (typeof loadPageMap !== "undefined") loadPageMap(ColorScheme.getReal() === "dark", true)
         }
     }
 
