@@ -24,7 +24,7 @@ jobs:
           
           git ls-files -z | while read -d '' path; do touch -d "$(git log -1
           --format="@%ct" "$path")" "$path"; done
-          
+
           hexo g
 
       - name: NPM Publish Pre Set
@@ -40,3 +40,4 @@ jobs:
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM }}
+          package: ./public
