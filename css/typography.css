@@ -1,0 +1,60 @@
+.divider,
+hr {
+    border: none;
+    border-top: 1px solid var(--white-1);
+    margin: 32px auto;
+}
+
+.divider {
+    margin: 64px auto;
+}
+
+img {
+    width: 100%;
+}
+
+::marker {
+    color: var(--black-4);
+}
+
+blockquote {
+    border-left: 4px solid var(--white-2);
+}
+
+pre,
+code {
+    font-family: ui-monospace, JetBrains Mono, SFMono-Regular, Menlo, Monaco, Consolas, Andale Mono, Liberation Mono, Ubuntu Mono, Courier New, monospace !important;
+}
+
+pre {
+    font-size: 14px;
+}
+
+pre:before {
+    color: var(--text-l);
+    opacity: .25;
+    content: attr(data-language);
+    font-size: 1.625rem;
+    font-weight: 700;
+    position: absolute;
+    right: .5rem;
+    top: auto;
+    margin-bottom: -1.2rem;
+}
+
+code {
+    font-size: 12px;
+    background-color: var(--white-1);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.code-lang {
+    display: flex;
+    justify-content: end;
+    color: var(--black);
+    opacity: .25;
+    font-size: 1.625rem; 
+    font-weight: 700;
+    height: 0px;
+}
