@@ -33,7 +33,7 @@ jobs:
 
       - name: Bundle CNAME File
         run: >
-          echo "mirror-github.blog.eurekac.cn" >> ./public/CNAME
+          echo "blog.eurekac.cn" >> ./public/CNAME
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
