@@ -67,43 +67,43 @@
   <meta property="og:<%= i %>" content="<%= og[i] %>" />
   <% } %>
   <% } %>
-
-  <%- css('css/var') %>
-  <%- css('css/main') %>
-  <%- css('css/typography') %>
-  <%- css('css/code-highlighting') %>
-  <%- css('css/components') %>
-  <%- css('css/nav') %>
-  <%- css('css/paginator') %>
-  <%- css('css/footer') %>
-  <%- css('css/post-list') %>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/var.css'>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/main.css'>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/typography.css'>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/code-highlighting.css'>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/components.css'>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/nav.css'>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/paginator.css'>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/footer.css'>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/post-list.css'>
   <% if (theme.rainbow_banner) { %>
-  <%- css('css/rainbow-banner') %>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/rainbow-banner.css'>
   <% } %>
   <% if (theme.toc) { %>
-  <%- css('css/toc') %>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/toc.css'>
   <% } %>
   <% if (config.giscus) { %>
-    <%- css('css/giscus') %>
+    <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/giscus.css'>
   <% } %>
   <% if (page.path == "index.html") { %>
-  <%- css('css/index') %>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/index.css'>
   <% } %>
   <% if (page.path != "index.html") { %>
-  <%- css('css/post') %>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/post.css'>
   <% } %>
   <% if (is_archive() || is_category() || is_tag() || (theme.search == true && page.type == 'search') || page.type == 'tags' || page.type == 'categories') { %>
-  <%- css('css/archive') %>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/archive.css'>
   <% } %>
   <% if (theme.search == true && page.type == 'search') { %>
-  <%- css('css/search') %>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/search.css'>
   <% } %>
   <% if (page.type == 'tags') { %>
-  <%- css('css/tags') %>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/tags.css'>
   <% } %>
   <% if (page.type == 'categories') { %>
-  <%- css('css/categories') %>
+  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/categories.css'>
   <% } %>
+  
 
   <link rel="stylesheet" href="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.css">
 </head>

@@ -78,4 +78,7 @@ license_link: https://creativecommons.org/licenses/by-nc/4.0
 search: true
 search_path: search.json
 
+
+#cdn_mirror: https://registry.npmmirror.com/cyanblog/0.0.0-1692604712514/files/
+cdn_mirror: /
 # REMEMBER TO EDIT THIS BEFORE DEPLOYING!!!

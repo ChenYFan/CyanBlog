@@ -24,9 +24,9 @@
         <%- body %>
         <%- partial('_partial/footer') %>
 
-        <%- js('js/main.js') %>
+        <script src='<%- theme.cdn_mirror %>js/main.js'></script>
         <% if (theme.search == true && page.type == 'search') { %>
-        <%- js('js/search.js') %>
+        <script src='<%- theme.cdn_mirror %>js/search.js'></script>
         <% } %>
         <% if (config.tidio) { %> 
         <%- js(config.tidio) %> 
