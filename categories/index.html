@@ -205,67 +205,65 @@
         <script src="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.js"></script>
         <script>
             window.notyf = new Notyf({
-                duration: 3000,
-                position: {
-                    x: 'right',
-                    y: 'bottom'
-                },
-                ripple: true,
-                dismissible: true
-            });
-            window.db = new CacheDB('CyanAcc');
+                    duration: 3000,
+                    position: {
+                        x: 'right',
+                        y: 'bottom'
+                    },
+                    ripple: true,
+                    dismissible: true
+                });
+                (async () => {
+                    window.db = new CacheDB('CyanAcc');
+                    if (await db.read('needInstall') === 'never') {
+                        console.log('CyanAcc已禁用')
+                        return;
+                    }
+                    if ('serviceWorker' in navigator) {
+                        if (await db.read('install_time') === null ||
+                            new Date().getTime() > Number(await db.read('install_time')) + 1000 * 60 * 60 * 4) {
+                            await db.write('install_time', new Date().getTime())
+                            await db.write('needInstall', 'true')
+                        }
+                        if (await db.read('needInstall') === 'true') {
+                            navigator.serviceWorker.register(`/CyanAcc.js?time=${new Date().getTime()}`)
+                                .then(async reg => {
+                                    const CyanAcc_Checker = setInterval(() => {
+                                        fetch('/CyanAcc/api', {
+                                            method: 'POST',
+                                            body: JSON.stringify({
+                                                action: 'PING'
+                                            })
+                                        })
+                                            .then(res => res.text())
+                                            .then(async res => {
+                                                if (res === "PONG") {
+                                                    notyf.success('CyanAcc安装/更新成功！')
+                                                    clearInterval(CyanAcc_Checker)
+                                                    await db.write('needInstall', 'false')
+                                                }
+                                            })
+                                    }, 1000);
+                                }).catch(async err => {
+                                    notyf.error({
+                                        message: `CyanAcc安装失败！</br>将不会再尝试启动CyanAcc</br>请点击右上角设置手动安装</br>详细信息请查看控制台`,
+                                        duration: 10000
+                                    })
+                                    console.error(err)
+                                    await db.write('needInstall', 'never')
+                                })
+                        } else {
+                            console.log('CyanAcc暂时无需更新')
+                        }
+                    } else {
+                        if (location.protocol !== 'https:') notyf.error('请使用HTTPS协议以启用CyanAcc')
+                        else {
+                            notyf.error('您的浏览器不支持或被广告插件禁用ServiceWorker</br>已直接禁用CyanAcc')
+                            await db.write('needInstall', 'never')
+                        }
+                    }
+                })();
         </script>
-        <script>
-            // (async () => {
-            //         if (await db.read('needInstall') === 'never') {
-            //             console.log('CyanAcc已禁用')
-            //             return;
-            //         }
-            //         if ('serviceWorker' in navigator) {
-            //             if (await db.read('install_time') === null ||
-            //                 new Date().getTime() > Number(await db.read('install_time')) + 1000 * 60 * 60 * 4) {
-            //                 await db.write('install_time', new Date().getTime())
-            //                 await db.write('needInstall', 'true')
-            //             }
-            //             if (await db.read('needInstall') === 'true') {
-            //                 navigator.serviceWorker.register(`/CyanAcc.js?time=${new Date().getTime()}`)
-            //                     .then(async reg => {
-            //                         const CyanAcc_Checker = setInterval(() => {
-            //                             fetch('/CyanAcc/api', {
-            //                                 method: 'POST',
-            //                                 body: JSON.stringify({
-            //                                     action: 'PING'
-            //                                 })
-            //                             })
-            //                                 .then(res => res.text())
-            //                                 .then(async res => {
-            //                                     if (res === "PONG") {
-            //                                         notyf.success('CyanAcc安装/更新成功！')
-            //                                         clearInterval(CyanAcc_Checker)
-            //                                         await db.write('needInstall', 'false')
-            //                                     }
-            //                                 })
-            //                         }, 1000);
-            //                     }).catch(async err => {
-            //                         notyf.error({
-            //                             message: `CyanAcc安装失败！</br>将不会再尝试启动CyanAcc</br>请点击右上角设置手动安装</br>详细信息请查看控制台`,
-            //                             duration: 10000
-            //                         })
-            //                         console.error(err)
-            //                         await db.write('needInstall', 'never')
-            //                     })
-            //             } else {
-            //                 console.log('CyanAcc暂时无需更新')
-            //             }
-            //         } else {
-            //             //https?
-            //             if(location.protocol !== 'https:') notyf.error('请使用HTTPS协议以启用CyanAcc')
-            //             else {
-            //                 notyf.error('您的浏览器不支持或被广告插件禁用ServiceWorker</br>已直接禁用CyanAcc')
-            //                 await db.write('needInstall', 'never')
-            //             }
-            //         }
-            //     })();
-        </script>
+        
     <script>!function(r){var o=Array.prototype.slice.call(document.querySelectorAll("[data-original]"));function t(){for(var t=0;t<o.length;t++)!function(t){var e,i,n,l;i=(i=o[t]).getBoundingClientRect(),n=r.innerWidth||document.documentElement.clientWidth,l=r.innerHeight||document.documentElement.clientHeight,(100<=i.top||100<=i.left||i.top<0&&100<=i.top+i.height||i.left<0&&100<=i.left+i.width)&&i.top<=l&&i.left<=n&&(l=o[t],i=function(){o.splice(t,1)},n=l.getAttribute("data-original"),"yes"!==l.getAttribute("data-init"))&&(e=l.getAttribute("data-isbg"),n=n.replace(/^https?:/,""),e?l.style.backgroundImage=n:l.setAttribute("src",n),l.setAttribute("data-init","yes"),i)&&i()}(t)}t(),r.addEventListener("scroll",t)}(this);</script></body>
 </html>
