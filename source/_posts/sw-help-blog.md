@@ -11,7 +11,7 @@ des: 从唯一一个拥有国内节点能够加速海外资源的静态文件分
 hide: false
 key: 'serviceworker,sw'
 abbrlink: c0af86bb
-cover_image: 'https://npm.elemecdn.com/chenyfan-os@0.0.0-r2/banner.jpg'
+cover_image: 'https://registry.npmmirror.com/chenyfan-os/0.0.0-r2/files/banner.jpg'
 date: 2022-01-16 21:57:45
 ---
 

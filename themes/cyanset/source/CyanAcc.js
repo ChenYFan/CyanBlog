@@ -110,10 +110,9 @@ const parallel_fetch = async (reqs, Config) => {
                         clearTimeout(error_fallback)
                         resolve([res.clone(), req])
                     }
+                }).catch(err => {
+                    if (err == 'DOMException: The user aborted a request.') console.log()//To disable the warning:DOMException: The user aborted a request.
                 })
-                    .catch(err => {
-                        if (err == 'DOMException: The user aborted a request.') console.log()//To disable the warning:DOMException: The user aborted a request.
-                    })
             }))
         } catch (e) {
             resolve([new Response('504 All GateWays Failed,CyanAcc Returned', { status: 504, statusText: '504 All Gateways Timeout' })])
@@ -139,12 +138,13 @@ function AssetsFetchWithCache(origin, urls, CacheConfig) {
                 FetchPair = await parallel_fetch(fetchList.map(item => {
                     return this.rebuild.request(origin, item.url)
                 }), this.CacheConfig)
-            
+
                 if (FetchPair[0].status !== 200) {
                     this.urls = this.urls.slice(this.CacheConfig.threads)
                     if (this.urls.length === 0) break;
                 } else {
                     this.urls.map(async item => {
+                        
                         if (item.url === FetchPair[1].url) {
                             if (!CDN_Domain[item.id]) return;
                             CDN_Domain[item.id].weight++;
@@ -184,10 +184,10 @@ function AssetsFetchWithCache(origin, urls, CacheConfig) {
         if (force) return (await this.IntelligentFetch())[0]
         return new Promise(async (resolve, reject) => {
             const cache = await caches.open(this.namespace)
-            const cache_res = await cache.match(new Request(this.origin))
+            const cache_res = await cache.match(new Request(this.origin.url))
             const FetchWithWriteCache = async () => {
                 const fetch_res = (await this.IntelligentFetch())[0]
-                if (fetch_res.status === 200) await cache.put(new Request(this.origin), this.rebuild.response(fetch_res.clone()))
+                if (fetch_res.status === 200) await cache.put(new Request(this.origin.url), this.rebuild.response(fetch_res.clone()))
 
                 return fetch_res
             }
@@ -207,8 +207,9 @@ function AssetsFetchWithCache(origin, urls, CacheConfig) {
                         cons.i(`${origin.url} Is Expired L2,Force Refreshing...`)
                         resolve(await FetchWithWriteCache())
                     } else {
+                        
                         resolve(
-                            Promise.all([
+                            Promise.any([
                                 FetchWithWriteCache(),
                                 new Promise(async (resolve) => {
                                     setTimeout(async () => {
@@ -218,6 +219,8 @@ function AssetsFetchWithCache(origin, urls, CacheConfig) {
                             ])
                         )
                     }
+                }else{
+                    resolve(cache_res)
                 }
             }
         })
@@ -246,7 +249,7 @@ const Default_Blog_Fetch_Config = {
         {
             "type": "npm",
             "PACKAGE_NAME": "cyanblog",
-            "PACKAGE_VERSION": "0.0.0-1695866870416",
+            "PACKAGE_VERSION": "0.0.0-1700125816401",
             "weight": 5
         }
     ],
@@ -268,7 +271,7 @@ const Default_CDN_Domain = [
         domain: "cdn.jsdelivr.net",
         concat: {
             "npm": "/npm/{{PACKAGE_NAME}}@{{PACKAGE_VERSION}}/{{FILE_PATH}}",
-            "github": "/gh/{{REPO_NAME}}@{{REPO_VERSION}}/{{FILE_PATH}}"
+            "github": "/gh/{{USER_NAME}}/{{REPO_NAME}}/{{FILE_PATH}}"
         },
         weight: 0
     },
@@ -301,7 +304,8 @@ const Default_CDN_Domain = [
         domain: "cdn.staticfile.org",
         concat: {
             "cdnjs": "/ajax/libs/{{PACKAGE_NAME}}/{{PACKAGE_VERSION}}/{{FILE_PATH}}"
-        }
+        },
+        weight: 0
     },
     {
         match: "lib\.baomitu\.com",
@@ -340,7 +344,7 @@ const Default_CDN_Domain = [
         self.Blog_Domain = JSON.parse(await db.readWithDefault('Blog_Domain', JSON.stringify(Default_Blog_Domain)))
         self.Blog_Fetch_Config = JSON.parse(await db.readWithDefault('Blog_Fetch_Config', JSON.stringify(Default_Blog_Fetch_Config)))
         self.CDN_Domain = JSON.parse(await db.readWithDefault('CDN_Domain', JSON.stringify(Default_CDN_Domain)))
-        self.CDN_Fetch_Config = JSON.parse(await db.readWithDefault('CDN_Fetch_Config', JSON.stringify(Default_Blog_Fetch_Config)))
+        self.CDN_Fetch_Config = JSON.parse(await db.readWithDefault('CDN_Fetch_Config', JSON.stringify(Default_CDN_Fetch_Config)))
     })();
 function CDNObject(url) {
     this.valid = false
@@ -394,8 +398,6 @@ function CDNObject(url) {
         return mirrors
     }
 }
-
-
 
 addEventListener('fetch', event => {
     try {
