@@ -157,7 +157,7 @@ body[data-color-scheme="dark"] nav .nav-item-search {
     background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/search-light.svg);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 720px) {
     nav {
         height: 48px;
         overflow: hidden;
