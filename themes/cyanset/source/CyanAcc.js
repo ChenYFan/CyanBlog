@@ -21,8 +21,9 @@ const PersistentTasks = {
     run: async function (id) {
         if (!this.pool[id].enable) return false;
         if (this.pool[id].lastrun.time + this.pool[id].interval > new Date().getTime()) return false;
-        this.pool[id].lastrun.time = new Date().getTime()
         await this.pool[id].function()
+        cons.i(`Persistent Task <${this.pool[id].description}> Runned Just Now`)
+        this.pool[id].lastrun.time = new Date().getTime()
     },
     runAll: async function () {
         return Promise.all(this.pool.map(async (item, index) => {
@@ -40,8 +41,8 @@ const PersistentTasks = {
     }
 }
 
-//const CyanACCPanel = "http://localhost:5173/CyanAcc"
-const CyanACCPanel = "https://registry.npmmirror.com/cyanacc-panel/0.0.0-1700617512498/files"
+const CyanACCPanel = "http://localhost:5173/CyanAcc"
+//const CyanACCPanel = "https://registry.npmmirror.com/cyanacc-panel/0.0.0-1700618244230/files"
 self.cons = {
     s: (m) => {
         console.log(`%c[SUCCESS]%c ${m}`, 'color:white;background:green;', '')
@@ -420,7 +421,7 @@ const Default_CyanAcc_Config = {
     enable: true,
     PersistentTasks: {
         enable: true,
-        interval: 1000 * 60
+        interval: 1000
     },
     AutoClear: {
         enable: true,
@@ -571,8 +572,8 @@ const handleRequest = async (request) => {
         self.CDN_Fetch_Config = JSON.parse(await db.readWithDefault('CDN_Fetch_Config', JSON.stringify(Default_CDN_Fetch_Config)))
         self.CyanAccConfig = JSON.parse(await db.readWithDefault('CyanAcc_Config', JSON.stringify(Default_CyanAcc_Config)))
         if (CyanAccConfig.PersistentTasks.enable && typeof self.CyanAccInterVal === 'undefined') {
-            if (Blog_Fetch_Config.auto_update.enable) PersistentTasks.add(UpdateBlogVersion, true, Blog_Fetch_Config.auto_update.interval)
-            if (CyanAccConfig.AutoClear.enable) PersistentTasks.add(AutoClear, false, CyanAccConfig.AutoClear.interval)
+            if (Blog_Fetch_Config.auto_update.enable) PersistentTasks.add(UpdateBlogVersion, true, Blog_Fetch_Config.auto_update.interval, "CyanAcc自动更新博客版本进程")
+            if (CyanAccConfig.AutoClear.enable) PersistentTasks.add(AutoClear, false, CyanAccConfig.AutoClear.interval, "CyanAcc自动清理缓存进程")
             self.CyanAccInterVal = setInterval(async () => {
                 await PersistentTasks.runAll()
             }, CyanAccConfig.PersistentTasks.interval)
@@ -586,16 +587,11 @@ const handleRequest = async (request) => {
     return fetch(request)
 }
 const BlogRouter = async (request) => {
-
     const urlStr = request.url
     const urlObj = new URL(urlStr)
     if (urlObj.pathname.startsWith('/CyanAcc')) return CyanAccRouter(request)
     if (!Blog_Fetch_Config.enable) return fetch(request)
-    
-
     const path = PreducePath(urlObj)
-
-
     const SortMirrors = Blog_Fetch_Config.mirrors.sort((b, a) => {
         return a.weight - b.weight
     })
@@ -625,9 +621,6 @@ const BlogRouter = async (request) => {
         }
     }
     return (new AssetsFetchWithCache(request, RequestList, Blog_Fetch_Config)).fetch()
-
-
-
 }
 const CDNRouter = async (request) => {
     request = new Request(request.url.replace(/^http\:/g, "https:"), request)
@@ -662,8 +655,7 @@ const CyanAccRouter = async (request) => {
         }
     }
     const CyanAccPanel = async (request) => {
-        
-        const res = await fetch(CyanACCPanel + PreducePath(url).replace(/^CyanAcc/g,'') + ((new URL(request.url)).search || ''))
+        const res = await fetch(CyanACCPanel + PreducePath(url).replace(/^CyanAcc/g, '') + ((new URL(request.url)).search || ''))
         //The Origin Url Will Cause Vue Slibing Error,So It has to rebuild Response
         return new Response(res.body, {
             headers: {
