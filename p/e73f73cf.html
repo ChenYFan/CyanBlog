@@ -295,47 +295,59 @@
     
         <div class="content container about" style="margin:8px auto">
             <div id="Comments">
-                <p style="align-items: center;text-align: center;" id="comment_notice">Comment Will Load After 5s...</p>
+                <p style="align-items: center;text-align: center;" id="comment_notice">Wait...</p>
             </div>
         </div>
         <script>
-            const isElementVisible = (el) => {
-                const rect = el.getBoundingClientRect()
-                const vWidth = window.innerWidth || document.documentElement.clientWidth
-                const vHeight = window.innerHeight || document.documentElement.clientHeight
-                if (
-                    rect.right < 0 ||
-                    rect.bottom < 0 ||
-                    rect.left > vWidth ||
-                    rect.top > vHeight
-                ) {
-                    return false
+           (async () => {
+                const db = new CacheDB('CyanAcc')
+                const data = JSON.parse((await db.read("CommentSetting")) || JSON.stringify({
+                    enable: true,
+                    delay: 5000
+                }))
+                if (data.enable) {
+                    document.getElementById("comment_notice").innerText = "Comment Will Load After " + data.delay + "s"
+                    setTimeout(() => {
+                        const wait_comment_load = setInterval(async () => {
+                            if (isElementVisible(document.getElementById("Comments"))) {
+                                clearInterval(wait_comment_load)
+                                document.getElementById("comment_notice").innerText = "Loading Comment Script..."
+                                await loadJS("https://registry.npmmirror.com/artalk/2.5.5/files/dist/Artalk.js")
+                                document.getElementById("comment_notice").innerText = "Loading Comment Style..."
+                                await loadCSS("https://registry.npmmirror.com/artalk/2.5.5/files/dist/Artalk.css")
+                                document.getElementById("comment_notice").innerText = "Loading Comment Frame..."
+                                Artalk.init({
+                                    el: '#Comments',
+                                    pageKey: window.location.pathname,
+                                    pageTitle: "",
+                                    server: 'https://artalk.eurekac.cn',
+                                    site: 'CyanFalseの幻想乡♂'
+                                })
+                                Artalk.setDarkMode(window.darkMode)
+                            }
+                        }, 1000)
+                    }, data.delay * 1000)
+                } else {
+                    document.getElementById("comment_notice").innerText = "Comment Disabled by Your Config"
+                }
+                const isElementVisible = (el) => {
+                    const rect = el.getBoundingClientRect()
+                    const vWidth = window.innerWidth || document.documentElement.clientWidth
+                    const vHeight = window.innerHeight || document.documentElement.clientHeight
+                    if (
+                        rect.right < 0 ||
+                        rect.bottom < 0 ||
+                        rect.left > vWidth ||
+                        rect.top > vHeight
+                    ) {
+                        return false
+                    }
+
+                    return true
                 }
 
-                return true
-            }
 
-            setTimeout(() => {
-                const wait_comment_load = setInterval(async () => {
-                    if (isElementVisible(document.getElementById("Comments"))) {
-                        clearInterval(wait_comment_load)
-                        document.getElementById("comment_notice").innerText = "Loading Comment Script..."
-                        await loadJS("https://registry.npmmirror.com/artalk/2.5.5/files/dist/Artalk.js")
-                        document.getElementById("comment_notice").innerText = "Loading Comment Style..."
-                        await loadCSS("https://registry.npmmirror.com/artalk/2.5.5/files/dist/Artalk.css")
-                        document.getElementById("comment_notice").innerText = "Loading Comment Frame..."
-                        Artalk.init({
-                            el: '#Comments',
-                            pageKey: window.location.pathname,
-                            pageTitle: "",
-                            server: 'https://artalk.eurekac.cn',
-                            site: 'CyanFalseの幻想乡♂'
-                        })
-                        Artalk.setDarkMode(window.darkMode)
-                        
-                    }
-                }, 1000)
-            }, 5000);
+            })()
         </script>
         
 </article>
@@ -345,10 +357,10 @@
         <div class="links">
             
         </div>
-        <span>&copy; 2023
+        <span>&copy; 2024
                 CyanFalse<br> </span>
                 <span>Hexo Powered | NPMMirror CDN Supported</span></br>
-                <span>鄂ICP备2022012450号-11</span></div>
+                <span>浙ICP备2023021315号-2</span></div>
         
 
     </div>
