@@ -623,9 +623,9 @@
                                             action: 'PING'
                                         })
                                     })
-                                        .then(res => res.text())
+                                        .then(res => res.json())
                                         .then(async res => {
-                                            if (res === "PONG") {
+                                            if (res.data === "PONG") {
                                                 notyf.success('CyanAcc安装/更新成功<br/>建议刷新以启用CyanAcc！')
                                                 clearInterval(CyanAcc_Checker)
                                                 await db.write('needInstall', 'false')
