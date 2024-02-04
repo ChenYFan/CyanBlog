@@ -58,9 +58,9 @@ nav:
   # the items displays in the upper right corner
   items:
     # these items will display as a link
-    归档: /archives
-    友链: /friends
-    分类: /categories
+    归档: /archives/
+    友链: /friends/
+    分类: /categories/
     项目主页: https://eurekac.cn
     设置: /CyanAcc/#/dashboard
 
@@ -77,8 +77,5 @@ license_link: https://creativecommons.org/licenses/by-nc/4.0
 # based on [hexo-generator-search](https://github.com/wzpan/hexo-generator-search)
 search: true
 search_path: search.json
-
-
-#cdn_mirror: https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/
 cdn_mirror: /
 # REMEMBER TO EDIT THIS BEFORE DEPLOYING!!!
