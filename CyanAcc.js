@@ -41,8 +41,8 @@ const PersistentTasks = {
     }
 }
 
-const CyanACCPanel = "http://localhost:5173/CyanAcc"
-//const CyanACCPanel = "/CyanAccPanel"
+//const CyanACCPanel = "http://localhost:5173/CyanAcc"
+const CyanACCPanel = "https://blog.eurekac.cn/panel"
 self.cons = {
     s: (m) => {
         console.log(`%c[SUCCESS]%c ${m}`, 'color:white;background:green;', '')
@@ -665,7 +665,7 @@ const CyanAccRouter = async (request) => {
         }
     }
     const CyanAccPanel = async (request) => {
-        const res = await fetch(CyanACCPanel + PreducePath(url).replace(/^CyanAcc/g, '') + ((new URL(request.url)).search || ''))
+        const res = await BlogRouter(new Request(CyanACCPanel + PreducePath(url).replace(/^CyanAcc/g, '') + ((new URL(request.url)).search || '')))
         //The Origin Url Will Cause Vue Slibing Error,So It has to rebuild Response
         return new Response(res.body, {
             headers: {
