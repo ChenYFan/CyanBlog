@@ -218,10 +218,53 @@
                     document.head.appendChild(link)
                 })
             };
-
-
-
             (async () => {
+                if (!!document.getElementById("Comments")){
+                    const data = JSON.parse((await db.read("CommentSetting")) || JSON.stringify({
+                    enable: true,
+                    delay: 5
+                }))
+                if (data.enable) {
+                    document.getElementById("comment_notice").innerText = "Comment Will Load After " + data.delay + "s"
+                    setTimeout(() => {
+                        const wait_comment_load = setInterval(async () => {
+                            if (isElementVisible(document.getElementById("Comments"))) {
+                                clearInterval(wait_comment_load)
+                                document.getElementById("comment_notice").innerText = "Loading Comment Script..."
+                                await loadJS("https://registry.npmmirror.com/artalk/2.5.5/files/dist/Artalk.js")
+                                document.getElementById("comment_notice").innerText = "Loading Comment Style..."
+                                await loadCSS("https://registry.npmmirror.com/artalk/2.5.5/files/dist/Artalk.css")
+                                document.getElementById("comment_notice").innerText = "Loading Comment Frame..."
+                                Artalk.init({
+                                    el: '#Comments',
+                                    pageKey: window.location.pathname,
+                                    pageTitle: "",
+                                    server: 'https://artalk.eurekac.cn',
+                                    site: 'CyanFalseの幻想乡♂'
+                                })
+                                Artalk.setDarkMode(window.darkMode)
+                            }
+                        }, 1000)
+                    }, data.delay*1000)
+                } else {
+                    document.getElementById("comment_notice").innerText = "Comment Disabled by Your Config"
+                }
+                const isElementVisible = (el) => {
+                    const rect = el.getBoundingClientRect()
+                    const vWidth = window.innerWidth || document.documentElement.clientWidth
+                    const vHeight = window.innerHeight || document.documentElement.clientHeight
+                    if (
+                        rect.right < 0 ||
+                        rect.bottom < 0 ||
+                        rect.left > vWidth ||
+                        rect.top > vHeight
+                    ) {
+                        return false
+                    }
+
+                    return true
+                }
+                }
                 if (!!document.querySelector('#map')) {
                     window.loadPageMap = (dark) => {
                         document.querySelector('#map').id = 'map-predelete'
@@ -266,7 +309,7 @@
                     loadPageMap(window.darkMode, true)
                 }
 
-                window.db = new CacheDB('CyanAcc');
+                window.db = new CacheDB('CyanAcc', "CyanAccDB")
                 if (await db.read('needInstall') === 'never') {
                     console.log('CyanAcc已禁用')
                     return;

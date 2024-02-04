@@ -122,8 +122,8 @@
 
         
         <div class="date" id="date">
-            <span>January</span>
-            <span>29,</span>
+            <span>February</span>
+            <span>4,</span>
             <span>2024</span>
         </div>
         
@@ -134,23 +134,40 @@
     <div class="divider"></div>
 
     <div class="content">
-        <p>CyanAcc貌似并没有安装成功，这是由CyanAcc FallBack的一个错误界面。</p>
-<p>点击以下按钮尝试重新安装CyanAcc。此按钮会输出错误日志。</p>
-<p><button class="btn btn-primary" onclick="reinstall_CyanAcc()">重新安装!</button></p>
+        <p>CyanAcc目前处于非活动状态，这是由CyanAcc FallBack的一个错误界面。</p>
+<p>点击以下按钮清空CacheStorage并尝试重装CyanAcc。此按钮会输出错误日志。</p>
+<p>如果你是错误地禁用了CyanAcc，请点击重新启用按钮以重新激活CyanAcc</p>
+<p><button class="btn btn-primary" onclick="reinstall_CyanAcc()">重装CyanAcc</button><br><button class="btn btn-primary" onclick="reactive_CyanAcc()">重新启用并重装CyanAcc</button><br><button class="btn btn-primary" onclick="clean_CyanAcc()">清除所有存储的数据并重装CyanAcc</button></p>
 <p id="Acc_Debug_Log"></p>
 
 <script>
-    const AccLog = document.getElementById('Acc_Debug_Log')
-    function reinstall_CyanAcc() {
-         navigator.serviceWorker.register(`/CyanAcc.js?time=${new Date().getTime()}`).then(()=>{
-            AccLog.innerText = '貌似安装是成功的，3s后此页面将尝试刷新以进入由CyanAcc托管的设置页面...'
-            setTimeout(()=>{
-                location.search = '?t=' + new Date().getTime()
-            }, 3000)
-         }).catch((err)=>{
-            AccLog.innerText = '貌似安装失败了，错误信息如下：\n' + err
-         })
+const AccLog = document.getElementById('Acc_Debug_Log')
+window.reactive_CyanAcc = async () => {
+    const db = new CacheDB('CyanAcc', "CyanAccDB")
+    const CyanAcc = JSON.parse(await db.read('CyanAcc_Config'))
+    CyanAcc.enable = true
+    await db.write('CyanAcc_Config', JSON.stringify(CyanAcc))
+    AccLog.innerText += "已将CyanAcc设置为启用状态，尝试重新安装CyanAcc...\n"
+    await reinstall_CyanAcc()
+}
+window.clean_CyanAcc = async () => {
+    for (CacheStorageKey of (await caches.keys())) {
+        await caches.delete(CacheStorageKey)
+        AccLog.innerText += `已清除名为${CacheStorageKey}的存储\n`
     }
+    AccLog.innerText += "所有缓存已清除，正在尝试重新安装CyanAcc...\n"
+    await reinstall_CyanAcc()
+}
+window.reinstall_CyanAcc = async () => {
+    navigator.serviceWorker.register(`/CyanAcc.js?time=${new Date().getTime()}`).then(() => {
+        AccLog.innerText += '貌似安装是成功的，3s后此页面将尝试刷新以进入由CyanAcc托管的设置页面...\n'
+        setTimeout(() => {
+            location.search = '?t=' + new Date().getTime()
+        }, 3000)
+    }).catch((err) => {
+        AccLog.innerText += '貌似安装失败了，错误信息如下：\n' + err
+    })
+}        
 </script>
     </div>
     
@@ -234,10 +251,53 @@
                     document.head.appendChild(link)
                 })
             };
-
-
-
             (async () => {
+                if (!!document.getElementById("Comments")){
+                    const data = JSON.parse((await db.read("CommentSetting")) || JSON.stringify({
+                    enable: true,
+                    delay: 5
+                }))
+                if (data.enable) {
+                    document.getElementById("comment_notice").innerText = "Comment Will Load After " + data.delay + "s"
+                    setTimeout(() => {
+                        const wait_comment_load = setInterval(async () => {
+                            if (isElementVisible(document.getElementById("Comments"))) {
+                                clearInterval(wait_comment_load)
+                                document.getElementById("comment_notice").innerText = "Loading Comment Script..."
+                                await loadJS("https://registry.npmmirror.com/artalk/2.5.5/files/dist/Artalk.js")
+                                document.getElementById("comment_notice").innerText = "Loading Comment Style..."
+                                await loadCSS("https://registry.npmmirror.com/artalk/2.5.5/files/dist/Artalk.css")
+                                document.getElementById("comment_notice").innerText = "Loading Comment Frame..."
+                                Artalk.init({
+                                    el: '#Comments',
+                                    pageKey: window.location.pathname,
+                                    pageTitle: "",
+                                    server: 'https://artalk.eurekac.cn',
+                                    site: 'CyanFalseの幻想乡♂'
+                                })
+                                Artalk.setDarkMode(window.darkMode)
+                            }
+                        }, 1000)
+                    }, data.delay*1000)
+                } else {
+                    document.getElementById("comment_notice").innerText = "Comment Disabled by Your Config"
+                }
+                const isElementVisible = (el) => {
+                    const rect = el.getBoundingClientRect()
+                    const vWidth = window.innerWidth || document.documentElement.clientWidth
+                    const vHeight = window.innerHeight || document.documentElement.clientHeight
+                    if (
+                        rect.right < 0 ||
+                        rect.bottom < 0 ||
+                        rect.left > vWidth ||
+                        rect.top > vHeight
+                    ) {
+                        return false
+                    }
+
+                    return true
+                }
+                }
                 if (!!document.querySelector('#map')) {
                     window.loadPageMap = (dark) => {
                         document.querySelector('#map').id = 'map-predelete'
@@ -282,7 +342,7 @@
                     loadPageMap(window.darkMode, true)
                 }
 
-                window.db = new CacheDB('CyanAcc');
+                window.db = new CacheDB('CyanAcc', "CyanAccDB")
                 if (await db.read('needInstall') === 'never') {
                     console.log('CyanAcc已禁用')
                     return;
