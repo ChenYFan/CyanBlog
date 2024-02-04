@@ -10,7 +10,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 16.x
       - name: Cache node modules
         uses: actions/cache@v1
         with:
@@ -18,10 +18,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
       - name: Install & Build
         run: >
-          npm i -g hexo-cli
-
-          npm i
-          
+          npm i -D
           git ls-files -z | while read -d '' path; do touch -d "$(git log -1
           --format="@%ct" "$path")" "$path"; done
 
