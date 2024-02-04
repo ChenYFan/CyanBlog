@@ -7,7 +7,7 @@
     "build:hexo": "hexo generate",
     "clean:hexo": "hexo clean",
     "dev:hexo": "hexo server",
-    "build:panel": "cd CyanAccPanel && vite build && cp -r dist ../public/CyanAccPanel",
+    "build:panel": "cd CyanAccPanel && vite build && cp -r dist ../public/panel",
     "dev:panel": "cd CyanAccPanel && vite",
     "clean:panel": "cd CyanAccPanel && rm -rf dist",
     "build": "npm run build:hexo && npm run build:panel",

@@ -38,7 +38,7 @@ jobs:
           github_token: ${{ secrets.TOKEN }}
           publish_dir: ./public
 
-      # - uses: JS-DevTools/npm-publish@v1
-      #   with:
-      #     token: ${{ secrets.NPM }}
-      #     package: ./public/package.json
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM }}
+          package: ./public/package.json
