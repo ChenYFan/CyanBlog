@@ -27,7 +27,7 @@
         }
     })
 
-    window.db = new CacheDB('CyanAcc');
+    window.db = new CacheDB('CyanAcc', "CyanAccDB")
     const ColorDefault = {
         "auto": true,
         "auto_mode": "auto",

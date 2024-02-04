@@ -41,8 +41,8 @@ const PersistentTasks = {
     }
 }
 
-const CyanACCPanel = "http://localhost:5173/CyanAcc"
-//const CyanACCPanel = "https://registry.npmmirror.com/cyanacc-panel/0.0.0-1700618244230/files"
+//const CyanACCPanel = "http://localhost:5173/CyanAcc"
+const CyanACCPanel = "/CyanAccPanel"
 self.cons = {
     s: (m) => {
         console.log(`%c[SUCCESS]%c ${m}`, 'color:white;background:green;', '')
@@ -419,13 +419,14 @@ const Default_CDN_Domain = [
 ]
 const Default_CyanAcc_Config = {
     enable: true,
+    reinit: true,
     PersistentTasks: {
         enable: true,
         interval: 1000
     },
     AutoClear: {
         enable: true,
-        interval: 1000 * 60 * 60
+        interval: 1000 * 60 
     }
 }
 
@@ -565,18 +566,22 @@ addEventListener('activate', function () {
 
 const handleRequest = async (request) => {
     const domain = (new URL(request.url)).host
-    if (typeof self.init === 'undefined') {
+    if (typeof self.init === 'undefined' || !self.init) {
+        cons.i(`CyanAcc正在重新初始化...在${request.url}`)
         self.init = true
         self.Blog_Fetch_Config = JSON.parse(await db.readWithDefault('Blog_Fetch_Config', JSON.stringify(Default_Blog_Fetch_Config)))
         self.CDN_Domain = JSON.parse(await db.readWithDefault('CDN_Domain', JSON.stringify(Default_CDN_Domain)))
         self.CDN_Fetch_Config = JSON.parse(await db.readWithDefault('CDN_Fetch_Config', JSON.stringify(Default_CDN_Fetch_Config)))
         self.CyanAccConfig = JSON.parse(await db.readWithDefault('CyanAcc_Config', JSON.stringify(Default_CyanAcc_Config)))
         if (CyanAccConfig.PersistentTasks.enable && typeof self.CyanAccInterVal === 'undefined') {
-            if (Blog_Fetch_Config.auto_update.enable) PersistentTasks.add(UpdateBlogVersion, true, Blog_Fetch_Config.auto_update.interval, "CyanAcc自动更新博客版本进程")
+            cons.i("CyanAcc正在启动持久任务池...")
+            if (Blog_Fetch_Config.auto_update.enable) PersistentTasks.add(UpdateBlogVersion, false, Blog_Fetch_Config.auto_update.interval, "CyanAcc自动更新博客版本进程")
             if (CyanAccConfig.AutoClear.enable) PersistentTasks.add(AutoClear, false, CyanAccConfig.AutoClear.interval, "CyanAcc自动清理缓存进程")
             self.CyanAccInterVal = setInterval(async () => {
                 await PersistentTasks.runAll()
             }, CyanAccConfig.PersistentTasks.interval)
+        }else{
+            cons.w("CyanAcc持久任务池被禁用")
         }
     }
     if (!CyanAccConfig.enable) return fetch(request)
@@ -649,7 +654,10 @@ const CyanAccRouter = async (request) => {
         const action = data.action
         switch (action) {
             case 'PING':
-                return new Response('PONG')
+                return new Response(JSON.stringify({ status: "OK", data: "PONG" }))
+            case 'REINIT':
+                self.init = false
+                return new Response(JSON.stringify({ status: "OK", data: "SET INIT AS FALSE" }))
             default:
                 return new Response('Bad Request', { status: 400 })
         }
