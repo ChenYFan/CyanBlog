@@ -41,8 +41,8 @@ const PersistentTasks = {
     }
 }
 
-//const CyanACCPanel = "http://localhost:5173/CyanAcc"
-const CyanACCPanel = "/CyanAccPanel"
+const CyanACCPanel = "http://localhost:5173/CyanAcc"
+//const CyanACCPanel = "/CyanAccPanel"
 self.cons = {
     s: (m) => {
         console.log(`%c[SUCCESS]%c ${m}`, 'color:white;background:green;', '')
@@ -658,6 +658,8 @@ const CyanAccRouter = async (request) => {
             case 'REINIT':
                 self.init = false
                 return new Response(JSON.stringify({ status: "OK", data: "SET INIT AS FALSE" }))
+            case 'DUMP_VAR_TASKLIST':
+                return new Response(JSON.stringify({ status: "OK", data: PersistentTasks.pool }))
             default:
                 return new Response('Bad Request', { status: 400 })
         }
