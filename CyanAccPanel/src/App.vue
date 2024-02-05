@@ -107,7 +107,7 @@ changeSlected(router_url.value)
   }"
     class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent">
     <div class="h-19.5">
-      <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="javascript:;" target="_blank">
+      <a class="block navbar-brand m-0 text-sm whitespace-nowrap text-slate-700" href="javascript:;" target="_blank">
         <svg t="1700218862440" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
           p-id="4027" width="30" height="30">
           <path
@@ -231,4 +231,3 @@ changeSlected(router_url.value)
     </div>
   </main>
 </template>
-<style scoped></style>

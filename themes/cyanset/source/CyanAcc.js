@@ -41,7 +41,6 @@ const PersistentTasks = {
     }
 }
 
-//const CyanACCPanel = "http://localhost:5173/CyanAcc"
 const CyanACCPanel = "https://blog.eurekac.cn/panel"
 self.cons = {
     s: (m) => {
@@ -426,7 +425,7 @@ const Default_CyanAcc_Config = {
     },
     AutoClear: {
         enable: true,
-        interval: 1000 * 60 
+        interval: 1000 * 60
     }
 }
 
@@ -532,7 +531,8 @@ const AutoClear = async () => {
     const keys = await cache.keys()
     const now = new Date().getTime()
     for (var key of keys) {
-        if (now - Number(key.headers.get('Cache-Time')) > Number(key.headers.get('Cache-L2'))) await cache.delete(key)
+        const value = await cache.match(key)
+        if (now - Number(value.headers.get('Cache-Time')) > Number(value.headers.get('Cache-L2'))) await cache.delete(key)
     }
 }
 const PreducePath = (urlObj) => {
@@ -569,6 +569,7 @@ const handleRequest = async (request) => {
     if (typeof self.init === 'undefined' || !self.init) {
         cons.i(`CyanAcc正在重新初始化...在${request.url}`)
         self.init = true
+        self.initTime = new Date().getTime()
         self.Blog_Fetch_Config = JSON.parse(await db.readWithDefault('Blog_Fetch_Config', JSON.stringify(Default_Blog_Fetch_Config)))
         self.CDN_Domain = JSON.parse(await db.readWithDefault('CDN_Domain', JSON.stringify(Default_CDN_Domain)))
         self.CDN_Fetch_Config = JSON.parse(await db.readWithDefault('CDN_Fetch_Config', JSON.stringify(Default_CDN_Fetch_Config)))
@@ -580,11 +581,12 @@ const handleRequest = async (request) => {
             self.CyanAccInterVal = setInterval(async () => {
                 await PersistentTasks.runAll()
             }, CyanAccConfig.PersistentTasks.interval)
-        }else{
-            cons.w("CyanAcc持久任务池被禁用")
+        } else {
+            cons.w("CyanAcc持久任务池被禁用或者已经启动")
         }
     }
     if (!CyanAccConfig.enable) return fetch(request)
+    self.requestCount.total++
     if (Blog_Fetch_Config.domain.includes(domain)) return BlogRouter(request)
     for (var cdnitem of CDN_Domain) {
         if (request.url.match(new RegExp(cdnitem.match))) return CDNRouter(request)
@@ -660,12 +662,25 @@ const CyanAccRouter = async (request) => {
                 return new Response(JSON.stringify({ status: "OK", data: "SET INIT AS FALSE" }))
             case 'DUMP_VAR_TASKLIST':
                 return new Response(JSON.stringify({ status: "OK", data: PersistentTasks.pool }))
+            case 'GET_CACHE_SIZE':
+                const AssetsCache = await caches.open("AssetsCache")
+                const AssetsCachekeys = await AssetsCache.keys()
+                const Precise = data.precise
+                let CacheSize = 0
+                for (var key of AssetsCachekeys) {
+                    const value = await AssetsCache.match(key)
+                    CacheSize += Number(await GetResponseRealSize(value, Precise))
+                }
+                return new Response(JSON.stringify({ status: "OK", data: CacheSize }))
+            case 'GET_INIT_TIME':
+                return new Response(JSON.stringify({ status: "OK", data: self.initTime }))
             default:
                 return new Response('Bad Request', { status: 400 })
         }
     }
     const CyanAccPanel = async (request) => {
         const res = await BlogRouter(new Request(CyanACCPanel + PreducePath(url).replace(/^CyanAcc/g, '') + ((new URL(request.url)).search || '')))
+        //const res = await fetch(new Request('http://localhost:5173/CyanAcc' + PreducePath(url).replace(/^CyanAcc/g, '') + ((new URL(request.url)).search || '')))
         //The Origin Url Will Cause Vue Slibing Error,So It has to rebuild Response
         return new Response(res.body, {
             headers: {
@@ -701,4 +716,13 @@ const CyanAccRouter = async (request) => {
         default:
             return CyanAccPanel(request)
     }
+}
+
+
+
+const GetResponseRealSize = async (res, precise) => {
+    const headers = res.headers
+    const body = res.body
+    const contentLength = precise ? (await res.arrayBuffer()).byteLength : (headers.get('content-length') || body.byteLength || (await res.arrayBuffer()).byteLength || 0)
+    return contentLength
 }

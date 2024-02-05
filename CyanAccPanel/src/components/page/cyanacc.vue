@@ -65,10 +65,10 @@ const saveSetting = async () => {
                                 </div>
                             </li>
                             <label class="label-text">PersistentTasks激活间隔<span>
-                                    {{ CyanAccSetting.PersistentTasks.interval }}毫秒</span></label>
+                                    {{ CyanAccSetting.PersistentTasks.interval/1000 }}秒</span></label>
                             <input type="range" min="1000" max="5000" class="slider w-full" step="1000"
                                 :disabled="!(CyanAccSetting.enable && CyanAccSetting.PersistentTasks.enable)"
-                                v-model="CyanAccSetting.PersistentTasks.interval" />
+                                v-model.number="CyanAccSetting.PersistentTasks.interval" />
                         </ul>
                         <br />
 
@@ -82,10 +82,10 @@ const saveSetting = async () => {
                                 </div>
                             </li>
                             <label class="label-text">AutoClear间隔时间<span>
-                                    {{ CyanAccSetting.AutoClear.interval }}ms</span></label>
+                                    {{ CyanAccSetting.AutoClear.interval/1000 }}秒</span></label>
                             <input type="range" :min="1000 * 30" :max="1000 * 120" step="1000" class="slider w-full"
                                 :disabled="!(CyanAccSetting.enable && CyanAccSetting.PersistentTasks.enable && CyanAccSetting.AutoClear.enable)"
-                                v-model="CyanAccSetting.AutoClear.interval" />
+                                v-model.number="CyanAccSetting.AutoClear.interval" />
                         </ul>
                         <br />
                         <button type="button" class="apply-btn" @click="saveSetting()">保存</button>
