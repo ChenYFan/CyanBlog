@@ -548,7 +548,8 @@ addEventListener('fetch', event => {
     try {
         event.respondWith(handleRequest(event.request))
     } catch (e) {
-        event.respondWith(new Response("Cyan Acc Err!"))
+        cons.e(`Fatal Error,CyanAcc Will Be disabled:${e}`)
+        event.respondWith(fetch(event.request))
         return;
     }
 })
@@ -586,7 +587,6 @@ const handleRequest = async (request) => {
         }
     }
     if (!CyanAccConfig.enable) return fetch(request)
-    self.requestCount.total++
     if (Blog_Fetch_Config.domain.includes(domain)) return BlogRouter(request)
     for (var cdnitem of CDN_Domain) {
         if (request.url.match(new RegExp(cdnitem.match))) return CDNRouter(request)
