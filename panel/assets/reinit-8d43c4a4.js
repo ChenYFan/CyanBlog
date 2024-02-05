@@ -1,0 +1,1 @@
+import{C as e}from"./notyf-b7b7a415.js";const r=async()=>{const n=new e("CyanAcc","CyanAccDB");return JSON.parse(await n.read("CyanAcc_Config")||JSON.stringify({reinit:!0})).reinit?await fetch("/CyanAcc/api",{method:"POST",body:JSON.stringify({action:"REINIT"})}).then(t=>t.json()).then(t=>t.status==="OK"):!1};export{r};
