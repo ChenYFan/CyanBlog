@@ -260,9 +260,9 @@ function AssetsFetchWithCache(origin, urls, CacheConfig) {
                     return;
                 }
                 const cached_time = new Date().getTime() - Number(cache_res.headers.get('Cache-Time'))
-                if (cached_time > this.CacheConfig.cacheL1) {
+                if (cached_time > Number(cache_res.headers.get('Cache-L1'))) {
                     cons.i(`${origin.url} Is Expired L1,Refreshing...`)
-                    if (cached_time > this.CacheConfig.cacheL2) {
+                    if (cached_time > Number(cache_res.headers.get('Cache-L2'))) {
                         cons.i(`${origin.url} Is Expired L2,Force Refreshing...`)
                         resolve(await FetchWithWriteCache())
                     } else {
@@ -526,6 +526,26 @@ const UpdateBlogVersion = async () => {
         }
     }
 }
+
+const SetAllDomainCacheImmediatlyExpired = async (domain) => {
+    const cache = await caches.open("AssetsCache")
+    const keys = await cache.keys()
+    for (var key of keys) {
+        const value = await cache.match(key)
+        if (new URL(key.url).host === domain) {
+            const headers = value.headers
+            const body = value.body
+            headers.set('Cache-L1', 0)
+            const newRes = new Response(body, {
+                headers
+            })
+            await cache.put(key, newRes)
+        }
+    }
+    return true
+}
+
+
 const AutoClear = async () => {
     const cache = await caches.open("AssetsCache")
     const keys = await cache.keys()
