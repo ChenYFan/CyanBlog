@@ -521,6 +521,9 @@ const UpdateBlogVersion = async () => {
         if (BlogCDNObject_NewestVersion === mirror.var.PACKAGE_VERSION) continue;
         else {
             mirror.var.PACKAGE_VERSION = BlogCDNObject_NewestVersion
+            Blog_Fetch_Config.domain.map(async domain => {
+                await SetAllDomainCacheImmediatlyExpired(domain)
+            });
             await db.write('Blog_Fetch_Config', JSON.stringify(self.Blog_Fetch_Config))
             return true
         }
