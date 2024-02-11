@@ -268,14 +268,14 @@ window.reinstall_CyanAcc = async () => {
                                 document.getElementById("comment_notice").innerText = "Loading Comment Style..."
                                 await loadCSS("https://registry.npmmirror.com/artalk/2.8.2/files/dist/Artalk.css")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Frame..."
-                                Artalk.init({
+                                window.artalk = Artalk.init({
                                     el: '#Comments',
                                     pageKey: window.location.pathname,
                                     pageTitle: "",
                                     server: 'https://artalk.eurekac.cn',
                                     site: 'CyanFalseの幻想乡♂'
                                 })
-                                Artalk.setDarkMode(window.darkMode)
+                                artalk.setDarkMode(window.darkMode)
                             }
                         }, 1000)
                     }, data.delay*1000)
