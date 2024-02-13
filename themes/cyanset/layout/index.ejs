@@ -84,16 +84,15 @@
                                 <a href="https://t.me/Cyanwoof/${index}">
                                     <div class="content talk-content">
                                         <div class="title">
-                                            #${index}
+                                            #${index} <span style="float:right">${tgsvg}&nbsp;</span>
+                                        <span style="float:right">Views:${item.views || "无"}</span>
                                         </div>
                                         <div class="time">
                                         <span>${['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date(item.time).getMonth()]}</span>
                                         <span>&nbsp;${new Date(item.time).getDate()},&nbsp;</span>
                                         <span>${new Date(item.time).getFullYear()}</span>
                                         <span>&nbsp;${new Date(item.time).toLocaleTimeString()}&nbsp;</span>
-
-                                        <span style="float:right">${tgsvg}&nbsp;</span>
-                                        <span style="float:right">Views:${item.views || "无"}</span>
+                                        
                                         </div>
                                         <div class="excerpt"><p class="talk-excerpt">
                                             ${item.text.replace(/\<(\/?br\/?)\>/g, '\n').replace(/\<(\/?[^\>]+)\>/g, '').replace(/\n/g, '<br>')}
