@@ -7,14 +7,22 @@ no_comments: true
 ## Me
 
 <div class="container">
-    <div class="card" style="display: grid; grid-template-columns: minmax(128px, 10%) 1fr; padding: 8px 16px;">
-        <img src="/favicon.png" alt="Mr. Will's blog's logo" style="height: 100%; object-fit: contain;">
+    <div class="card" style="padding: 8px 16px;">
         <div>
-            <h1>Mr. Will</h1>
-            <p>I'm a JavaScript developer, working on some JavaScript open source projects, learning some JavaScript coding skills and sharing my JavaScript coding experiences.</p>
+            <h1>I'm CyanFalse</h1>
+            这是我的友链信息，你可以先添加以下信息到自己的博客，然后点击提交友链申请按钮自行添加友链信息并发起PullRequest，待审核通过后友链会出现在此处。
+            ```json
+            {
+                "title":"CyanFalse's Weblog",
+                "link":"https://blog.eurekac.cn",
+                "avatar":"https://registry.npmmirror.com/chenyfan-oss/4.0.0/files/512.jpg",
+                "intro":"I'm CyanFalse,New to Here.",
+                "color":"#ffc107"
+            }
+            ```
             <div class="actions">
                 <div class="right">
-                    <a class="action-button-primary" href="mailto:mr.will.com@outlook.com">Contact</a>
+                    <a class="action-button-primary" href="https://github.com/ChenYFan/CyanBlog/blob/main/themes/cyanset/source/links.json">Create A Pull Request</a>
                 </div>
             </div>
         </div>
@@ -23,34 +31,48 @@ no_comments: true
 
 ## Friends
 <div class="container">
-<div class="card-grid">
-    <div class="card">
+    <div class="card-grid" id="normal-friends"></div>
+    <details>
+        <summary>无对应友链但可以访问的伙伴</summary>
+        <div class="card-grid" id="unrelink-friends"></div>
+    </details>
+    <details>
+        <summary>无法访问的伙伴</summary>
+        <div class="card-grid" id="unaccessible-friends"></div>
+    </details>
+</div>
+
+<script>
+    setTimeout(async () => {
+        const FriendsData = await fetch("/links.json").then(res => res.json());
+        const $1 = document.getElementById("normal-friends");
+        const $2 = document.getElementById("unrelink-friends");
+        const $3 = document.getElementById("unaccessible-friends");
+
+        FriendsData.forEach(friend => {
+            const childHtml = ` <div class="card">
         <div class="cover-img">
-            <img src="/img/000005.png" alt="ChungZH.cn's logo">
+            <img src="${friend.image}" alt="${friend.title}" data-original="${friend.image}">
         </div>
         <div class="content">
-            <p class="title">ChungZH</p>
-            <p class="description">Young, Simple, Naive</p>
+            <p class="title">${friend.title}</p>
+            <p class="description">${friend.intro}</p>
         </div>
         <div class="actions">
             <div class="right">
-                <a class="action-button-primary" href="https://chungzh.cn/">Visit</a>
+                <a class="action-button-primary" href="${friend.link}">Visit</a>
             </div>
         </div>
-    </div>
-    <div class="card">
-        <div class="cover-img">
-            <img src="/img/000007.png" alt="Louis Aeilot's Avatar">
-        </div>
-        <div class="content">
-            <p class="title">Louis Aeilot</p>
-            <p class="description">Stay Hungry. Stay Foolish.</p>
-        </div>
-        <div class="actions">
-            <div class="right">
-                <a class="action-button-primary" href="https://aeilot.top/">Visit</a>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+    </div> `
+            const child = document.createElement("div");
+            child.innerHTML = childHtml;
+            if (friend.relink) {
+                $1.appendChild(child);
+            } else if (friend.unaccessible) {
+                $3.appendChild(child);
+            } else {
+                $2.appendChild(child);
+            }
+        });
+    }, 200);
+</script>
