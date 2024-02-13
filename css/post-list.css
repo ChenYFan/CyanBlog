@@ -46,20 +46,20 @@
   height: 100%;
   object-fit: cover;
   filter: brightness(1);
-  
+
 
   transition: transform 400ms cubic-bezier(0.4, 0, 0.25, 1),
     filter 400ms cubic-bezier(0.4, 0, 0.25, 1);
 }
 
 .post-list-item:hover .cover-img img,
-.post-list-item > a:focus .cover-img img {
+.post-list-item>a:focus .cover-img img {
   transform: scale(1.03);
   filter: brightness(0.85);
   filter: blur(2px);
-	-webkit-filter: blur(2px);
-	-ms-filter: blur(2px);
-	-moz-filter: blur(2px);
+  -webkit-filter: blur(2px);
+  -ms-filter: blur(2px);
+  -moz-filter: blur(2px);
 }
 
 .post-list-item .title {
@@ -175,8 +175,60 @@
   border-radius: 16px;
   flex-shrink: 0;
 }
+
 .post-list-item p {
-  font-weight: lighter!important;
+  font-weight: lighter !important;
   color: var(--gray);
   font-size: 11px
 }
+
+.talk-list-item a,
+.talk-list-item div,
+.talk-list-item p {
+  font-weight: lighter !important;
+  color: var(--gray);
+  font-size: 16px !important;
+}
+
+.talk-list-item .title {
+  font-size: 24px !important;
+
+}
+
+.talk-list-item {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.talk-list {
+  grid-template-columns: unset !important;
+}
+.talk-readmore {
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+
+.talk-content {
+  position: relative;
+  max-height: 130px; 
+  overflow: hidden;
+}
+ 
+.talk-excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.talk-content.expanded {
+  max-height: none;
+}
+ 
+.talk-content.expanded .talk-excerpt {
+  -webkit-line-clamp: initial;
+}
+

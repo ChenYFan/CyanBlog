@@ -46,8 +46,7 @@
   
   
   
-  
-
+  <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-webfont/1.1.0/files/style.css" />
   <link rel="stylesheet" href="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.css">
 <meta name="generator" content="Hexo 6.3.0"></head>
     
@@ -258,6 +257,95 @@
         
     </div>
 
+    <h2 class="section-title">最新说说</h2>
+
+    <div class="post-list talk-list" id="taslk_list">
+        <article class="article talk-readmore"><a>加载中...</a></article>
+    </div>
+    <script>
+        const $ = document.getElementById('taslk_list');
+            const lyrics = ["Chipi", "chipi", "chapa", "chapa\n", "Dubi", "dubi", "daba", "daba\n", "Mágico", "mi", "dubi", "dubi\n", "boom", "boom", "boom", "boom\n", "Chipi", "chipi", "chapa", "chapa\n", "Dubi", "dubi", "daba", "daba\n", "Mágico", "mi", "dubi", "dubi\n", "booooooooooooooom\n"];
+            let Chip = 0
+            const Chipy = setInterval(() => {
+                $.firstElementChild.innerText += lyrics[Chip].replace(/$/, ',').replace(/\n,/g, '.\n');
+                Chip++
+                if (Chip >= lyrics.length) Chip = 0
+            }, 400);
+            window.toggleText = (e) => {
+                e.parentElement.querySelector('.talk-content').classList.toggle('expanded');
+                e.innerText = e.innerText === '展开' ? '收起' : '展开';
+            }
+            const tgsvg = `<svg t="1707826572067" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4214" width="20" height="20"><path d="M679.424 746.862l84.005-395.996c7.424-34.852-12.581-48.567-35.438-40.009L234.277 501.138c-33.72 13.13-33.134 32-5.706 40.558l126.282 39.424 293.156-184.576c13.714-9.143 26.295-3.986 16.018 5.157L426.898 615.973l-9.143 130.304c13.13 0 18.871-5.706 25.71-12.581l61.696-59.429 128 94.282c23.442 13.129 40.01 6.29 46.3-21.724zM1024 512c0 282.843-229.157 512-512 512S0 794.843 0 512 229.157 0 512 0s512 229.157 512 512z" fill="#1296DB" p-id="4215"></path></svg>`
+            setTimeout(async () => {
+                const insertTalk = async (talk) => {
+                    const apiurl = new URL('https://tgtalk.app.eurekac.cn/')
+                    if (!!talk) apiurl.searchParams.append('startbefore', talk)
+                    await fetch(apiurl)
+                        .then(res => res.json())
+                        .then(data => {
+                            clearInterval(Chipy)
+                            $.lastElementChild.remove();
+                            const list = document.getElementById('taslk_list');
+                            const ChannelMessages = data.ChannelMessageData
+                            Object.keys(ChannelMessages).reverse().forEach(index => {
+                                const item = ChannelMessages[index];
+                                const article = document.createElement('article');
+                                article.className = 'post-list-item talk-list-item';
+                                article.innerHTML = `
+                                <a target="_blank" rel="noopener" href="https://t.me/Cyanwoof/${index}">
+                                    <div class="content talk-content">
+                                        <div class="title">
+                                            #${index}
+                                        </div>
+                                        <div class="time">
+                                        <span>${['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date(item.time).getMonth()]}</span>
+                                        <span>&nbsp;${new Date(item.time).getDate()},&nbsp;</span>
+                                        <span>${new Date(item.time).getFullYear()}</span>
+                                        <span>&nbsp;${new Date(item.time).toLocaleTimeString()}&nbsp;</span>
+
+                                        <span style="float:right">${tgsvg}&nbsp;</span>
+                                        <span style="float:right">Views:${item.views || "无"}</span>
+                                        </div>
+                                        <div class="excerpt"><p class="talk-excerpt">
+                                            ${item.text.replace(/\<(\/?br\/?)\>/g, '\n').replace(/\<(\/?[^\>]+)\>/g, '').replace(/\n/g, '<br>')}
+                                            ${(() => {
+                                        let medialist = ``;
+                                        item.image.forEach((image) => {
+                                            if (data.Region === "CN") image = apiurl.origin + "/?proxy=" + encodeURIComponent(image);
+                                            if (!image.match(/emoji/)) medialist += `<p style="text-align:center;"><img data-original="${image}" src="${image}" style="max-width: 50%; height: auto;"></p>`;
+                                        });
+                                        return medialist;
+                                    })()}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div style="width:100%;text-align:center;background-color: #88888816" onclick="toggleText(this)">展开</div>
+                            `;
+
+                                $.appendChild(article);
+                                if (article.querySelector('.talk-excerpt').offsetHeight < 30 && item.image.length === 0) {
+                                    article.lastElementChild.remove();
+                                    article.querySelector('.talk-content').classList.add('expanded');
+                                }
+
+                            });
+                            $.innerHTML += `<article class="article talk-readmore"><a style="color: var(--link)">从#${data.nextBefore}消息起查看更多</a></article>`;
+                            $.lastElementChild.onclick = () => {
+                                $.lastElementChild.innerText = '加载中...';
+                                insertTalk(data.nextBefore);
+                            }
+                        }).catch(err => {
+                            console.error(err);
+                            clearInterval(Chipy)
+                            $.lastElementChild.innerText = '加载失败';
+                        });
+                };
+                insertTalk();
+            }, 500);
+    </script>
+
+
     
 </div>
         <footer>
@@ -273,7 +361,7 @@
 
     </div>
 </footer>
-
+        <script async src="https://umami.eurekac.cn/script.js" data-website-id="8be37a45-1387-4cd9-86ae-7fd3d33e8c29"></script>
         <script src="https://registry.npmmirror.com/@chenyfan/cache-db/0.0.4/files/index.js"></script>
         <script src='/js/main.js'></script>
         
