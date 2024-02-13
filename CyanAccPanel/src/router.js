@@ -3,7 +3,7 @@ import * as VueRouter from 'vue-router'
 const routes = [
     { path: '/', redirect: '/dashboard' },
     { path: '/dashboard', component: () => import('./components/page/dashboard.vue') },
-    { path: '/font', component: () => import('./components/page/font.vue') },
+    //{ path: '/font', component: () => import('./components/page/font.vue') },
     { path: '/darkmode', component: () => import('./components/page/darkmode.vue') },
     { path: '/comment', component: () => import('./components/page/comment.vue') },
     { path: '/cdnFetch', component: () => import('./components/page/cdn/cdnFetch.vue') },

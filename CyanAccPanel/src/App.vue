@@ -45,13 +45,13 @@ const aside_nav = ref([
     type: "intro",
     name: "阅读优化"
   },
-  {
-    type: "link",
-    name: "字体与大小",
-    link: "/font",
-    activate: false,
-    icon: 'svg/font.svg'
-  },
+  // {
+  //   type: "link",
+  //   name: "字体与大小",
+  //   link: "/font",
+  //   activate: false,
+  //   icon: 'svg/font.svg'
+  // },
   {
     type: "link",
     name: "暗色模式",
