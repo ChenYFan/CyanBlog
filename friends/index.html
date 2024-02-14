@@ -164,7 +164,7 @@
         FriendsData.forEach(friend => {
             const childHtml = ` <div class="card">
         <div class="cover-img">
-            <img src="${friend.image}" alt="${friend.title}" data-original="${friend.image}">
+            <img class="lazy" src="${friend.image}" class="lazy" data-srcset="${friend.image}" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="${friend.title}">
         </div>
         <div class="content">
             <p class="title">${friend.title}</p>
@@ -416,5 +416,5 @@
             })();
         </script>
         
-    <script>!function(r){var o=Array.prototype.slice.call(document.querySelectorAll("[data-original]"));function t(){for(var t=0;t<o.length;t++)!function(t){var e,i,n,l;i=(i=o[t]).getBoundingClientRect(),n=r.innerWidth||document.documentElement.clientWidth,l=r.innerHeight||document.documentElement.clientHeight,(100<=i.top||100<=i.left||i.top<0&&100<=i.top+i.height||i.left<0&&100<=i.left+i.width)&&i.top<=l&&i.left<=n&&(l=o[t],i=function(){o.splice(t,1)},n=l.getAttribute("data-original"),"yes"!==l.getAttribute("data-init"))&&(e=l.getAttribute("data-isbg"),n=n.replace(/^https?:/,""),e?l.style.backgroundImage=n:l.setAttribute("src",n),l.setAttribute("data-init","yes"),i)&&i()}(t)}t(),r.addEventListener("scroll",t)}(this);</script></body>
+    </body>
 </html>
