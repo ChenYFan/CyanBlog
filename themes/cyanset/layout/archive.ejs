@@ -14,11 +14,6 @@
         <% page.posts.each(function (post) { %>
         <article class="post-list-item">
             <a href="<%- url_for(post.path) %>">
-                <% if (post.cover_image) { %>
-                <div class="cover-img">
-                    <img src="<%= post.cover_image %>" alt="<%= post.cover_image_alt %>">
-                </div>
-                <% } %>
                 <div class="content">
                     <% if (post.categories && post.categories.length && !is_category()) { %>
                     <div class="categories<%= theme.uppercase_categories ? ' text-uppercase' : '' %>">

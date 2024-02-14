@@ -52,7 +52,7 @@ no_comments: true
         FriendsData.forEach(friend => {
             const childHtml = ` <div class="card">
         <div class="cover-img">
-            <img src="${friend.image}" alt="${friend.title}" data-original="${friend.image}">
+            <img class="lazy" src="${friend.image}" alt="${friend.title}">
         </div>
         <div class="content">
             <p class="title">${friend.title}</p>

@@ -48,7 +48,7 @@
         }
         document.body.setAttribute('data-current-color-scheme', current)
         document.body.setAttribute('data-color-scheme', current)
-        window.darkMode = current === "dark"    
+        window.darkMode = current === "dark"
     }
 
     const currentSetting = await db.read("DarkModeSetting")
@@ -242,3 +242,44 @@ window.loadCSS = async (url) => {
         }
     })
 }
+//节流
+function throttle(fn, wait) {
+    var prev = Date.now();
+    return function () {
+        var context = this;
+        var args = arguments;
+        var now = Date.now();
+        if (now - prev >= wait) {
+            fn.apply(context, args);
+            prev = Date.now();
+        }
+    }
+}
+
+function query(selector) {
+    return Array.from(document.querySelectorAll(selector));
+}
+
+window.lazylistener = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+            var img = entry.target;
+            img.srcset = img.getAttribute('data-srcset');
+            img.className += ' loaded'
+            lazylistener.unobserve(img);
+        }
+    });
+});
+
+const ObserverImage = ()=>{
+    query('img.lazy').forEach(function (item) {
+        if(item.classList.contains('loaded')) return;
+        lazylistener.observe(item);
+     });
+}
+
+setInterval(() => {
+    ObserverImage()
+}, 3000);
+window.addEventListener('scroll', throttle(ObserverImage, 200))
+ObserverImage()

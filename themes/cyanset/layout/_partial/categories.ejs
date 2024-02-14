@@ -7,7 +7,7 @@
         <%
             var categories = ''
             site.categories.forEach((category) => {
-                categories += `<a href="${config.root}${category.path}" class="category">${category.name}</a>`
+                categories += `<a href="${config.root}${category.path}" class="category">${category.name}<span style="float:right">*${category.posts.length}</span></a>`
             })
         %>
         <%- categories %>

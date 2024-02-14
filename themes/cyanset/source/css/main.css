@@ -7,7 +7,7 @@ body {
     margin-top: 56px;
     color: var(--black-2);
     background-color: var(--body-bg);
-    font-family: "LXGW WenKai", sans-serif,"SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: "LXGW WenKai", sans-serif, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 a:link {
@@ -128,30 +128,57 @@ a:visited {
     opacity: 0;
 }
 
-.fadein { 
+.fadein {
     animation: fadeInAnimation ease 1s;
-    animation-iteration-count: 1; 
-    animation-fill-mode: forwards; 
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
-@keyframes fadeInAnimation { 
-    0% { 
-        opacity: 0; 
-    } 
-    100% { 
-        opacity: 1; 
-     } 
-}
-.fadeout { 
-    animation: fadeOutAnimation ease 1s;
-    animation-iteration-count: 1; 
-    animation-fill-mode: forwards; 
-}
-@keyframes fadeOutAnimation { 
-    0% { 
-        opacity: 1;
-    } 
-    100% { 
+@keyframes fadeInAnimation {
+    0% {
         opacity: 0;
-     } 
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeout {
+    animation: fadeOutAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOutAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+img.lazy {
+    transition: filter 0.375s ease 0s
+}
+
+img.lazy:not(.loaded) {
+    -webkit-filter: blur(4px) !important;
+    filter: blur(4px) !important;
+}
+
+.article-mask {
+    display: none;
+}
+
+.article-box {
+    position: relative;
+}
+
+.article-box:hover .article-mask {
+    position: relative;
+    display: unset;
+
 }

@@ -4,8 +4,8 @@
 
 # Site
 title: CyanFalse's HomeRegion
-subtitle: CyanFalse Wanna to Record Something here
-description: Cyan is Here!
+subtitle: I'm CyanFalse, New to Here.
+description: Nice to Meet You!
 keywords: blog, CyanFalse, Cyan, False, CyanFalse's HomeRegion, CyanFalse's Blog
 author: CyanFalse
 language: zh-cn
@@ -112,5 +112,4 @@ search:
 lazyload:
   enable: true 
   onlypost: false
-  imageCDN: # eg https://same.cdn.com/
   loadingImg: # eg ./images/loading.gif

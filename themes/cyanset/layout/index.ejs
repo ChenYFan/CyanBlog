@@ -81,12 +81,12 @@
                                 const article = document.createElement('article');
                                 article.className = 'post-list-item talk-list-item';
                                 article.innerHTML = `
-                                <a href="https://t.me/Cyanwoof/${index}">
+                                
                                     <div class="content talk-content">
-                                        <div class="title">
+                                        <a href="https://t.me/Cyanwoof/${index}"><div class="title">
                                             #${index} <span style="float:right">${tgsvg}&nbsp;</span>
                                         <span style="float:right">Views:${item.views || "无"}</span>
-                                        </div>
+                                        </div></a>
                                         <div class="time">
                                         <span>${['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date(item.time).getMonth()]}</span>
                                         <span>&nbsp;${new Date(item.time).getDate()},&nbsp;</span>
@@ -95,20 +95,19 @@
                                         
                                         </div>
                                         <div class="excerpt"><p class="talk-excerpt">
-                                            ${item.text.replace(/\<(\/?br\/?)\>/g, '\n').replace(/\<(\/?[^\>]+)\>/g, '').replace(/\n/g, '<br>')}
-                                            ${(() => {
+                                    ${item.text.replace(/\<(\/?br\/?)\>/g, '\n').replace(/\<(\/?[^\>]+)\>/g, '').replace(/\n/g, '<br>')}
+                                    ${(() => {
                                         let medialist = ``;
                                         item.image.forEach((image) => {
                                             if (data.Region === "CN") image = apiurl.origin + "/?proxy=" + encodeURIComponent(image);
-                                            if (!image.match(/emoji/)) medialist += `<p style="text-align:center;"><img data-original="${image}" src="${image}" style="max-width: 50%; height: auto;"></p>`;
+                                            if (!image.match(/emoji/)) medialist += `<p style="text-align:center;"><img class="lazy" src="${image}" style="max-width: 50%; height: auto;"></p>`;
                                         });
                                         return medialist;
                                     })()}
                                             </p>
                                         </div>
                                     </div>
-                                </a>
-                                <div style="width:100%;text-align:center;background-color: #88888816" onclick="toggleText(this)">展开</div>
+                                <div style="width:100%;height:36px;justify-content:center;align-items:center;display:-webkit-flex;background-color: #88888816" onclick="toggleText(this)">展开</div>
                             `;
 
                                 $.appendChild(article);
