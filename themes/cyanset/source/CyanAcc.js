@@ -238,12 +238,13 @@ function AssetsFetchWithCache(origin, urls, CacheConfig) {
             const cache_res = await cache.match(new Request(OriginUrl.toString()))
             const FetchWithWriteCache = async () => {
                 const fetch_res = (await this.IntelligentFetch())[0]
+                console.log(OriginUrl.pathname, this.CacheConfig.onlyBody)
                 const rebuild_fetch_res = this.rebuild.response(
                     fetch_res.clone(),
                     this.CacheConfig.onlyBody ? {
                         status: fetch_res.status,
                         headers: {
-                            "content-type": fetch_res.headers.get("content-type")
+                            "content-type": OriginUrl.pathname.endsWith('.html') ? "text/html;charset=UTF-8" : fetch_res.headers.get("content-type")
                         }
                     } : fetch_res.clone()
                 )
