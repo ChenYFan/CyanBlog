@@ -243,7 +243,7 @@ function AssetsFetchWithCache(origin, urls, CacheConfig) {
                     this.CacheConfig.onlyBody ? {
                         status: fetch_res.status,
                         headers: {
-                            "content-type": fetch_res.headers.get("content-type")
+                            "content-type": OriginUrl.pathname.endsWith('.html') ? "text/html;charset=UTF-8" : fetch_res.headers.get("content-type")
                         }
                     } : fetch_res.clone()
                 )

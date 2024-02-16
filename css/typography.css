@@ -23,28 +23,16 @@ blockquote {
 
 pre,
 code {
-    font-family: ui-monospace, JetBrains Mono, SFMono-Regular, Menlo, Monaco, Consolas, Andale Mono, Liberation Mono, Ubuntu Mono, Courier New, monospace !important;
+    font-family: "LXGW WenKai Screen",ui-monospace, JetBrains Mono, SFMono-Regular, Menlo, Monaco, Consolas, Andale Mono, Liberation Mono, Ubuntu Mono, Courier New, monospace !important;
 }
 
 pre {
-    font-size: 14px;
-}
-
-pre:before {
-    color: var(--text-l);
-    opacity: .25;
-    content: attr(data-language);
-    font-size: 1.625rem;
-    font-weight: 700;
-    position: absolute;
-    right: .5rem;
-    top: auto;
-    margin-bottom: -1.2rem;
+    font-size: 16px!important;
 }
 
 code {
-    font-size: 12px;
-    background-color: var(--white-1);
+    font-size: 15px;
+    background-color: var(--white-2);
     padding: 2px 4px;
     border-radius: 4px;
 }
