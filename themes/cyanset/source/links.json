@@ -326,5 +326,12 @@
         "image": "https://lanyundev.xyz/img/logo.jpg",
         "relink": false,
         "unaccessible": true
+    },
+    {
+        "title": "Ray's Blog",
+        "link": "https://blog.mk1.io/",
+        "intro": "Never say never.",
+        "image": "https://static.mk1.io/img/202310190944769.png",
+        "relink": true
     }
 ]
