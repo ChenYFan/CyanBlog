@@ -151,11 +151,13 @@
         }
         headingSelector = headingSelector.slice(0, -1)
         const headings = content.querySelectorAll(headingSelector)
-
         var source = []
         headings.forEach((heading) => {
+            const level = parseInt(heading.tagName[1])
+            const Text = "&nbsp;".repeat((level - 1) * 2) + heading.innerText
+            console.log(Text)
             source.push({
-                html: heading.innerHTML,
+                html: Text,
                 href: heading.getElementsByClassName('headerlink')[0].attributes['href'].value
             })
         })
@@ -167,7 +169,6 @@
             const link = document.createElement('a')
             link.href = source[i].href
             link.innerHTML = source[i].html
-            link.removeChild(link.getElementsByClassName('headerlink')[0])
             item.appendChild(link)
             toc.appendChild(item)
         }
@@ -242,6 +243,11 @@ window.loadCSS = async (url) => {
         }
     })
 }
+
+setTimeout(() => {
+    loadCSS("https://registry.npmmirror.com/lxgw-wenkai-screen-webfont/1.1.0/files/style.css")
+}, 0);
+
 //节流
 function throttle(fn, wait) {
     var prev = Date.now();
@@ -271,11 +277,11 @@ window.lazylistener = new IntersectionObserver(function (entries) {
     });
 });
 
-const ObserverImage = ()=>{
+const ObserverImage = () => {
     query('img.lazy').forEach(function (item) {
-        if(item.classList.contains('loaded')) return;
+        if (item.classList.contains('loaded')) return;
         lazylistener.observe(item);
-     });
+    });
 }
 
 setInterval(() => {

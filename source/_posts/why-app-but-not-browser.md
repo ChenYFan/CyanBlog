@@ -10,7 +10,7 @@ categories:
   - 叨叨念
 des: 关于国内各大厂商倾向于应用软件而非网页软件的想法
 key: '隐私,安全'
-cover_image: 'https://registry.npmmirror.com/chenyfan-oss/2.0.4/files/index.jpg'
+cover_image: 'https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/banner/Why-it-always-be-an-APP.jpg'
 lushkey: why-app-but-not-browser.md
 abbrlink: c0af86a9
 date: 2021-07-28 13:24:15
@@ -19,6 +19,8 @@ date: 2021-07-28 13:24:15
 一个简单的功能，完全可以在浏览器内实现，凭什么国内某些软件这么希望你去下载，去使用他们的app？
 
 <!--more-->
+
+---
 
 就在不久前，我是真的体会到了什么叫流氓厂商。点名批评一下百度，我苹果手机Safari随便在百度上搜索点什么，还没把营销号、广告和垃圾信息从眼中剔除，突然间，AppStore界面平移到我眼前，一个叫`百度`的软件可怜巴巴的望着我。于是我点击左上角返回键，然后继续搜索...
 

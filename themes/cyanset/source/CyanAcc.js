@@ -238,7 +238,6 @@ function AssetsFetchWithCache(origin, urls, CacheConfig) {
             const cache_res = await cache.match(new Request(OriginUrl.toString()))
             const FetchWithWriteCache = async () => {
                 const fetch_res = (await this.IntelligentFetch())[0]
-                console.log(OriginUrl.pathname, this.CacheConfig.onlyBody)
                 const rebuild_fetch_res = this.rebuild.response(
                     fetch_res.clone(),
                     this.CacheConfig.onlyBody ? {

@@ -11,13 +11,15 @@ des: 从唯一一个拥有国内节点能够加速海外资源的静态文件分
 hide: false
 key: 'serviceworker,sw'
 abbrlink: c0af86bb
-cover_image: 'https://registry.npmmirror.com/chenyfan-os/0.0.0-r2/files/banner.jpg'
+cover_image: 'https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/banner/ServiceWorker-is-better.jpg'
 date: 2022-01-16 21:57:45
 ---
 
 ServiceWorker作为前端革命领袖，毫不夸张地被誉为前端黑科技，此文将阐述如何巧妙的使用它来实现一些看起来匪夷所思的事情。
 
 <!--more-->
+
+---
 
 > **Warning**
 > 此文为最基本的SW使用基础,如果你只是想来白嫖代码的建议退出选择下一篇实操文章.
