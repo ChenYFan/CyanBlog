@@ -338,7 +338,12 @@
                                         
                                         </div>
                                         <div class="excerpt"><p class="talk-excerpt">
-                                    ${item.text.replace(/\<(\/?br\/?)\>/g, '\n').replace(/\<(\/?[^\>]+)\>/g, '').replace(/\n/g, '<br>')}
+                                    ${item.text
+                                        .replace(/\<a *.*?href\=\"(.*?)\"*.*?\>(.*?)\<\/a\>/g, '<a href="$1" target="_blank" class="normal-link">$2</a>')
+                                        .replace(/\<pre\>(.*?)\<\/pre\>/g, '<code>$1</code>')
+                                        .replace(/\<a href\=\"(.*?)\"\>#SFCN\<\/a\>/g, '')
+                                        .replace(/\<tg-spoiler\>(.*?)\<\/tg-spoiler\>/g, '<span class="heimu">$1</span>')
+                                    }
                                     ${(() => {
                                         let medialist = ``;
                                         item.image.forEach((image) => {
