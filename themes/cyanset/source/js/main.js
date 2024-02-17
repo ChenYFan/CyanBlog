@@ -155,7 +155,6 @@
         headings.forEach((heading) => {
             const level = parseInt(heading.tagName[1])
             const Text = "&nbsp;".repeat((level - 1) * 2) + heading.innerText
-            console.log(Text)
             source.push({
                 html: Text,
                 href: heading.getElementsByClassName('headerlink')[0].attributes['href'].value
@@ -198,20 +197,20 @@
         })()}</span>`
         hlel.innerHTML = btn + hlel.innerHTML
     };
-    window.onresize = function () {
-        SetCoverImageSize()
-    }
-    const SetCoverImageSize = () => {
-        setTimeout(() => {
-            for (var ele of document.getElementsByClassName("cover-img")) {
-                ele.style["max-width"] = ele.parentElement.offsetWidth + "px"
-                ele.style["max-height"] = ele.parentElement.offsetHeight + "px"
-                ele.style["margin-bottom"] = ele.parentElement.style["margin-bottom"] + "px"
-                ele.style["margin-right"] = ele.parentElement.style["margin-right"] + "px"
-            }
-        }, 500);
-    }
-    SetCoverImageSize()
+    // window.onresize = function () {
+    //     SetCoverImageSize()
+    // }
+    // const SetCoverImageSize = () => {
+    //     setTimeout(() => {
+    //         for (var ele of document.getElementsByClassName("cover-img")) {
+    //             ele.style["max-width"] = ele.parentElement.offsetWidth + "px"
+    //             ele.style["max-height"] = ele.parentElement.offsetHeight + "px"
+    //             ele.style["margin-bottom"] = ele.parentElement.style["margin-bottom"] + "px"
+    //             ele.style["margin-right"] = ele.parentElement.style["margin-right"] + "px"
+    //         }
+    //     }, 500);
+    // }
+    // SetCoverImageSize()
 })()
 
 window.loadJS = async (url) => {
@@ -289,3 +288,11 @@ setInterval(() => {
 }, 3000);
 window.addEventListener('scroll', throttle(ObserverImage, 200))
 ObserverImage()
+
+
+// loadJS("https://registry.npmmirror.com/vconsole/3.15.1/files/dist/vconsole.min.js").then(() => {
+//     var vConsole = new window.VConsole();
+//     setTimeout(() => {
+//         Array.from(document.getElementsByClassName("highlight")).forEach((ele) => {       })
+//     }, 1000);
+// })
