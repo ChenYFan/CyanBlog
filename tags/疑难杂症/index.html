@@ -324,6 +324,7 @@
                     if (await db.read('needInstall') === 'true') {
                         navigator.serviceWorker.register(`/CyanAcc.js?time=${new Date().getTime()}`)
                             .then(async reg => {
+                                let error = 0
                                 const CyanAcc_Checker = setInterval(() => {
                                     fetch('/CyanAcc/api', {
                                         method: 'POST',
@@ -337,6 +338,20 @@
                                                 notyf.success('CyanAcc安装/更新成功<br/>建议刷新以启用CyanAcc！')
                                                 clearInterval(CyanAcc_Checker)
                                                 await db.write('needInstall', 'false')
+                                            }
+                                        })
+                                        .catch(err => {
+                                            console.log(`CyanAcc检查失败，正在重试第${error}次`)
+                                            error++
+                                            if (error > 10) {
+                                                notyf.error({
+                                                    message: `CyanAcc安装后无成功响应！将不会再尝试安装！</br>正在卸载已安装的CyanAcc...</br>详细信息请查看控制台`,
+                                                    duration: 10000
+                                                })
+                                                console.error(err)
+                                                clearInterval(CyanAcc_Checker)
+                                                db.write('needInstall', 'never')
+                                                reg.unregister()
                                             }
                                         })
                                 }, 1000);

@@ -211,6 +211,9 @@
     //     }, 500);
     // }
     // SetCoverImageSize()
+    document.addEventListener('gesturestart', function (event) {
+        event.preventDefault() //阻止Safari手动缩放
+    })
 })()
 
 window.loadJS = async (url) => {
@@ -288,6 +291,7 @@ setInterval(() => {
 }, 3000);
 window.addEventListener('scroll', throttle(ObserverImage, 200))
 ObserverImage()
+
 
 
 // loadJS("https://registry.npmmirror.com/vconsole/3.15.1/files/dist/vconsole.min.js").then(() => {
