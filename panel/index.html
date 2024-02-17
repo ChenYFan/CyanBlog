@@ -5,6 +5,48 @@
   <meta charset="UTF-8" />
   <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      -moz-text-size-adjust: none;
+           text-size-adjust: none;
+      -webkit-text-size-adjust: none;
+      font-family: "LXGW WenKai Screen", sans-serif, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+  </style>
+  <script>
+    window.loadJS = async (url) => {
+      return new Promise((resolve, reject) => {
+        var script = document.createElement('script')
+        script.src = url
+        script.onload = () => {
+          resolve()
+        }
+        script.onerror = () => {
+          reject()
+        }
+        document.head.appendChild(script)
+      })
+    }
+    window.loadCSS = async (url) => {
+      return new Promise((resolve, reject) => {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = url;
+        document.getElementsByTagName('HEAD')[0].appendChild(link);
+
+        link.onload = () => {
+          resolve()
+        }
+        link.onerror = () => {
+          reject()
+        }
+      })
+    }
+    setTimeout(() => {
+      loadCSS("https://registry.npmmirror.com/lxgw-wenkai-screen-webfont/1.1.0/files/style.css")
+    }, 0);
+  </script>
   <title>CyanAcc Panel</title>
   <script type="module" crossorigin src="/CyanAcc/assets/index-7a4cedfc.js"></script>
   <link rel="stylesheet" href="/CyanAcc/assets/index-ffdd9fe3.css">

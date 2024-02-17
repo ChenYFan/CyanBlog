@@ -3,6 +3,8 @@
 }
 
 body {
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
     margin: 0;
     margin-top: 56px;
     color: var(--black-2);

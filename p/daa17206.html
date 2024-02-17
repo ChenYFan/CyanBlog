@@ -2,7 +2,7 @@
 <html lang="zh-cn">
     <head prefix="og: https://ogp.me/ns#">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="color-scheme" content="light dark">
   <link rel="apple-touch-icon" sizes="76x76" href="https://registry.npmmirror.com/chenyfan-oss/4/files/512.jpg">
   
@@ -399,7 +399,7 @@
 </blockquote>
 <p>其次，桥接模式意味着用户可以自行选择路由器，而不再受限于运营商提供的智能网关，运营商则无法在终端网络上提供额外的审查能力。</p>
 <p>此外，一旦改为桥接，<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/887345">部分地区的运营商还会降速</a>，（尽管不排除光猫性能羸弱可能性）。</p>
-<p>最重要的原因使，运营商它怕你占用了大量的<strong>上行</strong>带宽…</p>
+<p>最重要的原因是，运营商它怕你占用了大量的<strong>上行</strong>带宽…</p>
 <h3 id="ISP-is-Afraid-of-PCDN"><a href="#ISP-is-Afraid-of-PCDN" class="headerlink" title="ISP is Afraid of PCDN"></a>ISP is Afraid of PCDN</h3><p>PCDN，Peer-to-Peer Content Delivery Network，即点对点内容分发网络。</p>
 <p>这个名词在普通网络中并不常用，但国内诸多互联网厂商对此并不陌生。由于大陆政策的商宽补贴家宽的特性，相较于国外家宽的价格，国内家宽的价格极为便宜。</p>
 <p>然而如此一来，宽带成本压力就转嫁到了商宽上，云服务厂商接入ISP的价格极其昂贵（国内网盘业务难以发展的原因之一）。类似视频分发等业务，如果全部由云服务厂商提供，那么运营成本将会难以负担。</p>
@@ -431,7 +431,7 @@
 <p>我有必要换它吗？我不认为，因为在我实际上网过程中，纯IPV6的网站并不多；家里人也不需要所谓的IPV6，因为他们的需求仅仅是看视频和上网购物；家里设备也不需要IPV6，因为这种小型家庭监控、冰箱、扫地机器人通常是通过物联网卡上网的，即使连接WIFI，也是通过云服务商提供的服务来访问的。</p>
 <p>它只要能正常工作，<strong>这就够了</strong>。</p>
 <p>现在我想在我家放一台NAS，我的需求是能在离开家之后随时随地访问这台NAS。那么，纯IPV6也不能满足我的需求，因为我不能保证我在外面的网络环境拥有IPV6 - 是的，因为不支持IPV6的网络设施依旧能在纯IPV4的网络环境下工作，为什么一定要淘汰它呢？</p>
-<p>纵然国家大力支持IPV6，但是在实际民用网络应用中，IPV6的普及率依旧很低，终端设备（家庭网关、无线路由器）的淘汰问题成为了IPV6普及的最大障碍。此外，部分地区运营商甚至把IPV6与公网IPV4对立，声称为了<a target="_blank" rel="noopener" href="https://www.189.cn/sc/sy_ycgg/118104.html">普及IPV6而开始对公网IPV4收费</a>，并借机<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/875867">利用NAT4444实现假公网V4</a>。</p>
+<p>纵然国家大力支持发展IPV6，但是在实际民用网络应用中，IPV6的普及率依旧很低，终端设备（家庭网关、无线路由器）的淘汰问题成为了IPV6普及的最大障碍。此外，部分地区运营商甚至把IPV6与公网IPV4对立，声称为了<a target="_blank" rel="noopener" href="https://www.189.cn/sc/sy_ycgg/118104.html">普及IPV6而开始对公网IPV4收费</a>，并借机<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/875867">利用NAT4444实现假公网V4</a>。</p>
 <p><img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/2.jpg" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/2.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg=="></p>
 <blockquote>
 <p>与其花399购买一个静态FullCone网络，不如免费白嫖动态FullCone网络</p>
@@ -441,7 +441,7 @@
 <hr>
 <p>这就是FullCone NAT，它一直存在于我们生活中，并且仍具有极高的利用价值。如果能够合理的利用它，我想节省下一笔关于公网IPV4的费用，也不是不可能的。</p>
 <p>只是可惜，在如今运营商政策的收紧、光猫破解变得越来越难的趋势下，FullCone NAT的普及率将只会变得越来越低。</p>
-<p>在落下本篇文章的最后一段时，我想等到数年后IPV6彻底普及，会不会有人看完文章会嘲笑，在2024年的时候，还有一个傻子拒绝公网IPV6，还在尝试使用已经宣告缓刑的IPV4进行“万物互联”呢？</p>
+<p>在写下本篇文章的最后一段时，我想等到数年后IPV6彻底普及，会不会有人看完这篇文章会嘲笑，在2024年的时候，还有一个傻子拒绝公网IPV6，还在尝试使用已经宣告缓刑的IPV4进行“万物互联”呢？</p>
 <p>这里是CyanFalse的小站，一个小小的年更博客，感谢您的阅读。</p>
 
     </div>
