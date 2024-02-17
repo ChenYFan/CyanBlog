@@ -451,7 +451,6 @@
 }
 
 .card .card-body {
-  font-family: Open Sans;
   padding: 1.5rem
 }
 
@@ -865,9 +864,12 @@ html {
   /* 3 */
   -o-tab-size: 4;
   tab-size: 4;
-  /* 3 */
-  font-family: Open Sans, sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-  /* 4 */
+}
+
+body{
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  font-family: "LXGW WenKai Screen", sans-serif, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 /*
@@ -9045,6 +9047,7 @@ fieldset:disabled .btn {
 .align-items-center {
   align-items: center !important;
 }
+
 .text-gradient.text-primary {
-  background-image: linear-gradient(310deg,#7928ca,#ff0080);
+  background-image: linear-gradient(310deg, #7928ca, #ff0080);
 }
