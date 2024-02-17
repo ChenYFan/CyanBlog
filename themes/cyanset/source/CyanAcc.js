@@ -578,6 +578,7 @@ addEventListener('fetch', event => {
 })
 addEventListener('install', function () {
     self.skipWaiting();
+
 });
 addEventListener('activate', function () {
     try {
