@@ -113,3 +113,6 @@ lazyload:
   enable: true 
   onlypost: false
   loadingImg: # eg ./images/loading.gif
+
+sitemap: 
+    path: sitemap.xml
