@@ -25,6 +25,10 @@
         <%- partial('_partial/footer') %>
         <script async src="https://umami.eurekac.cn/script.js" data-website-id="8be37a45-1387-4cd9-86ae-7fd3d33e8c29"></script>
         <script src="https://registry.npmmirror.com/@chenyfan/cache-db/0.0.4/files/index.js"></script>
+        <!-- FancyBox -->
+        <% if (config.fancybox.enable) { %>
+        <script src="https://registry.npmmirror.com/@fancyapps/ui/4.0.31/files/dist/fancybox.umd.js"></script>
+        <% } %>
         <script src='<%- theme.cdn_mirror %>js/main.js'></script>
         <% if (theme.search == true && page.type == 'search') { %>
         <script src='<%- theme.cdn_mirror %>js/search.js'></script>

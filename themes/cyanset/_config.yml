@@ -79,3 +79,5 @@ search: true
 search_path: search.json
 cdn_mirror: /
 # REMEMBER TO EDIT THIS BEFORE DEPLOYING!!!
+
+# Enable FancyBox

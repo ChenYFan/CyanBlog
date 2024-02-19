@@ -35,6 +35,15 @@
                         <span>&nbsp;<%- post.date.date() %>,&nbsp;</span>
                         <span><%- post.date.year() %></span>
                     </div>
+                    <div class="categories">
+                        <% if (post.tags && post.tags.length) { %>
+                        <div>
+                        <% post.tags.forEach((tag) => { %>
+                            <span><%= theme.hashtag_prefix_before_tags ? '#' : '' %><%= tag.name %></span>
+                        <% }) %>
+                        </div>
+                        <% } %>
+                    </div>
                 </div>
             </a>
         </article>

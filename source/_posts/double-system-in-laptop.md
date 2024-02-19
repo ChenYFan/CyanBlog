@@ -8,7 +8,7 @@ tags:
 categories:
   - 解疑惑
 abbrlink: e73f73cf
-cover_image: https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/banner.jpg
+cover_image: https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/banner.jpg
 date: 2023-08-21 10:42:01
 ---
 
@@ -36,18 +36,18 @@ manage-bde -off D:
 前往 计算机管理-磁盘管理 压缩卷
 将D盘割出131072MB(128GB) 作为闲置卷，不格式化 不挂载
 
-![割盘操作](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(6).png)
+![割盘操作](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(6).png)
 
 从[Ubuntu Dekstop Download](https://cn.ubuntu.com/desktop)下载22.04LTS版本
 因为本来是打算硬盘安装，于是将压出来的128GB中割了8GB作为安装盘，格式化为exFAT或FAT32（UEFI无法从NTFS引导），直接将iso解压到里头。
 
 重启，鸡哥的机子通常是按F2进入BIOS。
 
-![BIOS](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(1).jpg)
+![BIOS](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(1).jpg)
 
 进入BIOS后优先关闭SecureBoot，然后尝试改变引导的时候才发现鸡哥bios太老了，没有`Boot From File`选项。
 
-![SecureBoot](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(2).jpg)
+![SecureBoot](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(2).jpg)
 
 满头大~~汉~~汗翻了个8GB的U盘（还不支持USB3.0的古董U）回来，一套格式化+写入。
 
@@ -77,13 +77,13 @@ Windows默认是不会识别Ubuntu引导的，而修改windows引导过于麻烦
 
 鸡哥由于bios过老，修改方式比较脑瘫，从`UEFI NVME Drive BBS Priorities`进入，将第一个启动项改为ubuntu即可。
 
-![Boot](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(3).jpg)
-![Boot](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(4).jpg)
+![Boot](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(3).jpg)
+![Boot](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(4).jpg)
 
 
 重启，能正常进入grub引导，记下第三个为Windows Boot Manager（id为2），尝试分别进入Windows和ubuntu均无太大问题
 
-![SecureBoot](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(5).jpg)
+![SecureBoot](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(5).jpg)
 
 ## 解决蛋疼的无线网卡问题
 
@@ -91,7 +91,7 @@ Windows默认是不会识别Ubuntu引导的，而修改windows引导过于麻烦
 
 好在手头还有一个已经破解了的中兴微随身wifi，尝试插入能够被识别为有线网卡，利用随身wifi全功能后台中的wifi中转功能连上了家中路由器。
 
-![SecureBoot](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(1).png)
+![SecureBoot](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(1).png)
 
 略微浏览之后发现是AX101网卡驱动没装，于是满怀信心地前往intel linux驱动下载，结果却发现，只有20系，没有10系的网卡驱动。
 
@@ -105,7 +105,7 @@ AX101卡是Intel wifi6系列卡中最~~垃圾~~入门的一款，仅有600Mbps�
 
 > 尽管是**及以上**，但是实测6.2版本会error，其余更高的未测试
 
-![SecureBoot](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(7).png)
+![SecureBoot](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(7).png)
 
 将红框内的内核全部下载，然后
 
@@ -149,7 +149,7 @@ dpkg -i iwlwifi-ax101-dkms_6.1.15-2_amd64.deb
 
 重启后wifi应当可用。
 
-![SecureBoot](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(2).png)
+![SecureBoot](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(2).png)
 
 ## Ubuntu关机时假死 - N卡驱动问题
 
@@ -231,7 +231,7 @@ mv nvidia-xconfig-original.conf  xorg.conf
 
 这个还算是小问题，首先`dmesg`瞅一眼哪报错了。
 
-![dmesg](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(3).png)
+![dmesg](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(3).png)
 
 提示无法启动1050蓝牙驱动。
 
@@ -239,7 +239,7 @@ mv nvidia-xconfig-original.conf  xorg.conf
 
 咳，虽然比较阴间，不过对我这台鸡哥也是可行的。
 
-![bluetooth](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(4).png)
+![bluetooth](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(4).png)
 
 
 ## 其他一些小优化
@@ -279,5 +279,5 @@ mount -t ntfs /dev/sdxx /Windows/D
 除个草，浇浇水(
 截个图，留个纪念
 
-![ALL](https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(5).png)
+![ALL](https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(5).png)
 
