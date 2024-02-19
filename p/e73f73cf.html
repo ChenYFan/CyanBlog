@@ -22,7 +22,7 @@
   
   <meta property="og:url" content="https://blog.eurekac.cn/p/e73f73cf.html" />
   
-  <meta property="og:image" content="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/banner.jpg" />
+  <meta property="og:image" content="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/banner.jpg" />
   
   <meta property="og:article:published_time" content="2023-08-21T10:42:01.000Z" />
   
@@ -52,6 +52,11 @@
   
   
   <!-- <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-webfont/1.1.0/files/style.css" /> -->
+  
+    <link rel="stylesheet" href="https://registry.npmmirror.com/@fancyapps/ui/4.0.31/files/dist/fancybox.css" />
+  
+  
+
   <link rel="stylesheet" href="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.css">
 <meta name="generator" content="Hexo 6.3.0"></head>
     
@@ -155,12 +160,18 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">manage-bde -off C:</span><br><span class="line">manage-bde -off D:</span><br></pre></td></tr></table></figure>
 
 <p>前往 计算机管理-磁盘管理 压缩卷<br>将D盘割出131072MB(128GB) 作为闲置卷，不格式化 不挂载</p>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(6).png" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(6).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="割盘操作"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(6).png" data-fancybox="gallery" data-caption="割盘操作">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(6).png" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(6).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="割盘操作">
+            </a></p>
 <p>从<a target="_blank" rel="noopener" href="https://cn.ubuntu.com/desktop">Ubuntu Dekstop Download</a>下载22.04LTS版本<br>因为本来是打算硬盘安装，于是将压出来的128GB中割了8GB作为安装盘，格式化为exFAT或FAT32（UEFI无法从NTFS引导），直接将iso解压到里头。</p>
 <p>重启，鸡哥的机子通常是按F2进入BIOS。</p>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(1).jpg" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(1).jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="BIOS"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(1).jpg" data-fancybox="gallery" data-caption="BIOS">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(1).jpg" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(1).jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="BIOS">
+            </a></p>
 <p>进入BIOS后优先关闭SecureBoot，然后尝试改变引导的时候才发现鸡哥bios太老了，没有<code>Boot From File</code>选项。</p>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(2).jpg" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(2).jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(2).jpg" data-fancybox="gallery" data-caption="SecureBoot">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(2).jpg" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(2).jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot">
+            </a></p>
 <p>满头大<del>汉</del>汗翻了个8GB的U盘（还不支持USB3.0的古董U）回来，一套格式化+写入。</p>
 <p>由于鸡哥的引导优先级中<code>USB Device</code>是排在<code>NVME Device</code>上的，所以在插入u盘的时候优先从u盘引导，进入熟悉的Ubuntu加载页面。</p>
 <p><del>然后被USB2.0的20MB&#x2F;s写入卡了三分钟</del></p>
@@ -174,12 +185,20 @@
 <p><code>reboot</code>重启时，机子关机关到一半突然卡住，tty无法切换，CAD连招也失效，推测应该是N卡驱动问题，长按电源键强制关机。</p>
 <h2 id="将启动引导改为Grub"><a href="#将启动引导改为Grub" class="headerlink" title="将启动引导改为Grub"></a>将启动引导改为Grub</h2><p>Windows默认是不会识别Ubuntu引导的，而修改windows引导过于麻烦。不如直接将默认引导改为grub，由grub启动windows。</p>
 <p>鸡哥由于bios过老，修改方式比较脑瘫，从<code>UEFI NVME Drive BBS Priorities</code>进入，将第一个启动项改为ubuntu即可。</p>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(3).jpg" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(3).jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="Boot"><br><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(4).jpg" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(4).jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="Boot"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(3).jpg" data-fancybox="gallery" data-caption="Boot">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(3).jpg" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(3).jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="Boot">
+            </a><br><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(4).jpg" data-fancybox="gallery" data-caption="Boot">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(4).jpg" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(4).jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="Boot">
+            </a></p>
 <p>重启，能正常进入grub引导，记下第三个为Windows Boot Manager（id为2），尝试分别进入Windows和ubuntu均无太大问题</p>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(5).jpg" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(5).jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(5).jpg" data-fancybox="gallery" data-caption="SecureBoot">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(5).jpg" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(5).jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot">
+            </a></p>
 <h2 id="解决蛋疼的无线网卡问题"><a href="#解决蛋疼的无线网卡问题" class="headerlink" title="解决蛋疼的无线网卡问题"></a>解决蛋疼的无线网卡问题</h2><p>进入ubuntu的时候，尝试打开浏览器却提示无网络链接，心里不由得咯噔一下。</p>
 <p>好在手头还有一个已经破解了的中兴微随身wifi，尝试插入能够被识别为有线网卡，利用随身wifi全功能后台中的wifi中转功能连上了家中路由器。</p>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(1).png" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(1).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(1).png" data-fancybox="gallery" data-caption="SecureBoot">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(1).png" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(1).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot">
+            </a></p>
 <p>略微浏览之后发现是AX101网卡驱动没装，于是满怀信心地前往intel linux驱动下载，结果却发现，只有20系，没有10系的网卡驱动。</p>
 <p><del>这就肥肠、肥肠抽象了</del></p>
 <p>AX101卡是Intel wifi6系列卡中最<del>垃圾</del>入门的一款，仅有600Mbps理论速率。虽然对于我来说已经完全足够需求（毕竟我在现实中就没连过哪个网速超过500Mbps的网络）了，但是连官网都没有linux驱动支持，心态，不由得发生了一内内变化。</p>
@@ -188,7 +207,9 @@
 <blockquote>
 <p>尽管是<strong>及以上</strong>，但是实测6.2版本会error，其余更高的未测试</p>
 </blockquote>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(7).png" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(7).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(7).png" data-fancybox="gallery" data-caption="SecureBoot">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(7).png" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(7).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot">
+            </a></p>
 <p>将红框内的内核全部下载，然后</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i *.deb</span><br><span class="line">update-grub</span><br></pre></td></tr></table></figure>
 
@@ -208,7 +229,9 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i iwlwifi-ax101-dkms_6.1.15-2_amd64.deb</span><br></pre></td></tr></table></figure>
 
 <p>重启后wifi应当可用。</p>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(2).png" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(2).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(2).png" data-fancybox="gallery" data-caption="SecureBoot">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(2).png" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(2).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot">
+            </a></p>
 <h2 id="Ubuntu关机时假死-N卡驱动问题"><a href="#Ubuntu关机时假死-N卡驱动问题" class="headerlink" title="Ubuntu关机时假死 - N卡驱动问题"></a>Ubuntu关机时假死 - N卡驱动问题</h2><p>由于之前没有安装N卡驱动，导致电脑关机时会突然卡在徽标页面，加载圈也不转，<del>所以之前的关机一直都是强制关机</del></p>
 <p>由于不太喜欢自带的额外驱动程序安装，所以还是用传统的官网驱动。</p>
 <p><a target="_blank" rel="noopener" href="https://www.nvidia.cn/Download/index.aspx">老黄家走一趟</a>，下载下来一个run文件。此时要关闭X server在tty中使用</p>
@@ -239,11 +262,15 @@
 <p>再看一眼当前版本<code>ls -l /usr/src/</code></p>
 <p>手动安装<code>dkms install -m nvidia -v 5xx.xx.xxx</code></p>
 <h2 id="安装蓝牙驱动"><a href="#安装蓝牙驱动" class="headerlink" title="安装蓝牙驱动"></a>安装蓝牙驱动</h2><p>这个还算是小问题，首先<code>dmesg</code>瞅一眼哪报错了。</p>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(3).png" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(3).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="dmesg"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(3).png" data-fancybox="gallery" data-caption="dmesg">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(3).png" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(3).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="dmesg">
+            </a></p>
 <p>提示无法启动1050蓝牙驱动。</p>
 <p>这个时候我第一时间想到的是安装<code>bluez</code>这玩意，直到我看到了<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/628772433">Ubuntu22.04 在零刻EQ12 安装蓝牙无法启动问题</a>，他告诉我，可以直接复制一份同系列的intel驱动。</p>
 <p>咳，虽然比较阴间，不过对我这台鸡哥也是可行的。</p>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(4).png" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(4).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="bluetooth"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(4).png" data-fancybox="gallery" data-caption="bluetooth">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(4).png" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(4).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="bluetooth">
+            </a></p>
 <h2 id="其他一些小优化"><a href="#其他一些小优化" class="headerlink" title="其他一些小优化"></a>其他一些小优化</h2><h3 id="系统默认进入Windows"><a href="#系统默认进入Windows" class="headerlink" title="系统默认进入Windows"></a>系统默认进入Windows</h3><p>已安装Windows后再安装ubuntu，grub的默认启动会优先进入ubuntu。</p>
 <p>修改<code>/etc/default/grub.cfg</code>，将<code>GRUB_DEFAULT</code>改为<code>Windows Boot Manager</code>的id（正常情况下为2）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_DEFAULT=2</span><br></pre></td></tr></table></figure>
@@ -257,7 +284,9 @@
 <h3 id="Ubuntu与Windows时间差"><a href="#Ubuntu与Windows时间差" class="headerlink" title="Ubuntu与Windows时间差"></a>Ubuntu与Windows时间差</h3><p>老生长谈的问题，22.04可以直接强制改为本地时间而避免时区错误<code>timedatectl set-local-rtc 1 --adjust-system-clock</code></p>
 <hr>
 <p>除个草，浇浇水(<br>截个图，留个纪念</p>
-<p><img src="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(5).png" class="lazy" data-srcset="https://registry.npmmirror.com/cyanblog-imagehost/0.0.1/files/img%20(5).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="ALL"></p>
+<p><a href="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(5).png" data-fancybox="gallery" data-caption="ALL">
+            <img src="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(5).png" class="lazy" data-srcset="https://registry.npmmirror.com/chenyfan-os/0.0.0-r26/files/img%20(5).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="ALL">
+            </a></p>
 
     </div>
     
@@ -326,6 +355,10 @@
 </footer>
         <script async src="https://umami.eurekac.cn/script.js" data-website-id="8be37a45-1387-4cd9-86ae-7fd3d33e8c29"></script>
         <script src="https://registry.npmmirror.com/@chenyfan/cache-db/0.0.4/files/index.js"></script>
+        <!-- FancyBox -->
+        
+        <script src="https://registry.npmmirror.com/@fancyapps/ui/4.0.31/files/dist/fancybox.umd.js"></script>
+        
         <script src='/js/main.js'></script>
         
         
