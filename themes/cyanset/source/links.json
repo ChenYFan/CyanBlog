@@ -340,5 +340,12 @@
         "intro": "On the other side of obstacles.",
         "image": "https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.9/files/avatar.webp",
         "relink": true
+    },
+    {
+        "title": "星の野",
+        "link": "https://byer.top/",
+        "intro": "我自是年少，韶华倾负✨",
+        "image": "https://byer.top/img/ava.jpg",
+        "relink": true
     }
 ]
