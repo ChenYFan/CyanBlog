@@ -217,10 +217,10 @@
     },
     {
         "title": "Thun888‘s Blog",
-        "link": "https://blog.thun888.xyz",
-        "intro": "心如止水，不可暴躁（￣︶￣）",
-        "image": "https://asstes.thun888.xyz/file/pic-bed/2021/07/3c09905fa076d1e9c2a0f216d68bc47f.webp",
-        "domain": "blog.thun888.xyz",
+        "link": "https://blog.hzchu.top",
+        "intro": "夏日当空,心如深渊",
+        "image": "https://asstes.hzchu.top/file/pic-bed/2021/07/3c09905fa076d1e9c2a0f216d68bc47f.webp",
+        "domain": "blog.hzchu.top",
         "relink": true
     },
     {
@@ -339,6 +339,20 @@
         "link": "https://blog.hesiy.cn/",
         "intro": "On the other side of obstacles.",
         "image": "https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.9/files/avatar.webp",
+        "relink": true
+    },
+    {
+        "title": "星の野",
+        "link": "https://byer.top/",
+        "intro": "我自是年少，韶华倾负✨",
+        "image": "https://byer.top/img/ava.jpg",
+        "relink": true
+    },
+    {
+        "title": "九弦之屋",
+        "link": "https://blog.sinzmise.top/",
+        "intro": "欢迎旅行者，来到这个平凡但又记载了许多故事的小屋",
+        "image": "https://blog.sinzmise.top/img/avatar.png",
         "relink": true
     }
 ]
