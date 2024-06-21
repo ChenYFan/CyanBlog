@@ -1,7 +1,6 @@
 {
   "name": "cyanblog",
   "version": "",
-  "private": true,
   "type": "module",
   "scripts": {
     "build:hexo": "hexo generate",
@@ -10,7 +9,10 @@
     "build:panel": "cd CyanAccPanel && vite build && cp -r dist ../public/panel",
     "dev:panel": "cd CyanAccPanel && vite",
     "clean:panel": "cd CyanAccPanel && rm -rf dist",
-    "build": "npm run build:hexo && npm run build:panel",
+    "build:cyanacc": "npx webpack --config cyanacc-webpack.config.cjs",
+    "dev:cyanacc": "npx webpack serve --config cyanacc-webpack.config.cjs",
+    "dev":"http-server -p 48080 ./public",
+    "build": "npm run build:hexo && npm run build:panel && npm run build:cyanacc",
     "clean": "npm run clean:hexo && npm run clean:panel"
   },
   "hexo": {
@@ -18,6 +20,8 @@
   },
   "dependencies": {
     "@chenyfan/cache-db": "^0.0.4",
+    "@chenyfan/cdnobject": "^0.0.0-beta-002",
+    "@esbuild/linux-x64": "^0.21.5",
     "hexo": "^6.3.0",
     "hexo-abbrlink": "^2.2.1",
     "hexo-generator-archive": "^2.0.0",
@@ -33,7 +37,9 @@
     "monaco-editor": "^0.44.0",
     "notyf": "^3.10.0",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "webpack": "^5.92.0",
+    "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

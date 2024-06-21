@@ -11,7 +11,7 @@ categories:
 des: 利用FullCone，在不支付高昂独立ip费用的情况下，实现内网穿透
 key: 'FullCone,FullCone nat,standard ip'
 hide: true
-cover_image: 'https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/banner/why-i-prefer-fullcone.jpg'
+cover_image: 'https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/banner/why-i-prefer-fullcone.jpg'
 abbrlink: daa17206
 date: 2024-02-15 20:15:42
 ---
@@ -40,7 +40,7 @@ NAT(Network Address Translation)是网络地址转换的缩写，是一种将私
 
 一个传统的网络链接，本质上是两个（ip地址:端口）之间的通讯。NAT通过类似中间人的方式，转发了（公网ip:端口）和（内网ip:端口）之间的通讯。
 
-![图源来自维基百科](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/1.png)
+![图源来自维基百科](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/1.png)
 
 不妨用我访问`https://baidu.com`的过程来举例：
 
@@ -162,7 +162,7 @@ http://39.1.1.1:12319
 
 脚本将会自动在`0.0.0.0:18000`启动一个测试服务器，我们直接点击链接访问`http://39.1.1.1:12319`
 
-![](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/1.jpg)
+![](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/1.jpg)
 
 如果显示了信息，说明我们的`127.0.0.1:18000`已经成功地被穿透到了`39.1.1.1:12319`。
 
@@ -190,7 +190,7 @@ http://39.1.1.1:12319
 
 这是标准（RFC 3489）中的利用STUN来探测映射对和NAT类型的过程：
 
-![图源来自维基百科](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/2.png)
+![图源来自维基百科](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/2.png)
 
 ---
 
@@ -229,7 +229,7 @@ Linux用户可以直接下载[N2N的二进制文件](https://github.com/ntop/n2n
 
 对于我在Windows上的使用，我通常用[ [灵工艺] 联机组网](https://nullcraft.org/d/39-%E5%85%8D%E8%B4%B9-%E7%81%B5%E5%B7%A5%E8%89%BA%E7%BD%91%E4%B8%8A%E9%82%BB%E5%B1%85-nullcraft-n2n)。其有GUI可以快捷配置，并且也很方便安装TAP适配器。~~主要是懒的敲命令行~~
 
-![](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/3.png)
+![](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/3.png)
 
 首先搭建N2N需要有一台拥有公网ip的服务器，然后在服务器上运行SuperNode。尽管SuperNode正常情况下不参与数据传输，但是N2N无法主动禁用TURN模式，故不建议公开部署SuperNode。
 
@@ -333,13 +333,13 @@ SuperNode的数据包应该远小于Edge之间的数据包，因为SuperNode仅�
 >
 > 你不需要允许TCP协议，因为N2N默认采用的STUN探测协议为UDP。
 
-![](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/4.png)
+![](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/4.png)
 
-![](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/5.png)
+![](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/5.png)
 
-![](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/6.png)
+![](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/6.png)
 
-![](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/7.png)
+![](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/7.png)
 
 如果你使用的是第三方防火墙，也请关闭防火墙或者添加规则。
 
@@ -357,13 +357,13 @@ SuperNode的数据包应该远小于Edge之间的数据包，因为SuperNode仅�
 ipconfig /all
 ```
 
-![](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/8.png)
+![](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/8.png)
 
 记下地址为`192.168.31.215`
 
 以我的小米路由器为例，登录路由器后台，找到`高级设置`-`端口转发`-`DMZ主机`，将地址填入：
 
-![](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/9.png)
+![](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/9.png)
 
 保存即可。
 
@@ -504,7 +504,7 @@ NAT的发明极大减缓了全球IPV4地址枯竭的难题，它允许了多个�
 
 纵然国家大力支持发展IPV6，但是在实际民用网络应用中，IPV6的普及率依旧很低，终端设备（家庭网关、无线路由器）的淘汰问题成为了IPV6普及的最大障碍。此外，部分地区运营商甚至把IPV6与公网IPV4对立，声称为了[普及IPV6而开始对公网IPV4收费](https://www.189.cn/sc/sy_ycgg/118104.html)，并借机[利用NAT4444实现假公网V4](https://www.v2ex.com/t/875867)。
 
-![](https://registry.npmmirror.com/chenyfan-os/0.0.0-r25/files/article/2.jpg)
+![](https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r25/files/article/2.jpg)
 
 > 与其花399购买一个静态FullCone网络，不如免费白嫖动态FullCone网络
 

@@ -247,7 +247,7 @@ window.loadCSS = async (url) => {
 }
 
 setTimeout(() => {
-    loadCSS("https://registry.npmmirror.com/lxgw-wenkai-screen-webfont/1.1.0/files/style.css")
+    loadCSS("https://cdn.eurekac.cn/npm/lxgw-wenkai-screen-webfont/1.1.0/files/style.css")
 }, 0);
 
 //节流
@@ -294,7 +294,7 @@ ObserverImage()
 
 
 
-// loadJS("https://registry.npmmirror.com/vconsole/3.15.1/files/dist/vconsole.min.js").then(() => {
+// loadJS("https://cdn.eurekac.cn/npm/vconsole/3.15.1/files/dist/vconsole.min.js").then(() => {
 //     var vConsole = new window.VConsole();
 //     setTimeout(() => {
 //         Array.from(document.getElementsByClassName("highlight")).forEach((ele) => {       })
