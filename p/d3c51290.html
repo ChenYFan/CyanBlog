@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="color-scheme" content="light dark">
   <meta name="baidu-site-verification" content="codeva-fKqX8ua7ka" />
-  <link rel="apple-touch-icon" sizes="76x76" href="https://registry.npmmirror.com/chenyfan-oss/4/files/512.jpg">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.eurekac.cn/npm/chenyfan-oss/4/files/512.jpg">
   
   <title>SpeedUp!使用黑科技为你的网站提速 - CyanFalse&#39;s HomeRegion</title>
   
-    <link rel="shortcut icon" href="https://registry.npmmirror.com/chenyfan-oss/6.0.0/files/32.png">
+    <link rel="shortcut icon" href="https://cdn.eurekac.cn/npm/chenyfan-oss/6.0.0/files/32.png">
   
   
 
@@ -22,7 +22,7 @@
   
   <meta property="og:url" content="https://blog.eurekac.cn/p/d3c51290.html" />
   
-  <meta property="og:image" content="https://registry.npmmirror.com/chenyfan-os/0.0.0-r17/files/main.jpg" />
+  <meta property="og:image" content="https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r17/files/main.jpg" />
   
   <meta property="og:article:published_time" content="2022-06-07T10:28:12.000Z" />
   
@@ -51,13 +51,13 @@
   
   
   
-  <!-- <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-webfont/1.1.0/files/style.css" /> -->
+  <!-- <link rel="stylesheet" href="https://cdn.eurekac.cn/npm/lxgw-wenkai-webfont/1.1.0/files/style.css" /> -->
   
-    <link rel="stylesheet" href="https://registry.npmmirror.com/@fancyapps/ui/4.0.31/files/dist/fancybox.css" />
+    <link rel="stylesheet" href="https://cdn.eurekac.cn/npm/@fancyapps/ui/4.0.31/files/dist/fancybox.css" />
   
   
 
-  <link rel="stylesheet" href="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.css">
+  <link rel="stylesheet" href="https://cdn.eurekac.cn/npm/notyf/3.10.0/files/notyf.min.css">
 <meta name="generator" content="Hexo 6.3.0"></head>
     
     <body
@@ -241,10 +241,10 @@
 
 <p>其version字段即最新版本。</p>
 <p>npm registry的镜像也不少，以腾讯&#x2F;阿里为例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://registry.npmmirror.com/chenyfan/latest #阿里，可手动同步</span><br><span class="line">https://mirrors.cloud.tencent.com/npm/chenyfan/latest #腾讯，每日凌晨同步</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://cdn.eurekac.cn/npm/chenyfan/latest #阿里，可手动同步</span><br><span class="line">https://mirrors.cloud.tencent.com/npm/chenyfan/latest #腾讯，每日凌晨同步</span><br></pre></td></tr></table></figure>
 
 <p>获取最新版本也不难:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mirror = [</span><br><span class="line">        <span class="string">`https://registry.npmmirror.com/chenyfan-blog/latest`</span>,</span><br><span class="line">        <span class="string">`https://registry.npmjs.org/chenyfan-blog/latest`</span>,</span><br><span class="line">        <span class="string">`https://mirrors.cloud.tencent.com/npm/chenyfan-blog/latest`</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">get_newest_version</span> = <span class="keyword">async</span> (<span class="params">mirror</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">lfetch</span>(mirror, mirror[<span class="number">0</span>])</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> res.<span class="title function_">json</span>())</span><br><span class="line">        .<span class="title function_">then</span>(res.<span class="property">version</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mirror = [</span><br><span class="line">        <span class="string">`https://cdn.eurekac.cn/npm/chenyfan-blog/latest`</span>,</span><br><span class="line">        <span class="string">`https://registry.npmjs.org/chenyfan-blog/latest`</span>,</span><br><span class="line">        <span class="string">`https://mirrors.cloud.tencent.com/npm/chenyfan-blog/latest`</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">get_newest_version</span> = <span class="keyword">async</span> (<span class="params">mirror</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">lfetch</span>(mirror, mirror[<span class="number">0</span>])</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> res.<span class="title function_">json</span>())</span><br><span class="line">        .<span class="title function_">then</span>(res.<span class="property">version</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在这里还有一个坑点：ServiceWorker的全局变量会在所有页面关闭后销毁。下次启动时会优先响应handle，其定义变量要在handle响应后才会执行。因此，对于最新版本的存储，不能直接定义变量，需要持久化，这里另辟蹊径，采用CacheStorage存储：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">self.<span class="property">db</span> = &#123; <span class="comment">//全局定义db,只要read和write,看不懂可以略过</span></span><br><span class="line">    <span class="attr">read</span>: <span class="function">(<span class="params">key, config</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!config) &#123; config = &#123; <span class="attr">type</span>: <span class="string">&quot;text&quot;</span> &#125; &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            caches.<span class="title function_">open</span>(<span class="variable constant_">CACHE_NAME</span>).<span class="title function_">then</span>(<span class="function"><span class="params">cache</span> =&gt;</span> &#123;</span><br><span class="line">                cache.<span class="title function_">match</span>(<span class="keyword">new</span> <span class="title class_">Request</span>(<span class="string">`https://LOCALCACHE/<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(key)&#125;</span>`</span>)).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!res) <span class="title function_">resolve</span>(<span class="literal">null</span>)</span><br><span class="line">                    res.<span class="title function_">text</span>().<span class="title function_">then</span>(<span class="function"><span class="params">text</span> =&gt;</span> <span class="title function_">resolve</span>(text))</span><br><span class="line">                &#125;).<span class="title function_">catch</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="title function_">resolve</span>(<span class="literal">null</span>)</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">write</span>: <span class="function">(<span class="params">key, value</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            caches.<span class="title function_">open</span>(<span class="variable constant_">CACHE_NAME</span>).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">cache</span>) &#123;</span><br><span class="line">                cache.<span class="title function_">put</span>(<span class="keyword">new</span> <span class="title class_">Request</span>(<span class="string">`https://LOCALCACHE/<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(key)&#125;</span>`</span>), <span class="keyword">new</span> <span class="title class_">Response</span>(value));</span><br><span class="line">                <span class="title function_">resolve</span>()</span><br><span class="line">            &#125;).<span class="title function_">catch</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                <span class="title function_">reject</span>()</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">set_newest_version</span> = <span class="keyword">async</span> (<span class="params">mirror</span>) =&gt; &#123; <span class="comment">//改为最新版本写入数据库</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">lfetch</span>(mirror, mirror[<span class="number">0</span>])</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> res.<span class="title function_">json</span>()) <span class="comment">//JSON Parse</span></span><br><span class="line">        .<span class="title function_">then</span>(<span class="keyword">async</span> res =&gt; &#123;</span><br><span class="line">            <span class="keyword">await</span> db.<span class="title function_">write</span>(<span class="string">&#x27;blog_version&#x27;</span>, res.<span class="property">version</span>) <span class="comment">//写入</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="title function_">async</span>() =&gt; &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">set_newest_version</span>(mirror) <span class="comment">//定时更新,一分钟一次</span></span><br><span class="line">&#125;, <span class="number">60</span>*<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="title function_">async</span>() =&gt; &#123; </span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">set_newest_version</span>(mirror)<span class="comment">//打开五秒后更新,避免堵塞</span></span><br><span class="line">&#125;,<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
@@ -367,17 +367,17 @@
     </div>
 </footer>
         <script async src="https://umami.eurekac.cn/script.js" data-website-id="8be37a45-1387-4cd9-86ae-7fd3d33e8c29"></script>
-        <script src="https://registry.npmmirror.com/@chenyfan/cache-db/0.0.4/files/index.js"></script>
+        <script src="https://cdn.eurekac.cn/npm/@chenyfan/cache-db/0.0.4/files/index.js"></script>
         <!-- FancyBox -->
         
-        <script src="https://registry.npmmirror.com/@fancyapps/ui/4.0.31/files/dist/fancybox.umd.js"></script>
+        <script src="https://cdn.eurekac.cn/npm/@fancyapps/ui/4.0.31/files/dist/fancybox.umd.js"></script>
         
         <script src='/js/main.js'></script>
         
         
         
-        <script src="https://registry.npmmirror.com/pagemap/1.4.0/files/dist/pagemap.min.js"></script>
-        <script src="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.js"></script>
+        <script src="https://cdn.eurekac.cn/npm/pagemap/1.4.0/files/dist/pagemap.min.js"></script>
+        <script src="https://cdn.eurekac.cn/npm/notyf/3.10.0/files/notyf.min.js"></script>
         <script>
             window.notyf = new Notyf({
                 duration: 3000,
@@ -429,9 +429,9 @@
                             if (isElementVisible(document.getElementById("Comments"))) {
                                 clearInterval(wait_comment_load)
                                 document.getElementById("comment_notice").innerText = "Loading Comment Script..."
-                                await loadJS("https://registry.npmmirror.com/artalk/2.8.2/files/dist/Artalk.js")
+                                await loadJS("https://cdn.eurekac.cn/npm/artalk/2.8.2/files/dist/Artalk.js")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Style..."
-                                await loadCSS("https://registry.npmmirror.com/artalk/2.8.2/files/dist/Artalk.css")
+                                await loadCSS("https://cdn.eurekac.cn/npm/artalk/2.8.2/files/dist/Artalk.css")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Frame..."
                                 window.artalk = Artalk.init({
                                     el: '#Comments',

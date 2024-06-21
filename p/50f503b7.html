@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="color-scheme" content="light dark">
   <meta name="baidu-site-verification" content="codeva-fKqX8ua7ka" />
-  <link rel="apple-touch-icon" sizes="76x76" href="https://registry.npmmirror.com/chenyfan-oss/4/files/512.jpg">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.eurekac.cn/npm/chenyfan-oss/4/files/512.jpg">
   
-  <title>Yanray训练手札 - CyanFalse&#39;s HomeRegion</title>
+  <title>Nyanko训练手札 - CyanFalse&#39;s HomeRegion</title>
   
-    <link rel="shortcut icon" href="https://registry.npmmirror.com/chenyfan-oss/6.0.0/files/32.png">
+    <link rel="shortcut icon" href="https://cdn.eurekac.cn/npm/chenyfan-oss/6.0.0/files/32.png">
   
   
 
   
   
   
-  <meta property="og:title" content="Yanray训练手札 - CyanFalse&#39;s HomeRegion" />
+  <meta property="og:title" content="Nyanko训练手札 - CyanFalse&#39;s HomeRegion" />
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:url" content="https://blog.eurekac.cn/p/27917125.html" />
+  <meta property="og:url" content="https://blog.eurekac.cn/p/50f503b7.html" />
   
   <meta property="og:image" content="/favicon.png" />
   
@@ -51,13 +51,13 @@
   
   
   
-  <!-- <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-webfont/1.1.0/files/style.css" /> -->
+  <!-- <link rel="stylesheet" href="https://cdn.eurekac.cn/npm/lxgw-wenkai-webfont/1.1.0/files/style.css" /> -->
   
-    <link rel="stylesheet" href="https://registry.npmmirror.com/@fancyapps/ui/4.0.31/files/dist/fancybox.css" />
+    <link rel="stylesheet" href="https://cdn.eurekac.cn/npm/@fancyapps/ui/4.0.31/files/dist/fancybox.css" />
   
   
 
-  <link rel="stylesheet" href="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.css">
+  <link rel="stylesheet" href="https://cdn.eurekac.cn/npm/notyf/3.10.0/files/notyf.min.css">
 <meta name="generator" content="Hexo 6.3.0"></head>
     
     <body
@@ -143,18 +143,30 @@
         </div>
         
 
-        <h2 class="title">Yanray训练手札</h2>
+        <h2 class="title">Nyanko训练手札</h2>
     </div>
 
     <div class="divider"></div>
 
     <div class="content">
-        <p>记录训练Yanray的一部分想法。</p>
+        <p>记录训练Nyanko的一部分想法。</p>
 <blockquote>
 <p>该文章会长期更新。</p>
 </blockquote>
 <span id="more"></span>
 
+<h2 id="2024-05-04-记3"><a href="#2024-05-04-记3" class="headerlink" title="2024-05-04 记3"></a>2024-05-04 记3</h2><p>**Yanray Plan更名为Nyanko，人设已经想好了但是现在不想发（或者之后屏蔽一些人再偷偷摸摸发一下🥵）。</p>
+<p>昨天晚上试了试ChatGLM的8K和32K，半精和INT8、INT4的输出测试，明显的感觉到同样是INT8，32K的模型就是比8B的“聪明”一点，一些逻辑漏洞问题都很机智的跳过去了，相比较之下纵使没有量化的8K也不如32K，应该是32K的长文本数据集质量比较高的原因。</p>
+<p>同时还试了试Qwen1.5，相比较之下体验就比较糟糕了。尽管Qwen官方提供了已经量化为INT8的GPTQ和GGUF 7B模型，但是实测对逻辑问题依旧反应不过来（比如“我应该如何称呼我亲哥哥的妈妈”）。甚至huggingface上110B版本的有些逻辑问题还不如6B的ChatGLM质量来的好。</p>
+<p>此外Qwen1.5 7B的GPTQ量化模型占用显存依旧很逆天（13G），必须要量化到INT4才能整个加载到我的卡上。感觉Qwen是在很努力做了但是练度不够。</p>
+<p>还有Baichuan3模型，不过看样子是重点偏向领域权威的内容了，和我准备做的方向不太一样，就懒得测试了。</p>
+<hr>
+<p>显卡和AI能够碰撞在一起，其实是一个非常巧合的情况。显卡为了渲染三维图形，必然要计算空间中每个点的坐标，坐标以浮点数表示，一般都会精准到单精度水准（fp32）。换句话说显卡的算力强，指的是浮点算力很强。并且显卡的计算单元是并行的，可以在一瞬间计算T级别的浮点计算。而以Transformer架构的模型为例，无论是推理还是训练都要计算大量的注意力权重（多维向量），同样需要大量的浮点算力。</p>
+<p>而cpu本身设计的时候并没有对浮点算力有着极高的要求（CPU要做的事情多的很，不可能重点偏向浮点计算）。<br>以14900K为例，fp32的算力是2.5TFlops（每秒2.5万亿次计算）。<br>但我手上这张P102大矿卡，单精度也有11.7TFlops。<br>而消费级最强显卡4090是100TFlops。<br>中国特供版4090D是82.6TFlops。<br>目前已发售的最强计算卡H100是1513TFlops</p>
+<blockquote>
+<p>更何况，现在大部分模型都是在半精情况下跑的，新架构的N卡半精跑的速度比单精快太多了。从fp32损失到fp16的精度对于AI来讲几乎没什么太大影响，带来的受益却是实实在在的显存需求降低、推理速度提升。</p>
+</blockquote>
+<p>此外，由于CUDA（使用GPU做图形以外的计算）生态的存在，大部分的AI框架都是采用N卡作为首选加速卡。<br>与之相对应的AMD的ROCm，想要撼动老黄早在十年前补下的局，还需要一段时间。<br>微软的DirectML也许有点意思，但好像目前没多少框架吃微软这一套。<br>至于摩尔线程，尽管声称完全支持CUDA API调用，我只能说未来可期。</p>
 <h2 id="2024-05-03-记2"><a href="#2024-05-03-记2" class="headerlink" title="2024-05-03 记2"></a>2024-05-03 记2</h2><p>*Yanray训练手札 2：</p>
 <p>手札的所有内容均同步至博客，由于书写语法为MarkDown，为了获得更好的阅读体验，建议去博客阅读：<a href="https://blog.eurekac.cn/p/27917125.html">https://blog.eurekac.cn/p/27917125.html</a></p>
 <p>下载了ChatGLM-6B-32K，好在ZhiPuAI把文件都备份到了国内ModelScope上，下载并没有费太多时间。</p>
@@ -237,17 +249,17 @@
     </div>
 </footer>
         <script async src="https://umami.eurekac.cn/script.js" data-website-id="8be37a45-1387-4cd9-86ae-7fd3d33e8c29"></script>
-        <script src="https://registry.npmmirror.com/@chenyfan/cache-db/0.0.4/files/index.js"></script>
+        <script src="https://cdn.eurekac.cn/npm/@chenyfan/cache-db/0.0.4/files/index.js"></script>
         <!-- FancyBox -->
         
-        <script src="https://registry.npmmirror.com/@fancyapps/ui/4.0.31/files/dist/fancybox.umd.js"></script>
+        <script src="https://cdn.eurekac.cn/npm/@fancyapps/ui/4.0.31/files/dist/fancybox.umd.js"></script>
         
         <script src='/js/main.js'></script>
         
         
         
-        <script src="https://registry.npmmirror.com/pagemap/1.4.0/files/dist/pagemap.min.js"></script>
-        <script src="https://registry.npmmirror.com/notyf/3.10.0/files/notyf.min.js"></script>
+        <script src="https://cdn.eurekac.cn/npm/pagemap/1.4.0/files/dist/pagemap.min.js"></script>
+        <script src="https://cdn.eurekac.cn/npm/notyf/3.10.0/files/notyf.min.js"></script>
         <script>
             window.notyf = new Notyf({
                 duration: 3000,
@@ -299,9 +311,9 @@
                             if (isElementVisible(document.getElementById("Comments"))) {
                                 clearInterval(wait_comment_load)
                                 document.getElementById("comment_notice").innerText = "Loading Comment Script..."
-                                await loadJS("https://registry.npmmirror.com/artalk/2.8.2/files/dist/Artalk.js")
+                                await loadJS("https://cdn.eurekac.cn/npm/artalk/2.8.2/files/dist/Artalk.js")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Style..."
-                                await loadCSS("https://registry.npmmirror.com/artalk/2.8.2/files/dist/Artalk.css")
+                                await loadCSS("https://cdn.eurekac.cn/npm/artalk/2.8.2/files/dist/Artalk.css")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Frame..."
                                 window.artalk = Artalk.init({
                                     el: '#Comments',

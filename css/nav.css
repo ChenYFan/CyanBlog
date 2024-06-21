@@ -89,11 +89,11 @@ nav .nav-item-search {
 }
 
 body[data-color-scheme="auto"] nav .nav-item-github, body[data-color-scheme="light"] nav .nav-item-github {
-    background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/github-mark-dark.png);
+    background-image: url(/theme-img/github-mark-dark.png);
 }
 
 body[data-color-scheme="auto"] nav .nav-item-patreon, body[data-color-scheme="light"] nav .nav-item-patreon {
-    background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/patreon-logo-black.png);
+    background-image: url(/theme-img/patreon-logo-black.png);
 }
 
 body[data-color-scheme="auto"] nav .nav-item-codepen, body[data-color-scheme="light"] nav .nav-item-codepen {
@@ -101,44 +101,44 @@ body[data-color-scheme="auto"] nav .nav-item-codepen, body[data-color-scheme="li
 }
 
 body[data-color-scheme="auto"] nav .nav-item-mastodon, body[data-color-scheme="light"] nav .nav-item-mastodon {
-    background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/mastodon-logo-black.svg);
+    background-image: url(/theme-img/mastodon-logo-black.svg);
 }
 
 body[data-color-scheme="auto"] nav .nav-item-discord, body[data-color-scheme="light"] nav .nav-item-discord {
-    background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/discord-mark-dark.svg);
+    background-image: url(/theme-img/discord-mark-dark.svg);
 }
 
 body[data-color-scheme="auto"] nav .nav-item-search, body[data-color-scheme="light"] nav .nav-item-search {
-    background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/search-dark.svg);
+    background-image: url(/theme-img/search-dark.svg);
 }
 
 @media (prefers-color-scheme: dark) {
     body[data-color-scheme="auto"] nav .nav-item-github {
-        background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/github-mark-light.png);
+        background-image: url(/theme-img/github-mark-light.png);
     }
     body[data-color-scheme="auto"] nav .nav-item-patreon {
-        background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/patreon-logo-white.png);
+        background-image: url(/theme-img/patreon-logo-white.png);
     }
     body[data-color-scheme="auto"] nav .nav-item-codepen {
         background-image: url();
     }
     body[data-color-scheme="auto"] nav .nav-item-mastodon {
-        background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/mastodon-logo-white.svg);
+        background-image: url(/theme-img/mastodon-logo-white.svg);
     }
     body[data-color-scheme="auto"] nav .nav-item-discord {
-        background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/discord-mark-light.svg);
+        background-image: url(/theme-img/discord-mark-light.svg);
     }
     body[data-color-scheme="auto"] nav .nav-item-search {
-        background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/search-light.svg);
+        background-image: url(/theme-img/search-light.svg);
     }
 }
 
 body[data-color-scheme="dark"] nav .nav-item-github {
-    background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/github-mark-light.png);
+    background-image: url(/theme-img/github-mark-light.png);
 }
 
 body[data-color-scheme="dark"] nav .nav-item-patreon {
-    background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/patreon-logo-white.png);
+    background-image: url(/theme-img/patreon-logo-white.png);
 }
 
 body[data-color-scheme="dark"] nav .nav-item-codepen {
@@ -146,15 +146,15 @@ body[data-color-scheme="dark"] nav .nav-item-codepen {
 }
 
 body[data-color-scheme="dark"] nav .nav-item-mastodon {
-    background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/mastodon-logo-white.svg);
+    background-image: url(/theme-img/mastodon-logo-white.svg);
 }
 
 body[data-color-scheme="dark"] nav .nav-item-discord {
-    background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/discord-mark-light.svg);
+    background-image: url(/theme-img/discord-mark-light.svg);
 }
 
 body[data-color-scheme="dark"] nav .nav-item-search {
-    background-image: url(https://registry.npmmirror.com/cyanblog/0.0.0-1700125816401/files/theme-img/search-light.svg);
+    background-image: url(/theme-img/search-light.svg);
 }
 
 @media screen and (max-width: 720px) {
