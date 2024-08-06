@@ -361,5 +361,12 @@
         "link": "https://blog.yaria.top/",
         "image": "https://weavatar.com/avatar/795ce413eb6c7485954b78283ffa3e00",
         "relink": true
+    },
+    {
+        "title": "序炁的博客",
+        "intro": "A dragon that born in the Order and Chaos.",
+        "link": "https://www.ordchaos.com/",
+        "image": "https://www.ordchaos.com/img/avatar.jpg",
+        "relink": true
     }
 ]
