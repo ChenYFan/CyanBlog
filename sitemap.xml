@@ -47,24 +47,6 @@
   </url>
   
   <url>
-    <loc>https://blog.eurekac.cn/404.html</loc>
-    
-    <lastmod>2024-10-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.eurekac.cn/CyanAcc/index.html</loc>
-    
-    <lastmod>2024-10-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.eurekac.cn/categories/index.html</loc>
     
     <lastmod>2024-10-17</lastmod>
@@ -93,6 +75,24 @@
   
   <url>
     <loc>https://blog.eurekac.cn/tags/index.html</loc>
+    
+    <lastmod>2024-10-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.eurekac.cn/404.html</loc>
+    
+    <lastmod>2024-10-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.eurekac.cn/CyanAcc/index.html</loc>
     
     <lastmod>2024-10-17</lastmod>
     
