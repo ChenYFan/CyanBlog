@@ -247,7 +247,7 @@ window.loadCSS = async (url) => {
 }
 
 setTimeout(() => {
-    loadCSS("https://cdn.eurekac.cn/npm/lxgw-wenkai-screen-webfont/1.1.0/files/style.css")
+    loadCSS("https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/lxgw-wenkai-screen-webfont/1.1.0/files/style.css")
 }, 0);
 
 //节流
