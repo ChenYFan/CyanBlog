@@ -1,7 +1,7 @@
 <script setup>
 import { ref, reactive, watch } from 'vue'
 import Monaco from '../../../utils/CodeEditor.vue'
-import CacheDB from '@chenyfan/cache-db'
+ import  '@chenyfan/cache-db'
 import Notyf from '../../../utils/notyf.js'
 import reinit from '../../../utils/reinit.js'
 const db = new CacheDB('CyanAcc', "CyanAccDB")

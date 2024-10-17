@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import CacheDB from '@chenyfan/cache-db'
+import '@chenyfan/cache-db'
 import Notyf from '../../utils/notyf.js'
 import reinit from '../../utils/reinit';
 const CommentSetting = ref({

@@ -15,7 +15,7 @@ no_comments: true
             {
                 "title":"CyanFalse's Weblog",
                 "link":"https://blog.eurekac.cn",
-                "avatar":"https://cdn.eurekac.cn/npm/chenyfan-oss/4.0.0/files/512.jpg",
+                "avatar":"https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-oss/4.0.0/files/512.jpg",
                 "intro":"I'm CyanFalse,New to Here.",
                 "color":"#ffc107"
             }

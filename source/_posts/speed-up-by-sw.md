@@ -11,7 +11,7 @@ des: 妙用黑科技为你的网站提速。
 key: 'serviceworker,sw'
 abbrlink: d3c51290
 hide: false
-cover_image: 'https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r17/files/main.jpg'
+cover_image: 'https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r17/files/main.jpg'
 date: 2022-06-7 10:28:12
 ---
 
@@ -421,7 +421,7 @@ https://registry.npmjs.org/chenyfan-blog/latest
 npm registry的镜像也不少，以腾讯/阿里为例：
 
 ```url
-https://cdn.eurekac.cn/npm/chenyfan/latest #阿里，可手动同步
+https://registry.npmmirror.com/npm/chenyfan/latest #阿里，可手动同步
 https://mirrors.cloud.tencent.com/npm/chenyfan/latest #腾讯，每日凌晨同步
 ```
 
@@ -429,7 +429,7 @@ https://mirrors.cloud.tencent.com/npm/chenyfan/latest #腾讯，每日凌晨同�
 
 ```js
 const mirror = [
-        `https://cdn.eurekac.cn/npm/chenyfan-blog/latest`,
+        `https://registry.npmmirror.com/npm/chenyfan-blog/latest`,
         `https://registry.npmjs.org/chenyfan-blog/latest`,
         `https://mirrors.cloud.tencent.com/npm/chenyfan-blog/latest`
 ]

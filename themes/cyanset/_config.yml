@@ -1,7 +1,7 @@
 # REMEMBER TO EDIT THIS BEFORE DEPLOYING!!!
 
 # the path to your blog's icon:
-favicon: https://cdn.eurekac.cn/npm/chenyfan-oss/6.0.0/files/32.png
+favicon: https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-oss/6.0.0/files/32.png
 
 # the path to manifest.json
 manifest: 
