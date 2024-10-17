@@ -50,9 +50,9 @@ jsd并不是没有发布许可条款，但这并不能阻止白嫖大军的进�
 
 网上对于SW的解释比较模糊，在这里，我将其定义为`用户浏览器里的服务器`，功能强大到令人发指。是的，接下来的两张图你应该能显著的看到这一差距：
 
-![没有ServiceWorker中继，平淡无奇](https://npm.elemecdn.com/chenyfan-os@0.0.0-r5/1.jpg)
+![没有ServiceWorker中继，平淡无奇](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r5/files/1.jpg)
 
-![ServiceWorker中继，刺激拉满](https://npm.elemecdn.com/chenyfan-os@0.0.0-r5/2.jpg)
+![ServiceWorker中继，刺激拉满](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r5/files/2.jpg)
 
 在第一张图中，用户和服务器的关系直的就像电线杆，用户想要什么，服务器就还给他什么。
 
@@ -349,7 +349,7 @@ const test = async () => {
 }
 ```
 
-![](https://npm.elemecdn.com/chenyfan-os@0.0.0-r7/1.png)
+![](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r7/files/1.png)
 
 采用循环，`await`会堵塞循环，直到这次请求完成后才能执行下一个。如果有任何一个url长时间无法联通，将会导致极长的检测时间浪费。
 
@@ -386,7 +386,7 @@ const test = () => {
     })
 }
 ```
-![](https://npm.elemecdn.com/chenyfan-os@0.0.0-r7/2.png)
+![](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r7/files/2.png)
 
 `Promise.all`几乎在一瞬间请求所有的url，其请求时并行，每一个请求并不会堵塞其他请求，函数总耗时为最长请求耗时。
 
@@ -429,7 +429,7 @@ const get_json = () => {
 console.log(await(await get_json()).text())
 ```
 
-![](https://npm.elemecdn.com/chenyfan-os@0.0.0-r7/3.png)
+![](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r7/files/3.png)
 
 函数将会在`21ms`上下返回json中的数据。
 
@@ -480,7 +480,7 @@ console.log(await(await get_json()).text())
 
 让我们看一下Network选项卡：
 
-![](https://npm.elemecdn.com/chenyfan-os@0.0.0-r7/4.png)
+![](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r7/files/4.png)
 
 
 其中，知乎返回的最快，但他并没有完整的返回文件[源文件1.8KB，但他只返回了1.4KB]。这也直接导致了整个函数的`fail`。
@@ -524,7 +524,7 @@ const get_json = () => {
 console.log(await(await get_json()).text())
 ```
 
-![](https://npm.elemecdn.com/chenyfan-os@0.0.0-r7/5.png)
+![](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r7/files/5.png)
 
 在这其中通过`arrayBuffer()`方法异步读取`res`的`body`，将其读取为二进制文件，并新建一个新的`Response`，还原状态和头，然后丢给管道函数同步处理。
 
