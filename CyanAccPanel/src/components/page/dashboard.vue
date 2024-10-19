@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue'
-import CacheDB from '@chenyfan/cache-db'
+import '@chenyfan/cache-db'
 import Notyf from '../../utils/notyf.js'
 import CyanAccAPI from '../../utils/CyanAccAPI.js'
 const PrettyBytes = (bytes) => {

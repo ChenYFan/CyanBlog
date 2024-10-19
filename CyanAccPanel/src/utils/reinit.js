@@ -1,4 +1,4 @@
-import CacheDB from '@chenyfan/cache-db'
+import '@chenyfan/cache-db'
 const reinit = async () => {
     const db = new CacheDB('CyanAcc', "CyanAccDB")
     const ReInit = (JSON.parse((await db.read('CyanAcc_Config')) || JSON.stringify({ reinit: true }))).reinit

@@ -366,7 +366,13 @@
         "title": "序炁的博客",
         "intro": "A dragon that born in the Order and Chaos.",
         "link": "https://www.ordchaos.com/",
-        "image": "https://www.ordchaos.com/img/avatar.jpg",
+        "image": "https://www.ordchaos.com/img/avatar.jpg"
+    },
+    {
+        "title": "Admibrill",
+        "intro": "Where there is a will,there is a way",
+        "link": "https://blog.qyadbr.top/",
+        "image": "https://source-admibrill.pages.dev/file/f69c9c86b22cb90df18a1.png",
         "relink": true
     }
 ]

@@ -11,7 +11,7 @@ des: 妙用黑科技为你的网站提速。
 key: 'serviceworker,sw'
 abbrlink: d3c51290
 hide: false
-cover_image: 'https://cdn.eurekac.cn/npm/chenyfan-os/0.0.0-r17/files/main.jpg'
+cover_image: 'https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r17/files/main.jpg'
 date: 2022-06-7 10:28:12
 ---
 
@@ -421,7 +421,7 @@ https://registry.npmjs.org/chenyfan-blog/latest
 npm registry的镜像也不少，以腾讯/阿里为例：
 
 ```url
-https://cdn.eurekac.cn/npm/chenyfan/latest #阿里，可手动同步
+https://registry.npmmirror.com/npm/chenyfan/latest #阿里，可手动同步
 https://mirrors.cloud.tencent.com/npm/chenyfan/latest #腾讯，每日凌晨同步
 ```
 
@@ -429,7 +429,7 @@ https://mirrors.cloud.tencent.com/npm/chenyfan/latest #腾讯，每日凌晨同�
 
 ```js
 const mirror = [
-        `https://cdn.eurekac.cn/npm/chenyfan-blog/latest`,
+        `https://registry.npmmirror.com/npm/chenyfan-blog/latest`,
         `https://registry.npmjs.org/chenyfan-blog/latest`,
         `https://mirrors.cloud.tencent.com/npm/chenyfan-blog/latest`
 ]
@@ -546,7 +546,7 @@ caches.open(CACHE_NAME).then(async function (cache) {
 
 对于同一个网页，你需要合理的对他执行决策树，这是目前我的博客[网页]采取的决策树:
 
-![](https://npm.elemecdn.com/chenyfan-os@0.0.0-r18/1.png)
+![](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r18/files/1.png)
 
 js里有两个对时间控制的古老函数：`SetTimeout`和`SetInterval`.在这里我采用`SetTimeout`,同时并行执行任务.
 
@@ -638,7 +638,7 @@ document.body.innerHTML = await (await fetch('https://npm.elemecdn.com/chenyfan-
 
 即可
 
-![](https://npm.elemecdn.com/chenyfan-os@0.0.0-r18/2.png)
+![](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r18/files/2.png)
 
 
 ## 主服务器优化 - 绝望中的最后一根稻草
@@ -666,4 +666,4 @@ document.body.innerHTML = await (await fetch('https://npm.elemecdn.com/chenyfan-
 
 一张思维导图总结全文，你学废了吗？
 
-![](https://npm.elemecdn.com/chenyfan-os@0.0.0-r18/3.png)
+![](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r18/files/3.png)
