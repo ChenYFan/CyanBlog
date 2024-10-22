@@ -321,11 +321,10 @@
     },
     {
         "title": "LanYunのBlog",
-        "link": "https://lanyundev.xyz/",
+        "link": "https://lanyundev.com/",
         "intro": "Share Technology.",
-        "image": "https://lanyundev.xyz/img/logo.jpg",
-        "relink": false,
-        "unaccessible": true
+        "image": "https://lanyundev.com/img/logo.jpg.webp",
+        "relink": true
     },
     {
         "title": "Ray's Blog",
