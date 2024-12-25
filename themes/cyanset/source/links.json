@@ -207,13 +207,12 @@
         "relink": false
     },
     {
-        "title": "无名小筑",
-        "link": "https://blog.rvvc.im",
+        "title": "ZRLab",
+        "link": "https://blog.zrlab.org",
         "intro": "一条咸鱼的碎碎念~",
-        "image": "https://blog.rvvc.im/imgs/avatar.jpg",
-        "domain": "blog.rvvc.im",
-        "relink": false,
-        "unaccessible": true
+        "image": "https://blog.zrlab.org/imgs/avatar.jpg",
+        "domain": "blog.zrlab.org",
+        "relink": true
     },
     {
         "title": "Thun888‘s Blog",
