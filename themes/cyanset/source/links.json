@@ -348,10 +348,10 @@
         "relink": true
     },
     {
-        "title": "汐塔魔法屋",
-        "link": "https://blog.storical.space/",
-        "intro": "种下一颗有故事的种子，让它带着魔法和奇迹生根发芽",
-        "image": "https://blog.storical.space/images/icon.png",
+        "title": "绘星里",
+        "link": "https://blog.storical.fun/",
+        "intro": "一起来绘制属于自己的星星！",
+        "image": "https://blog.storical.fun/images/icon.png",
         "relink": true
     },
     {
@@ -375,3 +375,4 @@
         "relink": true
     }
 ]
+
