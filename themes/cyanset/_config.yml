@@ -77,7 +77,7 @@ license_link: https://creativecommons.org/licenses/by-nc/4.0
 # based on [hexo-generator-search](https://github.com/wzpan/hexo-generator-search)
 search: true
 search_path: search.json
-cdn_mirror: /
+cdn_mirror: https://registry.npmmirror.com/@chenyfan/logger/latest/files/
 # REMEMBER TO EDIT THIS BEFORE DEPLOYING!!!
 
 # Enable FancyBox

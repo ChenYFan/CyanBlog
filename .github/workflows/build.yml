@@ -8,11 +8,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v6
         with:
-          node-version: 16.x
+          node-version: 24.x
       - name: Cache node modules
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -24,9 +24,9 @@ jobs:
 
           npm run build
 
-      - name: NPM Publish Pre Set
-        run: >
-          node ./prescripts/pkgpublish.js
+      # - name: NPM Publish Pre Set
+      #   run: >
+      #     node ./prescripts/pkgpublish.js
 
       - name: Bundle CNAME File
         run: >
@@ -38,7 +38,7 @@ jobs:
           github_token: ${{ secrets.TOKEN }}
           publish_dir: ./public
 
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM }}
-          package: ./public/package.json
+      # - uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     token: ${{ secrets.NPM }}
+      #     package: ./public/package.json
