@@ -117,3 +117,7 @@ fancybox:
   enable: true
 sitemap: 
     path: sitemap.xml
+
+markdown:
+  plugins:
+    - markdown-it-footnote

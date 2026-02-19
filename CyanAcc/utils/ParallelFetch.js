@@ -1,6 +1,5 @@
 const ThisDomain = new URL(self.location.href).host
 export default async (reqs, Config) => {
-    console.log(Config)
     return new Promise((resolve, reject) => {
         const abortEvent = new Event("abortOtherInstance")
         const eventTarget = new EventTarget();
@@ -19,7 +18,6 @@ export default async (reqs, Config) => {
                     mode: new URL(req.url).host === ThisDomain ? "same-origin" : "cors",
                     redirect: "follow"
                 }).then(res => {
-                    console.log(res)
                     if (res.status === 200) {
                         tagged = true;
                         eventTarget.dispatchEvent(abortEvent)

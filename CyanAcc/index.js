@@ -7,16 +7,20 @@ import AssetsFetchWithCache from './utils/AssetsFetchWithCache.js'
 
 import DefaultConfig from './utils/DefaultConfig.js'
 
+import BlogRouter from './src/BlogRouter.js'
+import CDNRouter from './src/CDNRouter.js'
+
 
 self.cons = EasyConsole
 
 
-const ThisProtocol = new URL(self.location.href).protocol
-const ThisDomain = new URL(self.location.href).host
-const ThisRootUrl = ThisProtocol + "//" + ThisDomain
+self.ThisProtocol = new URL(self.location.href).protocol
+self.ThisDomain = new URL(self.location.href).host
+self.ThisRootUrl = self.ThisProtocol + "//" + self.ThisDomain
+self.CyanACCPanelRootUrl = self.ThisRootUrl + "/panel"
 
 
-const CyanACCPanelRootUrl = ThisRootUrl + "/panel"
+
 
 const db = new CacheDB('CyanAcc', "CyanAccDB", { auto: 1 })
 
@@ -76,12 +80,13 @@ addEventListener('fetch', event => {
         return;
     }
 })
-addEventListener('install', self.skipWaiting);
-addEventListener('activate', self.clients.claim);
+addEventListener('install', () => self.skipWaiting())
+addEventListener('activate', () => self.clients.claim());
 
 
 const handleRequest = async (request) => {
-    const domain = (new URL(request.url)).host
+    const ReqDomain = new URL(request.url).host
+    const ReqUrl = request.url
     if (typeof self.init === 'undefined' || !self.init) {
         cons.i(`CyanAcc正在重新初始化...在${request.url}`)
         self.init = true
@@ -108,10 +113,8 @@ const handleRequest = async (request) => {
         cons.w("CyanAcc已被禁用")
         return fetch(request)
     }
-    if (Blog_Fetch_Config.domain.includes(domain)) return BlogRouter(request)
-    for (var cdnitem of CDN_Domain) {
-        if (request.url.match(new RegExp(cdnitem.match))) return CDNRouter(request)
-    }
+    if (Blog_Fetch_Config.domain.includes(ReqDomain)) return BlogRouter(request)
+    for (var cdnitem of CDN_Domain) if (ReqUrl.match(new RegExp(cdnitem.match))) return CDNRouter(request)
     return fetch(request)
 }
 

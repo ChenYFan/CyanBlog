@@ -1,3 +1,5 @@
+import "@chenyfan/cdnobject"
+import AssetsFetchWithCache from '../utils/AssetsFetchWithCache.js'
 const CDNRouter = async (request) => {
     request = new Request(request.url.replace(/^http\:/g, "https:"), request)
     if (!CDN_Fetch_Config.enable) return fetch(request)
