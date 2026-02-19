@@ -228,5 +228,123 @@ body:not(.heimu_toggle_on) .new:hover .heimu.off {
 }
 
 .normal-link {
-    color: var(--link)!important;
+    color: var(--link) !important;
+}
+
+
+
+.admonition,
+.content>.admonition {
+    max-width: 800px;
+    margin: 1.5625em auto;
+    padding: 0;
+    overflow: hidden;
+    border-left: .3rem solid #42b983;
+    border-radius: .3rem;
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, .05), 0 0 0.05rem rgba(0, 0, 0, .1);
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+
+.admonition-title {
+    margin: 0 !important;
+    max-width: none !important;
+    padding: .4rem 16px .4rem 1rem !important;
+    background-color: rgba(66, 185, 131, .1);
+    font-weight: 700;
+
+    display: flex !important;
+    align-items: center;
+    gap: 0.6rem;
+
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admonition-title::before {
+    margin-top: 2px;
+    content: ' ';
+    display: inline-block;
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #42b983;
+    border-radius: 50%;
+
+}
+
+.admonition>p:not(.admonition-title){
+    padding: 0 16px !important;
+    margin: .8em 0 !important;
+    max-width: none !important;
+}
+
+
+.admonition.warning {
+    border-color: #ff9100;
+}
+
+.admonition.warning .admonition-title {
+    background-color: rgba(255, 145, 0, .1);
+}
+
+.admonition.warning .admonition-title::before {
+    background-color: #ff9100;
+}
+
+
+.admonition.info,
+.admonition.todo {
+    border-color: #00b8d4;
+}
+
+.admonition.info .admonition-title,
+.admonition.todo .admonition-title {
+    background-color: rgba(0, 184, 212, .1);
+}
+
+.admonition.info .admonition-title::before,
+.admonition.todo .admonition-title::before {
+    background-color: #00b8d4;
+}
+
+.admonition.warning,
+.admonition.attention,
+.admonition.caution {
+    border-color: #ff9100;
+}
+
+.admonition.warning .admonition-title,
+.admonition.attention .admonition-title,
+.admonition.caution .admonition-title {
+    background-color: rgba(255, 145, 0, .1);
+}
+
+.admonition.warning .admonition-title::before,
+.admonition.attention .admonition-title::before,
+.admonition.caution .admonition-title::before {
+    background-color: #ff9100;
+}
+
+.admonition.failure,
+.admonition.error,
+.admonition.fail {
+    border-color: #ff5252;
+}
+
+.admonition.failure .admonition-title,
+.admonition.error .admonition-title,
+.admonition.fail .admonition-title {
+    background-color: rgba(255, 82, 82, .1);
+}
+
+.admonition.failure .admonition-title::before,
+.admonition.error .admonition-title::before,
+.admonition.fail .admonition-title::before {
+    background-color: #ff5252;
+}
+
+/* 5. 结尾处理 */
+.admonition> :last-child {
+    margin-bottom: 0 !important;
 }
