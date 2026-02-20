@@ -257,9 +257,9 @@
                             if (isElementVisible(document.getElementById("Comments"))) {
                                 clearInterval(wait_comment_load)
                                 document.getElementById("comment_notice").innerText = "Loading Comment Script..."
-                                await loadJS("https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/artalk/2.8.2/files/dist/Artalk.js")
+                                await loadJS("https://registry.npmmirror.com/artalk/2.9.1/files/dist/Artalk.js")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Style..."
-                                await loadCSS("https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/artalk/2.8.2/files/dist/Artalk.css")
+                                await loadCSS("https://registry.npmmirror.com/artalk/2.9.1/files/dist/Artalk.css")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Frame..."
                                 window.artalk = Artalk.init({
                                     el: '#Comments',

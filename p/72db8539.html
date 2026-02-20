@@ -157,7 +157,7 @@
 <h1>前情提要</h1>
 <p>事实证明，在大学中选用游戏本来做自己外带的主力机是一件非常不明智的选择。</p>
 <p>尤其是在我组建主力机和服务器后，游戏本的功能被我逐渐弱化成了外出携带的轻薄本（虽然它并不轻薄）。</p>
-<p>尽管游戏本的性能优良，即使使用电池供电，其基本性能也能满足日常使用的需求。</p>
+<p>尽管游戏本的性能优良（Intel i5-12450H+NVIDIA RTX 3050），即使使用电池供电，在较低功耗下硬件性能也能满足日常使用的需求。</p>
 <p>但是，鸡哥本身给电池设计的容量就差强人意（极光Z更是只有47Wh），随着鸡哥年龄增长（3年了），电池健康度也进一步下降到了85%，有效能量更是只有40Wh。</p>
 <p><a href="https://i.eurekac.cn/2026/02/19/2089c2a6-4f3d-47d1-b673-be93a868df8f.png?_s=ad242050" data-fancybox="gallery" data-caption="年纪大了是这样的.jpg">
             <img src="https://i.eurekac.cn/2026/02/19/2089c2a6-4f3d-47d1-b673-be93a868df8f.png?_s=ad242050" class="lazy" data-srcset="https://i.eurekac.cn/2026/02/19/2089c2a6-4f3d-47d1-b673-be93a868df8f.png?_s=ad242050" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="年纪大了是这样的.jpg">
@@ -167,16 +167,16 @@
 <p>在经历一段时间评估后，我决定将这台笔记本的Windows系统完全卸载掉，只运行Ubuntu系统。</p>
 <ol>
 <li>Ubuntu+GNOME这套桌面组合我已经用了近8年了，个人感觉外带日常使用应该没有什么太大问题。</li>
-<li>由于我已经组建了自己的Hybrid Wireguard网络，可以以最优的路径远程桌面RDP到我放置在实验室的主力机和服务器上。</li>
+<li>由于我已经组建了自己的Hybrid Wireguard网络，可以以最优的路径远程桌面RDP到我放置在实验室的主力机和服务器上（平常活动范围也就杭州内，最差的情况也是能绕到同在浙江内的家里FullCone云中转）。</li>
 </ol>
-<p>但是，我打算在这台服务器上使用QEMU虚拟机来运行Windows系统。是的我知道这听起来很怪，但原因有下：</p>
+<p>尽管如此，我仍打算在这台笔记本上使用QEMU虚拟机来运行Windows系统。是的，我知道这听起来很怪，但先待我慢慢道来：</p>
 <ol>
-<li>我通常习惯隔离国产软件到专门的物理机或者虚拟机中（如一众IM、网盘软件），然后使用RDP+WinApps方案直接将程序窗口穿透到主力机上。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></li>
-<li>如果笔记本短时间外带，我将直接关闭Qemu虚拟机以延长电池续航，使用远程桌面连接到主力机来使用；长时间外带则通常携带电源适配器，届时就可以直接使用虚拟机了。</li>
-<li>我已经确认了我短时间外带通常没有需求用到国产软件，如果非常紧急的情况下使用也可以启用虚拟机</li>
-<li>不得不提的一点我测试过裸Windows和Ubuntu+QemuWindows使用电池的功耗。后者甚至比前者续航时间还要略长（大约1h35m），不知道是不是神奇的电源调度发力了。</li>
+<li>我通常习惯隔离国产软件到专门的物理机或者虚拟机中（如国产IM、网盘软件），然后使用RDP+WinApps方案直接将程序窗口穿透到主力机上。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></li>
+<li>如果笔记本短时间外带，我将直接关闭Qemu虚拟机以延长电池续航，使用远程桌面连接到主力机来使用；长时间外带则通常一并携带电源适配器，届时就可以直接使用虚拟机了。</li>
+<li>此外，在短时间外带时我通常没有需求用到国产软件，如果非常紧急的情况下使用也可以启用虚拟机。</li>
+<li>不得不提的一点是，我测试过裸Windows和Ubuntu+QemuWindows使用电池的功耗。后者甚至比前者续航时间还要略长（大约1h35m），不知道是不是神奇的电源调度发力了。</li>
 </ol>
-<p>当我思考完这些问题后，我发现还有一样物品一直被我忽略：我这张3050Laptop要怎么处理？</p>
+<p>思考完这些问题后，我发现还有一样物品一直被忽略：这张3050Laptop要怎么处理？</p>
 <p>这里再简单介绍一下笔记本的显示逻辑结构。一般来讲Intel设计笔记本CPU时通常会集成一个核显（iGPU），而独立显卡（dGPU）则通常是由NVIDIA或者AMD提供的。</p>
 <p>换句话说一般笔记本都有两张显卡，由于我手头的这台极光Z不支持独显直连，Ubuntu是直接通过Intel的UHD核显输出的。</p>
 <blockquote>
@@ -184,29 +184,30 @@
 </blockquote>
 <p>在之前的双系统方案使用中，这张3050Laptop在Ubuntu下是使用NVIDIA Optimus方案来使用的，即由程序来决定自己要不要调用N卡，否则默认回退到Intel核显来使用。</p>
 <p>但在实际使用的时候，这张N卡并没有起什么作用（视频编解码UHD比3050Laptop还要强，而且在组建主力机后我已经没有用这台机子打游戏的需求，大部分桌面ui渲染Ubuntu并没有调用N卡），还凭空添了5W的功耗，放在外面宿主机纯属人嫌狗厌。</p>
-<p>欸，那这时候我发现，虚拟机里的windows这不还缺一张显卡用于加速3D和渲染UI吗，与其填一张不支持DX12的VirtIO显卡进去，不如直接把这张3050Laptop穿透进虚拟机里用啊。</p>
+<p>欸，那这时候我发现，虚拟机里的windows这不还缺一张显卡用于加速3D和渲染UI吗，与其填一张不支持DX12的VirtIO显卡进去（还要浪费cpu资源），不如直接把这张3050Laptop穿透进虚拟机里用啊。</p>
 <div class="admonition warning"><p class="admonition-title">warning</p><p><em><strong>独显直连与显示问题</strong></em></p>
 <p>如果存在独显直连，内置eDP通过一个mux切换器来切换连接到iGPU或者dGPU上。若不存在独显直连，则内置eDP直接连接到iGPU上，dGPU则通过PCIe连接到iGPU上（也就是所谓的Optimus方案）。</p>
 <p>无论是不是独显直连，都不影响将dGPU显卡穿透进虚拟机里使用。差异在于如果笔记本支持独显直连，则可以让笔记本屏幕直接输出虚拟机内的画面（但是通常来讲内置键盘触摸板很难一并穿透进虚拟机中，而且这会带来对宿主机操纵的不便），而且需要OEM开发专门的Linux驱动来支持独显直连的切换（至少鸡哥没有，或者你可以尝试自己找EC的接口）。</p>
 <p>况且这台鸡哥极光Z也不支持独显直连，按照我的使用需求也没有直接输出虚拟机画面的需求（一般使用RDP）。</p>
 <p>另外还要提一点，大部分游戏本/笔记本的外置独显输出口（hdmi/dp）都是从独显直通的。如果将显卡穿透进虚拟机后，外置接口的输出是<strong>虚拟机的画面</strong>而不是宿主机的画面。</p>
-<p>如果你希望将显卡穿透进去还要用<strong>内置显示屏</strong>打游戏，那会非常困难，因为mstsc本身对游戏的支持非常困难，需要在宿主机上直接提取显卡的输出（如LookingGlass）。如果机子本身不支持独显直连，那相当于这张显卡本身不会输出，你还要用个HDMI欺骗器骗显卡输出，再用LookingGlass从显存中捕获输出。就算支持独显直连，也要想办法切换内置的MUX。</p>
+<p>如果你希望将显卡穿透进去还要用<strong>内置显示屏</strong>打游戏，那会非常困难，因为mstsc本身对3D游戏的支持几乎没有，需要在宿主机上直接提取显卡的输出（如LookingGlass）。如果机子本身不支持独显直连，那相当于这张显卡本身不会输出，你还要用个HDMI欺骗器骗显卡输出，再用LookingGlass从显存中捕获输出。就算支持独显直连，也要想办法切换内置的MUX。</p>
 <p>总之极其不建议使用内置显示屏显示穿透进虚拟机的显卡输出（无论是否支持独显直连），如果要打游戏那也建议HDMI外接显示器，直接让显卡走物理通道输出虚拟机画面。</p>
+<p><del>外接显示器也是好文明</del><span class="heimu">用LookingGlass还是mstsc都不如直接外接显示器</span></p>
 <p><em><strong>为什么不把核显穿透进去？</strong></em></p>
-<p>前面提到，这台机子不支持独显直连，内置显示器的输出是直接连接到核显上的，如果把核显穿透进虚拟机里了，宿主机就没法显示了（除非外接显示器）。而独显则是通过PCIe连接到核显上的，穿透独显并不会影响宿主机的显示输出。</p>
+<p>前面提到，这台机子不支持独显直连，内置显示器的输出是直接连接到核显上的，如果把核显穿透进虚拟机里了，宿主机就没法显示了（除非外接显示器用独显输出）。而独显则是通过PCIe连接到核显上的，穿透独显并不会影响宿主机的显示输出。</p>
 <p>此外，穿透核显显然比穿透独显更麻烦，核显通常和CPU紧密耦合。而独显则是一个相对独立的PCIe设备，穿透起来更简单一些。</p>
 <p>如果读者手头的机子支持独显直连且iommu分组的时候成功把核显踢出成一组，则可以考虑把核显穿透进去。但笔者仍不建议这么做，因为Linux对N卡在日常的利用率显然不如Windows好。</p>
 <p>此外对于笔者（我）而言，将独显穿透进虚拟机还可以在虚拟机关机的时候完全断电独显，进一步降低功耗。</p>
 </div>
 <div class="admonition error"><p class="admonition-title">error</p><p><em><strong>好处说完了，坏处呢</strong></em></p>
 <p>穿透显卡并不是完美的，至少我遇到了一个无法解决的事情：显卡Dynamic Boost失效，功耗最高上限锁死60W（原来可以从CPU那里抢+35W功耗变成95W）。</p>
-<p>具体内容将在下文提及，写在最前面是为了让读者有个心理准备，毕竟显卡穿透技术虽然在服务器上已经非常成熟了，<span class="heimu">但在笔记本上还是有很多未知的坑的。</span></p>
+<p>具体内容将在下文提及，写在最前面是为了让读者有个心理准备，尽管显卡穿透技术虽然在服务器上已经非常成熟了，<span class="heimu">但在笔记本上还是有很多未知的坑的。</span></p>
 </div>
 <h1>技术准备</h1>
 <p>显卡穿透技术<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>是一种允许虚拟机直接访问物理显卡的技术。</p>
 <p>该技术通常应用于服务器中，一般通过IOMMU<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>+VFIO<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>技术允许虚拟机直接访问物理显卡，从而实现将显卡这一物理资源分配给虚拟机使用。</p>
 <p>当然，能在服务器上使用并<strong>不意味着不能</strong>在PC上使用。一般来讲正常的PC主板都是支持IOMMU，Linux下可以通过检查dmesg日志中是否有<code>Intel-IOMMU: enabled</code>或者<code>AMD-Vi: Interrupt remapping enabled</code>字样来检查基础iommu功能是否可用。</p>
-<p>欸，那笔记本电脑何尝不是一种PC？不妨来检查一下我手头的鸡哥笔记本（Intel i7-12450H+NVIDIA RTX 3050）是否支持IOMMU：</p>
+<p>欸，那笔记本电脑何尝不是一种PC？不妨来检查一下我手头的鸡哥笔记本是否支持IOMMU：</p>
 <h2 id="开启IOMMU功能">开启IOMMU功能</h2>
 <p>大前提是需要启用电脑虚拟化功能（一般在BIOS里，Intel的叫VT-x，AMD的叫SVM），现代电脑绝大数都支持硬件虚拟化（这是Windows HyperV等虚拟化软件的基础），此处不再赘述。</p>
 <p>开启BIOS的选项也在BIOS当中，鸡哥是启用<code>Chipset - System Agent - Control Iommu Pre-boot Behavior</code>来开启IOMMU功能的。</p>
@@ -232,21 +233,21 @@
 <p>额外的一张Audio device是Nvidia显卡的HDMI音频输出接口，这意味着在之后的穿透中需要开启multi function（多功能）模式来同时穿透显卡和音频设备。</p>
 </blockquote>
 <h2 id="vfio设备隔离、驱动解除绑定">vfio设备隔离、驱动解除绑定</h2>
-<p>接下来需要将显卡设备从宿主机的驱动中解绑，并绑定到vfio-pci驱动上。</p>
+<p>接下来需要将显卡设备从宿主机的驱动中解绑，并绑定到<code>vfio-pci</code>驱动上。</p>
 <p>同理修改<code>/etc/default/grub</code>文件，在<code>GRUB_CMDLINE_LINUX_DEFAULT</code>变量里添加<code>vfio-pci.ids=10de:25a2,10de:2291</code>（设备id）参数。</p>
 <p>这里的<code>vfio-pci.ids</code>参数的作用是告诉内核在启动时将指定设备id的设备绑定到vfio-pci驱动上，从而实现设备的隔离和穿透。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@EurekaCyan-Laptop:/home/cyanfalse# <span class="built_in">cat</span> /etc/default/grub | grep GRUB_CMDLINE_LINUX_DEFAULT</span><br><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=<span class="string">&quot;quiet splash intel_iommu=on iommu=pt vfio-pci.ids=10de:25a2,10de:2291&quot;</span></span><br></pre></td></tr></table></figure>
-<p>此外如果宿主机已安装Nvidia驱动或者nouveau驱动，建议将vfio在系统最早期启动<code>nano /etc/initramfs-tools/modules</code>：</p>
+<p>此外如果宿主机已安装Nvidia驱动或者nouveau驱动，建议将vfio在系统最早期启动<code>/etc/initramfs-tools/modules</code>：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vfio</span><br><span class="line">vfio_iommu_type1</span><br><span class="line">vfio_pci ids=10de:25a2,10de:2291 <span class="comment">#这里的id记得改成自己的</span></span><br></pre></td></tr></table></figure>
-<p>同时可以用Softdep 强制依赖顺序避免vfio-pci和nvidia驱动的冲突<code>nano /etc/modprobe.d/vfio.conf</code>：</p>
+<p>同时可以用Softdep 强制依赖顺序避免vfio-pci和nvidia驱动的冲突<code>/etc/modprobe.d/vfio.conf</code>：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">softdep nvidia pre: vfio-pci</span><br><span class="line">softdep nouveau pre: vfio-pci</span><br><span class="line">options vfio-pci ids=10de:25a2,10de:2226  <span class="comment">#这里的id记得改成自己的</span></span><br></pre></td></tr></table></figure>
-<p>如果宿主机只有这一张N卡且宿主机不需要再用到N卡，保险起见可以将两者驱动拉入黑名单<code>nano /etc/modprobe.d/blacklist-nvidia.conf</code>：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">blacklist nouveau</span><br><span class="line">options nouveau modeset=0</span><br><span class="line"></span><br><span class="line">blacklist nvidia</span><br><span class="line">blacklist nvidia_drm</span><br><span class="line">blacklist nvidia_modeset</span><br></pre></td></tr></table></figure>
+<p>如果宿主机只有这一张N卡且宿主机不需要再用到N卡，保险起见可以将两者驱动拉入黑名单<code>/etc/modprobe.d/blacklist-nvidia.conf</code>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">blacklist nouveau</span><br><span class="line">options nouveau modeset=0</span><br><span class="line">blacklist nvidia</span><br><span class="line">blacklist nvidia_drm</span><br><span class="line">blacklist nvidia_modeset</span><br></pre></td></tr></table></figure>
 <p>做完上述工作后运行以下命令更新initramfs和grub：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> update-initramfs -u</span><br><span class="line"><span class="built_in">sudo</span> update-grub</span><br></pre></td></tr></table></figure>
 <p>操作完毕后<strong>重启</strong>。输入命令<code>lspci -nnk -d &lt;设备id&gt;</code>检查一下显卡设备是否已经被vfio-pci驱动绑定：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@EurekaCyan-Laptop:/home/cyanfalse# lspci -nnk -d 10de:25a2</span><br><span class="line">01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA107M [GeForce RTX 3050 Mobile] [10de:25a2] (rev a1)</span><br><span class="line">        Subsystem: Tongfang Hongkong Limited GA107M [GeForce RTX 3050 Mobile] [1d05:1178]</span><br><span class="line">        Kernel driver <span class="keyword">in</span> use: vfio-pci</span><br><span class="line">        Kernel modules: nvidiafb, nouveau</span><br><span class="line">root@EurekaCyan-Laptop:/home/cyanfalse# lspci -nnk -d 10de:2291</span><br><span class="line">01:00.1 Audio device [0403]: NVIDIA Corporation Device [10de:2291] (rev a1)</span><br><span class="line">        Subsystem: Tongfang Hongkong Limited Device [1d05:1178]</span><br><span class="line">        Kernel driver <span class="keyword">in</span> use: vfio-pci</span><br><span class="line">        Kernel modules: snd_hda_intel</span><br></pre></td></tr></table></figure>
-<h1>Passsssss… Through!</h1>
+<h1>Passsssss... Through!</h1>
 <div class="admonition info"><p class="admonition-title">info</p><p>以下教程中使用的是有图形界面的virt-manager工具来创建和管理虚拟机，当然也可以使用命令行工具（比如virsh）来完成同样的操作。</p>
 <p>下述步骤中会同步给出virsh命令行的操作示例。</p>
 <p>另外本文默认已跳过虚拟机安装Windows系统的步骤，直接进入显卡穿透的配置部分。</p>
@@ -291,13 +292,14 @@
             </a></p>
 <div class="admonition info"><p class="admonition-title">info</p><p>其实如果放在服务器或者台式机上，穿透的是一张正经的Geforce或者GRID系列显卡，到此已经完结撒花了。</p>
 <p>可惜我穿透的是一张笔记本魔改显卡🫠</p>
+<p>要是真有那么轻松，那我也不至于水这篇文章了。（逃</p>
 </div>
 <h2 id="幽灵一般的Error-43">幽灵一般的Error 43</h2>
 <p>冷静下来，我们分析一下现状</p>
 <p>· 笔记本的物理hdmi接口能输出虚拟机内画面 -&gt; 设备穿透成功，显卡基本功能工作正常<br>
 · 输出的画面分辨率很低 -&gt; 使用的是基本显示适配器驱动，显卡官方驱动工作不正常<br>
 · 显卡名字从<code>Microsoft 基本显示适配器</code>变成了<code>NVIDIA GeForce RTX 3050 Laptop GPU</code> -&gt; 显卡被系统和驱动正确识别了，但工作不正常</p>
-<p>这时候我们就可以基本断定了，显卡驱动虽然安装成功了，但其并没有正常工作。<span class="heimu">Nvidia，Fuck you。</span></p>
+<p>这时候我们就可以基本断定了，显卡穿透正常、显卡驱动安装成功了，但其并没有正常工作。<span class="heimu">驱动：我要验卡</span></p>
 <blockquote>
 <p>前情提要，以下内容虽然精简而少，但探索过程异常曲折且艰难👊😭👊</p>
 <p>此外，在Windows下排查显卡驱动问题异常痛苦。以下部分问题甚至是我尝试在虚拟机中安装Ubuntu中测试功能后才发现的。</p>
@@ -327,8 +329,9 @@
 <p>如果你觉得这不安全，可以考虑修改<code>/etc/apparmor.d/abstractions/libvirt-qemu</code>，篇幅所限不再展开。</p>
 </blockquote>
 <h3 id="虚拟机伪装问题">虚拟机伪装问题</h3>
-<p>古早年间，Nvidia为了防止数据中心将Geforce系列显卡用于服务器虚拟化<span class="heimu">以强迫数据中心购买昂贵的Datacenter/Quardo系列，以及额外交一笔vGPU授权费</span>，在驱动中加入了关于虚拟机环境的检测机制，如果检测到当前环境是虚拟机，则会直接拒绝加载驱动并报错Error 43。</p>
-<p>尽管Nvidia在465<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup>版本后逐步放弃了对虚拟机的歧视，但为了避免这一潜在因素的影响，可以考虑做一些简单的伪装。通过添加sysinfo和部分feature，加入实体机才有的特征来迷惑驱动。</p>
+<p>古早年间，Nvidia为了防止数据中心将Geforce系列显卡用于服务器虚拟化<span class="heimu">以强迫数据中心购买昂贵的Datacenter/Quardo/GRID系列，以及额外交一笔vGPU授权费</span>，在驱动中加入了关于虚拟机环境的检测机制，如果检测到当前环境是虚拟机，则会直接拒绝加载驱动并报错Error 43。<span class="heimu">Nvidia,Fuck You.</span></p>
+<p>尽管Nvidia在465<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup>版本后逐渐放弃了对虚拟机的歧视，但为了避免这一潜在因素的影响，可以考虑做一些简单的伪装。</p>
+<p>通过添加sysinfo和部分feature，加入实体机才有的特征来迷惑驱动。</p>
 <blockquote>
 <p>此外，无论如何都要保证acpi、apic和vapic加入，这影响后面的ACPI驱动和中断问题。</p>
 </blockquote>
@@ -359,7 +362,7 @@
 <p>Ubuntu下使用<code>sudo apt install acpica-tools</code>安装acpica工具，随后<code>nano power_fix.asl</code>创建一个新的ASL文件，输入以下内容，该文件将虚拟一个满电并接入交流电的电池：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">DefinitionBlock (&quot;power_fix.aml&quot;, &quot;SSDT&quot;, 1, &quot;QUARK &quot;, &quot;PWRFIX&quot;, 0x00000001)</span><br><span class="line">&#123;</span><br><span class="line">    Scope (_SB)</span><br><span class="line">    &#123;</span><br><span class="line">        Device (ADP1)</span><br><span class="line">        &#123;</span><br><span class="line">            Name (_HID, &quot;ACPI0003&quot;)</span><br><span class="line">            Name (_PCL, Package () &#123; _SB &#125;)</span><br><span class="line">            Method (_PSR, 0, NotSerialized) &#123; Return (0x01) &#125; // 0x01 = 已插入电源</span><br><span class="line">            Method (_DSM, 4, NotSerialized)</span><br><span class="line">            &#123;</span><br><span class="line">                If (LEqual (Arg0, ToUUID (&quot;7a3a6a8a-40d5-4b5b-9d51-4d1a012a6f23&quot;))) //这一串uuid是从鸡哥ACPI中电源函数中读取的，实际上并没有用（起作用的是底下的NVDR函数，貌似要配合EC，但虚拟机没法穿透EC，因为宿主机要用，这一块问题还没有解决）。</span><br><span class="line">                &#123;</span><br><span class="line">                    Return (Buffer (One) &#123; 0x03 &#125;) // 强制返回性能模式 (0x03)</span><br><span class="line">                &#125;</span><br><span class="line">                Return (Buffer (One) &#123; 0x00 &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Device (BAT0)</span><br><span class="line">        &#123;</span><br><span class="line">            Name (_HID, EisaId (&quot;PNP0C0A&quot;))</span><br><span class="line">            Name (_UID, 0x01)</span><br><span class="line">            Name (_PCL, Package () &#123; _SB &#125;)</span><br><span class="line">            Method (_STA, 0, NotSerialized) &#123; Return (0x1F) &#125;</span><br><span class="line"></span><br><span class="line">            Method (_BIF, 0, NotSerialized)</span><br><span class="line">            &#123;</span><br><span class="line">                Return (Package () &#123;</span><br><span class="line">                    0x01, 0x1770, 0x1770, 0x01, 0x36B0, </span><br><span class="line">                    0x01F4, 0x0064, 0x0064, 0x0064, </span><br><span class="line">                    &quot;Virtual&quot;, &quot;11451&quot;, &quot;LION&quot;, &quot;OEM&quot;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            Method (_BST, 0, NotSerialized)</span><br><span class="line">            &#123;</span><br><span class="line">                Return (Package () &#123; 0x00, 0x00, 0x1770, 0x36B0 &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Device (NPCF)</span><br><span class="line">        &#123;</span><br><span class="line">            Name (_HID, &quot;NVDA0001&quot;)</span><br><span class="line">            Method (NPCF, 4, Serialized)</span><br><span class="line">            &#123;</span><br><span class="line">                // 无论驱动请求什么索引，都返回 0x01 (代表允许加速/不受限)</span><br><span class="line">                Return (Buffer (One) &#123; 0x01 &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Device (NVDR)</span><br><span class="line">        &#123;</span><br><span class="line">            Name (_HID, &quot;NVDA0000&quot;)</span><br><span class="line">            Method (_DSM, 4, NotSerialized)</span><br><span class="line">            &#123;</span><br><span class="line">                // 常见的 NVIDIA 移动端回调，返回 0x03 开启狂暴模式.</span><br><span class="line">                Return (Buffer (One) &#123; 0x03 &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>随后使用<code>iasl power_fix.asl</code>编译成aml文件，将编译后的<code>power_fix.aml</code>放到<code>/var/lib/libvirt/images/</code>目录下，并在虚拟机的最后qemucommandline参数里添加以下内容：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">qemu:arg</span> <span class="attr">value</span>=<span class="string">&#x27;-acpitable&#x27;</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">qemu:arg</span> <span class="attr">value</span>=<span class="string">&#x27;file=/var/lib/libvirt/images/power_fix.aml&#x27;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">qemu:arg</span> <span class="attr">value</span>=<span class="string">&#x27;-acpitable&#x27;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">qemu:arg</span> <span class="attr">value</span>=<span class="string">&#x27;file=/var/lib/libvirt/images/power_fix.aml&#x27;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>最后的配置应该如下：</p>
 <p><a href="https://i.eurekac.cn/2026/02/19/fe25f096-d747-4b0f-a7c7-677e3d896434.png?_s=00ee08a3" data-fancybox="gallery" data-caption="Qemu Command">
             <img src="https://i.eurekac.cn/2026/02/19/fe25f096-d747-4b0f-a7c7-677e3d896434.png?_s=00ee08a3" class="lazy" data-srcset="https://i.eurekac.cn/2026/02/19/fe25f096-d747-4b0f-a7c7-677e3d896434.png?_s=00ee08a3" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="Qemu Command">
@@ -376,9 +379,10 @@
 <p>此外，部分补丁还会通过劫持ACPI接口的方式来伪装电源状态，这会加剧之前提到的ACPI电源问题，在笔者之前尝试的时候不得不重装系统来移除这一补丁。</p>
 <h3 id="如果使用LookingGlass读取显存输出，建议移除Qemu自带显卡。">如果使用LookingGlass读取显存输出，建议移除Qemu自带显卡。</h3>
 <p>Windows默认输出环境会选择一个已经连接到显示器的显卡，这很有可能导致Windows会优先选择从Qemu虚拟的显卡中输出，而不是从穿透进虚拟机的独显中输出。</p>
-<p>如果你和我一样使用mstsc来连接到虚拟机，则可选移除。实测中Windows会优先选择穿透进虚拟机的独显来加速渲染，另外你还可以安装<a target="_blank" rel="noopener" href="https://developer.nvidia.com/nvidia-opengl-rdp">Nvidia官方的OpenGL RDP加速补丁</a>来让独显加速OpenGL渲染。(需要Nvidia账户登录)</p>
+<p>如果你和我一样使用mstsc来连接到虚拟机，则可以不移除。（毕竟如果机子出什么问题了至少还能从控制台看到虚拟显卡传出来的画面）</p>
+<p>实测中Windows会优先选择穿透进虚拟机的独显来加速渲染，另外你还可以安装<a target="_blank" rel="noopener" href="https://developer.nvidia.com/nvidia-opengl-rdp">Nvidia官方的OpenGL RDP加速补丁</a>来让独显加速OpenGL渲染。(需要Nvidia账户登录)</p>
 <h2 id="电源问题">电源问题</h2>
-<p><strong>本文待续…</strong></p>
+<p><strong>本文待续...</strong></p>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -516,9 +520,9 @@
                             if (isElementVisible(document.getElementById("Comments"))) {
                                 clearInterval(wait_comment_load)
                                 document.getElementById("comment_notice").innerText = "Loading Comment Script..."
-                                await loadJS("https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/artalk/2.8.2/files/dist/Artalk.js")
+                                await loadJS("https://registry.npmmirror.com/artalk/2.9.1/files/dist/Artalk.js")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Style..."
-                                await loadCSS("https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/artalk/2.8.2/files/dist/Artalk.css")
+                                await loadCSS("https://registry.npmmirror.com/artalk/2.9.1/files/dist/Artalk.css")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Frame..."
                                 window.artalk = Artalk.init({
                                     el: '#Comments',

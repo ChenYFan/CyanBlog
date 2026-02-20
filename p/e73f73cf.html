@@ -173,9 +173,9 @@
 <p><a href="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/img%20(2).JPG" data-fancybox="gallery" data-caption="SecureBoot">
             <img src="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/img%20(2).JPG" class="lazy" data-srcset="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/img%20(2).JPG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot">
             </a></p>
-<p>满头大<s>汉</s>汗翻了个8GB的U盘（还不支持USB3.0的古董U）回来，一套格式化+写入。</p>
+<p>满头大~<sub>汉</sub>~汗翻了个8GB的U盘（还不支持USB3.0的古董U）回来，一套格式化+写入。</p>
 <p>由于鸡哥的引导优先级中<code>USB Device</code>是排在<code>NVME Device</code>上的，所以在插入u盘的时候优先从u盘引导，进入熟悉的Ubuntu加载页面。</p>
-<p><s>然后被USB2.0的20MB/s写入卡了三分钟</s></p>
+<p>~<sub>然后被USB2.0的20MB/s写入卡了三分钟</sub>~</p>
 <p>修改镜像为tuna源，将割出来的120GB分区给挂载到<code>/</code>下。五分钟不到安装完毕。</p>
 <p>安装完毕后别急着直接关机，先修改grub引导为console再重启。</p>
 <p>因为据我安装服务器的经验来谈，grub启动时若加载N卡驱动则由grub引导的windows一定会出现花屏问题。</p>
@@ -203,8 +203,8 @@
             <img src="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/img%20(1).png" class="lazy" data-srcset="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/img%20(1).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot">
             </a></p>
 <p>略微浏览之后发现是AX101网卡驱动没装，于是满怀信心地前往intel linux驱动下载，结果却发现，只有20系，没有10系的网卡驱动。</p>
-<p><s>这就肥肠、肥肠抽象了</s></p>
-<p>AX101卡是Intel wifi6系列卡中最<s>垃圾</s>入门的一款，仅有600Mbps理论速率。虽然对于我来说已经完全足够需求（毕竟我在现实中就没连过哪个网速超过500Mbps的网络）了，但是连官网都没有linux驱动支持，心态，不由得发生了一内内变化。</p>
+<p>~<sub>这就肥肠、肥肠抽象了</sub>~</p>
+<p>AX101卡是Intel wifi6系列卡中最~<sub>垃圾</sub>~入门的一款，仅有600Mbps理论速率。虽然对于我来说已经完全足够需求（毕竟我在现实中就没连过哪个网速超过500Mbps的网络）了，但是连官网都没有linux驱动支持，心态，不由得发生了一内内变化。</p>
 <p>百度上查了一圈，基本文不对题，最后在知乎站内搜索找到了<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/586002680/answer/3128720014">解决方案</a>，但在系统内核安装的时候又出现了亿点点小坑。</p>
 <p>首先前往<a target="_blank" rel="noopener" href="https://kernel.ubuntu.com/~kernel-ppa/mainline/">内核下载</a>，选择<code>6.1.15</code></p>
 <blockquote>
@@ -231,7 +231,7 @@
             <img src="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/img%20(2).png" class="lazy" data-srcset="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/img%20(2).png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="SecureBoot">
             </a></p>
 <h2 id="Ubuntu关机时假死-N卡驱动问题">Ubuntu关机时假死 - N卡驱动问题</h2>
-<p>由于之前没有安装N卡驱动，导致电脑关机时会突然卡在徽标页面，加载圈也不转，<s>所以之前的关机一直都是强制关机</s></p>
+<p>由于之前没有安装N卡驱动，导致电脑关机时会突然卡在徽标页面，加载圈也不转，~<sub>所以之前的关机一直都是强制关机</sub>~</p>
 <p>由于不太喜欢自带的额外驱动程序安装，所以还是用传统的官网驱动。</p>
 <p><a target="_blank" rel="noopener" href="https://www.nvidia.cn/Download/index.aspx">老黄家走一趟</a>，下载下来一个run文件。此时要关闭X server在tty中使用</p>
 <p><code>Ctrl+Alt+F3</code>切换到tty模式，输入账户密码登录。</p>
@@ -247,7 +247,7 @@
 <h3 id="题外话：一不小心用了Nvidia驱动的XConf导致进不去系统怎么办">题外话：一不小心用了Nvidia驱动的XConf导致进不去系统怎么办</h3>
 <p>多半是当老黄问你要不要换成由Nvidia驱动X服务的时候手欠选了Yes(然而这里默认是no)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Would you like to run the nvidia-xconfig utility to automatically update your X </span><br><span class="line">configuration file so that the NVIDIA X driver will be used when you restart X? </span><br><span class="line">Any pre-existing X configuration file will be backed up.</span><br><span class="line">Yes   No</span><br></pre></td></tr></table></figure>
-<p><s>你看老黄都知道大概率会出问题还给你贴心备份了来着</s></p>
+<p>~<sub>你看老黄都知道大概率会出问题还给你贴心备份了来着</sub>~</p>
 <p>此时别瞎几把听网上说的卸载n卡驱动，重启进入grub时，选择recovery mode，root模式，恢复被老黄改过的XConf即可</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/X11/</span><br><span class="line">rm -rf xorg.conf</span><br><span class="line">mv nvidia-xconfig-original.conf  xorg.conf</span><br></pre></td></tr></table></figure>
 <p>重启即可，关机卡死问题也被成功解决</p>
@@ -277,7 +277,7 @@
 <p>先<code>fdisk -l</code>瞅一眼自己的盘在哪个分区，然后用<code>mount</code>挂载</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t ntfs /dev/sdxx /Windows/D</span><br></pre></td></tr></table></figure>
 <p><code>/Windows/D</code>即windows下D盘内容，建议用chmod提权写入。</p>
-<p>至于Windows下挂载ext4，用ext2fsd险些给我盘挂坏…win下挂载很麻烦，又因为是同一块盘没法用wsl挂载。windows下挂载还是先晾着有空再来解决。</p>
+<p>至于Windows下挂载ext4，用ext2fsd险些给我盘挂坏...win下挂载很麻烦，又因为是同一块盘没法用wsl挂载。windows下挂载还是先晾着有空再来解决。</p>
 <h3 id="Ubuntu与Windows时间差">Ubuntu与Windows时间差</h3>
 <p>老生长谈的问题，22.04可以直接强制改为本地时间而避免时区错误<code>timedatectl set-local-rtc 1 --adjust-system-clock</code></p>
 <hr>
@@ -415,9 +415,9 @@
                             if (isElementVisible(document.getElementById("Comments"))) {
                                 clearInterval(wait_comment_load)
                                 document.getElementById("comment_notice").innerText = "Loading Comment Script..."
-                                await loadJS("https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/artalk/2.8.2/files/dist/Artalk.js")
+                                await loadJS("https://registry.npmmirror.com/artalk/2.9.1/files/dist/Artalk.js")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Style..."
-                                await loadCSS("https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/artalk/2.8.2/files/dist/Artalk.css")
+                                await loadCSS("https://registry.npmmirror.com/artalk/2.9.1/files/dist/Artalk.css")
                                 document.getElementById("comment_notice").innerText = "Loading Comment Frame..."
                                 window.artalk = Artalk.init({
                                     el: '#Comments',
