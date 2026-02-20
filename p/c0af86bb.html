@@ -188,7 +188,7 @@
 <p>WorkBox是谷歌开发的一款基于SW的缓存控制器，其主要目的是方便维护PWA。核心依旧是SW，但还是没有SW原本的自定义程度高（</p>
 <h2 id="Why-Not-WorkBox">Why Not WorkBox ?</h2>
 <p>首先，博客呢，是没有必要用PWA，有SW做中间件足矣。同时，WorkBox只能简单的缓存数据，并不能做到拦截篡改请求的功能，尤其不能精准把握每一个资源的缓存情况，自定义程度并不高。</p>
-<p>~<sub>自己编写SW，格局就打开了</sub>~</p>
+<p><s>自己编写SW，格局就打开了</s></p>
 <h1>Start From Zero</h1>
 <h2 id="安装-Install">安装 / Install</h2>
 <p>首先，SW的本质是JS脚本，要安装它必须要经过一个html。毕竟，只有拿到了html，JS才能运行于DOM上下文。</p>
@@ -221,7 +221,7 @@
 <p>关于SW的状态（waiting，installing，activing）将在文后详细解释。</p>
 </blockquote>
 <p><code>installEvent.waitUntil</code>的作用是直接结束安装过程的等待，待会在后台完成开启缓存空间这一操作。</p>
-<p><code>cache.addAll</code>将会直接获取<code>cachelist</code>里面所有的网址并直接缓存到CacheStorage。如果此处网址过多，将在页面加载时疯狂请求所有的url~<sub>(例如1k个)</sub>~</p>
+<p><code>cache.addAll</code>将会直接获取<code>cachelist</code>里面所有的网址并直接缓存到CacheStorage。如果此处网址过多，将在页面加载时疯狂请求所有的url~~(例如1k个)~~</p>
 <p>现在，SW初始化已经完成了。接下来，我将讲述SW如何捕获页面的请求。</p>
 <h2 id="捕获请求-Fetch-Event">捕获请求 / Fetch Event</h2>
 <h3 id="添加监听器-AddEventListener">添加监听器 / AddEventListener</h3>

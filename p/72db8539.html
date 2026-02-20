@@ -247,7 +247,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> update-initramfs -u</span><br><span class="line"><span class="built_in">sudo</span> update-grub</span><br></pre></td></tr></table></figure>
 <p>操作完毕后<strong>重启</strong>。输入命令<code>lspci -nnk -d &lt;设备id&gt;</code>检查一下显卡设备是否已经被vfio-pci驱动绑定：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@EurekaCyan-Laptop:/home/cyanfalse# lspci -nnk -d 10de:25a2</span><br><span class="line">01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA107M [GeForce RTX 3050 Mobile] [10de:25a2] (rev a1)</span><br><span class="line">        Subsystem: Tongfang Hongkong Limited GA107M [GeForce RTX 3050 Mobile] [1d05:1178]</span><br><span class="line">        Kernel driver <span class="keyword">in</span> use: vfio-pci</span><br><span class="line">        Kernel modules: nvidiafb, nouveau</span><br><span class="line">root@EurekaCyan-Laptop:/home/cyanfalse# lspci -nnk -d 10de:2291</span><br><span class="line">01:00.1 Audio device [0403]: NVIDIA Corporation Device [10de:2291] (rev a1)</span><br><span class="line">        Subsystem: Tongfang Hongkong Limited Device [1d05:1178]</span><br><span class="line">        Kernel driver <span class="keyword">in</span> use: vfio-pci</span><br><span class="line">        Kernel modules: snd_hda_intel</span><br></pre></td></tr></table></figure>
-<h1>Passsssss... Through!</h1>
+<h1>Passsssss… Through!</h1>
 <div class="admonition info"><p class="admonition-title">info</p><p>以下教程中使用的是有图形界面的virt-manager工具来创建和管理虚拟机，当然也可以使用命令行工具（比如virsh）来完成同样的操作。</p>
 <p>下述步骤中会同步给出virsh命令行的操作示例。</p>
 <p>另外本文默认已跳过虚拟机安装Windows系统的步骤，直接进入显卡穿透的配置部分。</p>
@@ -382,7 +382,7 @@
 <p>如果你和我一样使用mstsc来连接到虚拟机，则可以不移除。（毕竟如果机子出什么问题了至少还能从控制台看到虚拟显卡传出来的画面）</p>
 <p>实测中Windows会优先选择穿透进虚拟机的独显来加速渲染，另外你还可以安装<a target="_blank" rel="noopener" href="https://developer.nvidia.com/nvidia-opengl-rdp">Nvidia官方的OpenGL RDP加速补丁</a>来让独显加速OpenGL渲染。(需要Nvidia账户登录)</p>
 <h2 id="电源问题">电源问题</h2>
-<p><strong>本文待续...</strong></p>
+<p><strong>本文待续…</strong></p>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">

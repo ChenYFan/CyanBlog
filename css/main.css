@@ -231,6 +231,12 @@ body:not(.heimu_toggle_on) .new:hover .heimu.off {
     color: var(--link) !important;
 }
 
+code{
+  white-space: pre-wrap !important; 
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
 
 
 .admonition,

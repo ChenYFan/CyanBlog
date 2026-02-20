@@ -181,7 +181,7 @@
 <p>如果想要达到外网主动链接内网的目的，由于映射关系只能通过内网用户发起请求或者路由器主动打开，我们的思路应该着重于如何主动获取并保持这个映射关系。</p>
 <p>映射关系在内网用户主动发起请求的时候建立，而销毁映射关系的策略则略有不同。由于TCP链接为有状态的链接，路由器会在链接主动关闭时自动销毁映射关系。而UDP链接则不同，由于UDP链接是无状态的，路由器并不知晓何时销毁映射关系，只能通过一定的策略来销毁。这一策略通常是在一段时间内没有数据包通过时销毁映射关系。换句话说，在建立映射关系后，只要不断地发送心跳包，这一映射关系就能够一直保持。</p>
 <p>回头来看，这一问题的解决方案就显而易见了，在建立一个请求后通过不断发送心跳包，欺骗路由器，使其保持映射关系，就能够实现外网主动链接内网的目的。</p>
-<p>...吗？</p>
+<p>…吗？</p>
 <h2 id="NAT-has-4-main-types">NAT has 4 main types</h2>
 <p>回头来看，事情的解决好像变得太过于简单了。固然，映射关系能够使发送至<code>39.0.0.1:54321</code>的数据包转发到<code>192.168.1.1:12345</code>，在百度的视角来看，我就像是拥有了公网ip，能够主动向<code>39.0.0.1:54321</code>发送信息。</p>
 <p>然而，NAT技术很早就考虑到了这一点。映射关系的存在固然能够使外网主动链接内网，但这使得内网用户的（ip地址:端口）彻底暴露在了外网之中。而NAT的本身是局域网，起到了与外部网络隔离的作用，这种暴露方式即不优雅，也不安全。</p>
@@ -236,12 +236,47 @@
 <p>然而，拥有FullCone的打洞成功率接近100%，而其他类型的NAT打洞成功率则相对较低。</p>
 </blockquote>
 <p>这是一张表，阐述了不同类型NAT之间一般能否成功打洞</p>
-<p>| NAT类型 | FullCone | RestrictedCone | PortRestrictedCone | Symmetric |<br>
-| --- | --- | --- | --- | --- |<br>
-| FullCone | √ | √ | √ | √ |<br>
-| RestrictedCone | √ | √ | √ | √ |<br>
-| PortRestrictedCone | √ | √ | √ | X |<br>
-| Symmetric | √ | √ | X | X |</p>
+<table>
+<thead>
+<tr>
+<th>NAT类型</th>
+<th>FullCone</th>
+<th>RestrictedCone</th>
+<th>PortRestrictedCone</th>
+<th>Symmetric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FullCone</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>RestrictedCone</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>PortRestrictedCone</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Symmetric</td>
+<td>√</td>
+<td>√</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>打洞的成功率由大至小依次为：FullCone &gt; RestrictedCone &gt; PortRestrictedCone &gt; Symmetric。一般由打洞成功率高的NAT向打洞成功率低的NAT发起打洞请求，使弱势用户能够主动链接强势用户，便于弱势用户提前强势用户建立映射对。</p>
 <p>受限锥-受限锥 受限端锥-受限端锥 需要任意一方在探测完后及时主动向对方发起链接，避免映射对被销毁。</p>
@@ -252,7 +287,7 @@
 <p>由于映射对本身只能在内网用户主动向外请求时才能建立，故如何将获取到的映射对及时传递给对方，是N2N的关键。而SuperNode在此时起到了关键作用，SuperNode会记录下所有Edge的映射对并分享给对方，使得两个Edge能够及时知晓对方的映射对，从而建立联系。</p>
 <p>正常情况下，SuperNode并不参与数据传输，仅用于告知双方的映射对。然而，在双方NAT打洞成功率不高时，SuperNode也会回退为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/TURN">TURN模式</a>（即传统方式，利用服务器转发流量，篇幅所限不再赘述）。</p>
 <p>Linux用户可以直接下载<a target="_blank" rel="noopener" href="https://github.com/ntop/n2n/releases">N2N的二进制文件</a>，Windows与Mac用户则需要自行编译或使用第三方编译好的二进制文件。</p>
-<p>对于我在Windows上的使用，我通常用<a target="_blank" rel="noopener" href="https://nullcraft.org/d/39-%E5%85%8D%E8%B4%B9-%E7%81%B5%E5%B7%A5%E8%89%BA%E7%BD%91%E4%B8%8A%E9%82%BB%E5%B1%85-nullcraft-n2n"> [灵工艺] 联机组网</a>。其有GUI可以快捷配置，并且也很方便安装TAP适配器。~<sub>主要是懒的敲命令行</sub>~</p>
+<p>对于我在Windows上的使用，我通常用<a target="_blank" rel="noopener" href="https://nullcraft.org/d/39-%E5%85%8D%E8%B4%B9-%E7%81%B5%E5%B7%A5%E8%89%BA%E7%BD%91%E4%B8%8A%E9%82%BB%E5%B1%85-nullcraft-n2n"> [灵工艺] 联机组网</a>。其有GUI可以快捷配置，并且也很方便安装TAP适配器。<s>主要是懒的敲命令行</s></p>
 <p><a href="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r25/files/article/3.png" data-fancybox="gallery" data-caption="">
             <img src="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r25/files/article/3.png" class="lazy" data-srcset="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r25/files/article/3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="">
             </a></p>
@@ -347,7 +382,7 @@
 <hr>
 <p>通常来讲，设置好桥接 - 设置DMZ主机 - 关闭防火墙后，你的家庭网络应该已经变为了FullCone NAT。此时不妨利用pystun3测试一下你的NAT类型。如果已经为FullCone，那么恭喜你。如果没有，那么你当地的运营商很可能对网络进行了限制。</p>
 <h2 id="So-why-I-prefer-FullCone-NAT">So, why I prefer FullCone NAT</h2>
-<p>第一个原因是，相对于公网IPV4，FullCone的改造更为廉价和安全。在大多数地区，公网IPV4的价格昂贵，而且公网IPV4的暴露会使得内网用户的安全性大大降低。~<sub>此外，移动运营商由于本身v4资源匮乏，绝大多数地区已经不再提供公网IPV4</sub>~</p>
+<p>第一个原因是，相对于公网IPV4，FullCone的改造更为廉价和安全。在大多数地区，公网IPV4的价格昂贵，而且公网IPV4的暴露会使得内网用户的安全性大大降低。<s>此外，移动运营商由于本身v4资源匮乏，绝大多数地区已经不再提供公网IPV4</s></p>
 <p>此外，相较于IPV6，传统的IPV4的网络设备更为成熟，出门在外想要连回家里的网络，如果没有IPV6，那么还得要绕道服务器转发。</p>
 <p>相对于传统服务器内网穿透，直接点对点链接的优势无疑是巨大的，最终双方的访问质量仅取决于双方的网络质量，而不再受到服务器的限制。（比如我在外就可以直接跑满家庭上行100M，而不是服务器龟速5M上行，这使得远程串流游戏成为了可能）</p>
 <p>回到文章的刚开始，由于我拥有了FullCone NAT，当MC服务器启动在我电脑后，通过N2N软件，朋友的客户端能够直接链接到我的电脑上。由于我们过年回家都在台州，相互之间直接连接的质量也相较于内网穿透的质量高上不少。</p>
@@ -367,7 +402,7 @@
 <p>此外，截至本文发稿时，Natter“固定”映射对的效果尚不如NATMAP，在关闭程序后映射对可能会发生改变，但是Natter的配置更加方便，也支持流量转发。</p>
 </blockquote>
 <p>通过这种方式，我已经成功将我的服务器Wireguard入口暴露到了公网上，至此，我可以在不购买公网IPV4、无IPV6的情况下，在任何地方通过我的服务器访问到我的家庭网络。</p>
-<p>至于其他的RDP、SSH等服务，也可以通过类似的方式实现。不过建议还是只暴露Wireguard入口，然后通过Wireguard内网穿透到其他服务。~<sub>毕竟安全第一</sub>~</p>
+<p>至于其他的RDP、SSH等服务，也可以通过类似的方式实现。不过建议还是只暴露Wireguard入口，然后通过Wireguard内网穿透到其他服务。<s>毕竟安全第一</s></p>
 <h3 id="Get-A-HighID-in-P2P-download">Get A HighID in P2P download</h3>
 <p>在电驴下载中，存在这<code>LowID</code>和<code>HighID</code>的概念。<code>LowID</code>是指没有公网IPV4的用户，而<code>HighID</code>则是指拥有公网的用户。两个<code>LowID</code>之间无法直接链接，但是<code>HighID</code>可以直接链接到<code>LowID</code>和<code>HighID</code>。</p>
 <p>在其他P2P下载中，也存在类似的概念。放到PT下载中，拥有一个<code>LowID</code>的用户，相对于<code>HighID</code>用户而言，下载速度会大大降低。同时，<code>LowID</code>用户在做种时也无法主动链接到其他<code>LowID</code>用户，从而影响了共享效果，在PT上传中很难抢到上传流量。</p>
@@ -376,7 +411,7 @@
 <p><a target="_blank" rel="noopener" href="https://gist.github.com/ChenYFan/8b5ba92875a195a992c7d451490971e4">这是我之前不知道在那个论坛抄下来的脚本</a>，可利用natmap或natter的script功能自动修改BT客户端的监听端口并转发流量，出处已不可考。</p>
 <hr>
 <p>到这里为止，FullCone NAT好像已经变得完美无瑕，它拥有着相对于公网v4极高的性价比，并且有着丰富的DIY内容。这篇文章在这里应该已经结束了</p>
-<p>...吗？</p>
+<p>…吗？</p>
 <h2 id="It-is-Hard-to-Get-a-FullCone-NAT">It is Hard to Get a FullCone NAT</h2>
 <p>你并没有那么容易获得全锥网络。由于大部分运营商的光猫已经被逐步替换为了智能网关，破解智能网关本身就具有这相当高的难度。</p>
 <blockquote>
@@ -390,17 +425,17 @@
 </blockquote>
 <p>其次，桥接模式意味着用户可以自行选择路由器，而不再受限于运营商提供的智能网关，运营商则无法在终端网络上提供额外的审查能力。</p>
 <p>此外，一旦改为桥接，<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/887345">部分地区的运营商还会降速</a>，（尽管不排除光猫性能羸弱可能性）。</p>
-<p>最重要的原因是，运营商它怕你占用了大量的<strong>上行</strong>带宽...</p>
+<p>最重要的原因是，运营商它怕你占用了大量的<strong>上行</strong>带宽…</p>
 <h3 id="ISP-is-Afraid-of-PCDN">ISP is Afraid of PCDN</h3>
 <p>PCDN，Peer-to-Peer Content Delivery Network，即点对点内容分发网络。</p>
 <p>这个名词在普通网络中并不常用，但国内诸多互联网厂商对此并不陌生。由于大陆政策的商宽补贴家宽的特性，相较于国外家宽的价格，国内家宽的价格极为便宜。</p>
 <p>然而如此一来，宽带成本压力就转嫁到了商宽上，云服务厂商接入ISP的价格极其昂贵（国内网盘业务难以发展的原因之一）。类似视频分发等业务，如果全部由云服务厂商提供，那么运营成本将会难以负担。</p>
 <p>于是各大国内服务商就走起了歪路，PCDN这一邪门技术便应运而生。PCDN的核心思想是，用户之间互相分享资源，从而减轻服务器的存储压力和带宽压力。</p>
-<p>通常来讲，用户可以主动作为pcdn节点共享带宽，从而向服务商赚取少量佣金。服务商只要付出极少成本，就能够获得遍布在广大用户间海量存储和带宽资源。先前百度网盘试图开放<code>闲置宽带优化计划</code>，也是PCDN的一种。~<sub>当然你白开一年PCDN换取到的奖励也是微乎其微的</sub>~</p>
+<p>通常来讲，用户可以主动作为pcdn节点共享带宽，从而向服务商赚取少量佣金。服务商只要付出极少成本，就能够获得遍布在广大用户间海量存储和带宽资源。先前百度网盘试图开放<code>闲置宽带优化计划</code>，也是PCDN的一种。<s>当然你白开一年PCDN换取到的奖励也是微乎其微的</s></p>
 <blockquote>
 <p>服务商的打洞方式当然也包括N2N打洞。事实上服务商的客户端程序打洞的方式可能更多更狠，本文仅涉猎了其中一种方式。</p>
 </blockquote>
-<p>然而，<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/945773">有一些软件可能会自己偷偷摸摸跑PCDN</a>，用户很大概率是无感的（毕竟XX视频、XX音乐、XX网盘客户端上传都是限速的，以避免大量占用资源而被察觉）。~<sub>太离谱了还是会被发现的</sub>~</p>
+<p>然而，<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/945773">有一些软件可能会自己偷偷摸摸跑PCDN</a>，用户很大概率是无感的（毕竟XX视频、XX音乐、XX网盘客户端上传都是限速的，以避免大量占用资源而被察觉）。<s>太离谱了还是会被发现的</s></p>
 <p>自然，运营商是极其不乐意的，PCDN固然<strong>降低了服务商的压力</strong>，但这些压力分毫不少的转移到了运营商的头上，运营商从服务商<strong>收取的钱变少了</strong>，还<strong>承担了相同（甚至更多的）带宽压力</strong>。</p>
 <p>但是，运营商的骨干网络通常没有做单独的限制，通过改造骨干网络来限制PCDN显得不太现实。因此运营商只能在终端网络上下手。而在智能光猫内植入限制，是最为方便的方式。</p>
 <blockquote>
