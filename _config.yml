@@ -119,5 +119,17 @@ sitemap:
     path: sitemap.xml
 
 markdown:
+  preset: 'commonmark'
   plugins:
     - markdown-it-footnote
+    - markdown-it-sub
+    - markdown-it-sup
+    - markdown-it-emoji
+    - '@renbaoshuo/markdown-it-katex'
+  render:
+    html: true
+    xhtmlOut: false
+    quotes: '“”‘’'
+  options:
+      strikethrough: true
+      skipDelimitersCheck: true

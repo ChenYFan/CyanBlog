@@ -30,7 +30,7 @@ cover_image: 'https://i.eurekac.cn/2026/02/19/how-to-passthrough-a-nvidia-laptop
 
 尤其是在我组建主力机和服务器后，游戏本的功能被我逐渐弱化成了外出携带的轻薄本（虽然它并不轻薄）。
 
-尽管游戏本的性能优良，即使使用电池供电，其基本性能也能满足日常使用的需求。
+尽管游戏本的性能优良（Intel i5-12450H+NVIDIA RTX 3050），即使使用电池供电，在较低功耗下硬件性能也能满足日常使用的需求。
 
 但是，鸡哥本身给电池设计的容量就差强人意（极光Z更是只有47Wh），随着鸡哥年龄增长（3年了），电池健康度也进一步下降到了85%，有效能量更是只有40Wh。
 
@@ -43,16 +43,16 @@ cover_image: 'https://i.eurekac.cn/2026/02/19/how-to-passthrough-a-nvidia-laptop
 在经历一段时间评估后，我决定将这台笔记本的Windows系统完全卸载掉，只运行Ubuntu系统。
 
 1. Ubuntu+GNOME这套桌面组合我已经用了近8年了，个人感觉外带日常使用应该没有什么太大问题。
-2. 由于我已经组建了自己的Hybrid Wireguard网络，可以以最优的路径远程桌面RDP到我放置在实验室的主力机和服务器上。
+2. 由于我已经组建了自己的Hybrid Wireguard网络，可以以最优的路径远程桌面RDP到我放置在实验室的主力机和服务器上（平常活动范围也就杭州内，最差的情况也是能绕到同在浙江内的家里FullCone云中转）。
 
-但是，我打算在这台服务器上使用QEMU虚拟机来运行Windows系统。是的我知道这听起来很怪，但原因有下：
+尽管如此，我仍打算在这台笔记本上使用QEMU虚拟机来运行Windows系统。是的，我知道这听起来很怪，但先待我慢慢道来：
 
-1. 我通常习惯隔离国产软件到专门的物理机或者虚拟机中（如一众IM、网盘软件），然后使用RDP+WinApps方案直接将程序窗口穿透到主力机上。[^1]
-2. 如果笔记本短时间外带，我将直接关闭Qemu虚拟机以延长电池续航，使用远程桌面连接到主力机来使用；长时间外带则通常携带电源适配器，届时就可以直接使用虚拟机了。
-3. 我已经确认了我短时间外带通常没有需求用到国产软件，如果非常紧急的情况下使用也可以启用虚拟机
-4. 不得不提的一点我测试过裸Windows和Ubuntu+QemuWindows使用电池的功耗。后者甚至比前者续航时间还要略长（大约1h35m），不知道是不是神奇的电源调度发力了。
+1. 我通常习惯隔离国产软件到专门的物理机或者虚拟机中（如国产IM、网盘软件），然后使用RDP+WinApps方案直接将程序窗口穿透到主力机上。[^1]
+2. 如果笔记本短时间外带，我将直接关闭Qemu虚拟机以延长电池续航，使用远程桌面连接到主力机来使用；长时间外带则通常一并携带电源适配器，届时就可以直接使用虚拟机了。
+3. 此外，在短时间外带时我通常没有需求用到国产软件，如果非常紧急的情况下使用也可以启用虚拟机。
+4. 不得不提的一点是，我测试过裸Windows和Ubuntu+QemuWindows使用电池的功耗。后者甚至比前者续航时间还要略长（大约1h35m），不知道是不是神奇的电源调度发力了。
 
-当我思考完这些问题后，我发现还有一样物品一直被我忽略：我这张3050Laptop要怎么处理？
+思考完这些问题后，我发现还有一样物品一直被忽略：这张3050Laptop要怎么处理？
 
 这里再简单介绍一下笔记本的显示逻辑结构。一般来讲Intel设计笔记本CPU时通常会集成一个核显（iGPU），而独立显卡（dGPU）则通常是由NVIDIA或者AMD提供的。
 
@@ -64,7 +64,7 @@ cover_image: 'https://i.eurekac.cn/2026/02/19/how-to-passthrough-a-nvidia-laptop
 
 但在实际使用的时候，这张N卡并没有起什么作用（视频编解码UHD比3050Laptop还要强，而且在组建主力机后我已经没有用这台机子打游戏的需求，大部分桌面ui渲染Ubuntu并没有调用N卡），还凭空添了5W的功耗，放在外面宿主机纯属人嫌狗厌。
 
-欸，那这时候我发现，虚拟机里的windows这不还缺一张显卡用于加速3D和渲染UI吗，与其填一张不支持DX12的VirtIO显卡进去，不如直接把这张3050Laptop穿透进虚拟机里用啊。
+欸，那这时候我发现，虚拟机里的windows这不还缺一张显卡用于加速3D和渲染UI吗，与其填一张不支持DX12的VirtIO显卡进去（还要浪费cpu资源），不如直接把这张3050Laptop穿透进虚拟机里用啊。
 
 !!! warning
 
@@ -78,13 +78,15 @@ cover_image: 'https://i.eurekac.cn/2026/02/19/how-to-passthrough-a-nvidia-laptop
 
     另外还要提一点，大部分游戏本/笔记本的外置独显输出口（hdmi/dp）都是从独显直通的。如果将显卡穿透进虚拟机后，外置接口的输出是**虚拟机的画面**而不是宿主机的画面。
 
-    如果你希望将显卡穿透进去还要用**内置显示屏**打游戏，那会非常困难，因为mstsc本身对游戏的支持非常困难，需要在宿主机上直接提取显卡的输出（如LookingGlass）。如果机子本身不支持独显直连，那相当于这张显卡本身不会输出，你还要用个HDMI欺骗器骗显卡输出，再用LookingGlass从显存中捕获输出。就算支持独显直连，也要想办法切换内置的MUX。
+    如果你希望将显卡穿透进去还要用**内置显示屏**打游戏，那会非常困难，因为mstsc本身对3D游戏的支持几乎没有，需要在宿主机上直接提取显卡的输出（如LookingGlass）。如果机子本身不支持独显直连，那相当于这张显卡本身不会输出，你还要用个HDMI欺骗器骗显卡输出，再用LookingGlass从显存中捕获输出。就算支持独显直连，也要想办法切换内置的MUX。
     
     总之极其不建议使用内置显示屏显示穿透进虚拟机的显卡输出（无论是否支持独显直连），如果要打游戏那也建议HDMI外接显示器，直接让显卡走物理通道输出虚拟机画面。
 
+    <del>外接显示器也是好文明</del><span class="heimu">用LookingGlass还是mstsc都不如直接外接显示器</span>
+
     ***为什么不把核显穿透进去？***
 
-    前面提到，这台机子不支持独显直连，内置显示器的输出是直接连接到核显上的，如果把核显穿透进虚拟机里了，宿主机就没法显示了（除非外接显示器）。而独显则是通过PCIe连接到核显上的，穿透独显并不会影响宿主机的显示输出。
+    前面提到，这台机子不支持独显直连，内置显示器的输出是直接连接到核显上的，如果把核显穿透进虚拟机里了，宿主机就没法显示了（除非外接显示器用独显输出）。而独显则是通过PCIe连接到核显上的，穿透独显并不会影响宿主机的显示输出。
 
     此外，穿透核显显然比穿透独显更麻烦，核显通常和CPU紧密耦合。而独显则是一个相对独立的PCIe设备，穿透起来更简单一些。
 
@@ -98,7 +100,7 @@ cover_image: 'https://i.eurekac.cn/2026/02/19/how-to-passthrough-a-nvidia-laptop
     
     穿透显卡并不是完美的，至少我遇到了一个无法解决的事情：显卡Dynamic Boost失效，功耗最高上限锁死60W（原来可以从CPU那里抢+35W功耗变成95W）。
 
-    具体内容将在下文提及，写在最前面是为了让读者有个心理准备，毕竟显卡穿透技术虽然在服务器上已经非常成熟了，<span class="heimu">但在笔记本上还是有很多未知的坑的。</span>
+    具体内容将在下文提及，写在最前面是为了让读者有个心理准备，尽管显卡穿透技术虽然在服务器上已经非常成熟了，<span class="heimu">但在笔记本上还是有很多未知的坑的。</span>
 
     
     
@@ -111,7 +113,7 @@ cover_image: 'https://i.eurekac.cn/2026/02/19/how-to-passthrough-a-nvidia-laptop
 
 当然，能在服务器上使用并**不意味着不能**在PC上使用。一般来讲正常的PC主板都是支持IOMMU，Linux下可以通过检查dmesg日志中是否有`Intel-IOMMU: enabled`或者`AMD-Vi: Interrupt remapping enabled`字样来检查基础iommu功能是否可用。
 
-欸，那笔记本电脑何尝不是一种PC？不妨来检查一下我手头的鸡哥笔记本（Intel i7-12450H+NVIDIA RTX 3050）是否支持IOMMU：
+欸，那笔记本电脑何尝不是一种PC？不妨来检查一下我手头的鸡哥笔记本是否支持IOMMU：
 
 ## 开启IOMMU功能
 
@@ -162,7 +164,7 @@ done;
 
 ## vfio设备隔离、驱动解除绑定
 
-接下来需要将显卡设备从宿主机的驱动中解绑，并绑定到vfio-pci驱动上。
+接下来需要将显卡设备从宿主机的驱动中解绑，并绑定到`vfio-pci`驱动上。
 
 同理修改`/etc/default/grub`文件，在`GRUB_CMDLINE_LINUX_DEFAULT`变量里添加`vfio-pci.ids=10de:25a2,10de:2291`（设备id）参数。
 
@@ -173,7 +175,7 @@ root@EurekaCyan-Laptop:/home/cyanfalse# cat /etc/default/grub | grep GRUB_CMDLIN
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_iommu=on iommu=pt vfio-pci.ids=10de:25a2,10de:2291"
 ```
 
-此外如果宿主机已安装Nvidia驱动或者nouveau驱动，建议将vfio在系统最早期启动`nano /etc/initramfs-tools/modules`：
+此外如果宿主机已安装Nvidia驱动或者nouveau驱动，建议将vfio在系统最早期启动`/etc/initramfs-tools/modules`：
 
 ```sh
 vfio
@@ -181,7 +183,7 @@ vfio_iommu_type1
 vfio_pci ids=10de:25a2,10de:2291 #这里的id记得改成自己的
 ```
 
-同时可以用Softdep 强制依赖顺序避免vfio-pci和nvidia驱动的冲突`nano /etc/modprobe.d/vfio.conf`：
+同时可以用Softdep 强制依赖顺序避免vfio-pci和nvidia驱动的冲突`/etc/modprobe.d/vfio.conf`：
 
 ```sh
 softdep nvidia pre: vfio-pci
@@ -189,12 +191,11 @@ softdep nouveau pre: vfio-pci
 options vfio-pci ids=10de:25a2,10de:2226  #这里的id记得改成自己的
 ```
 
-如果宿主机只有这一张N卡且宿主机不需要再用到N卡，保险起见可以将两者驱动拉入黑名单`nano /etc/modprobe.d/blacklist-nvidia.conf`：
+如果宿主机只有这一张N卡且宿主机不需要再用到N卡，保险起见可以将两者驱动拉入黑名单`/etc/modprobe.d/blacklist-nvidia.conf`：
 
 ```sh
 blacklist nouveau
 options nouveau modeset=0
-
 blacklist nvidia
 blacklist nvidia_drm
 blacklist nvidia_modeset
@@ -296,6 +297,7 @@ root@EurekaCyan-Laptop:/home/cyanfalse# lspci -nnk -d 10de:2291
 
     可惜我穿透的是一张笔记本魔改显卡🫠
 
+    要是真有那么轻松，那我也不至于水这篇文章了。（逃
 
 ## 幽灵一般的Error 43
 
@@ -305,7 +307,7 @@ root@EurekaCyan-Laptop:/home/cyanfalse# lspci -nnk -d 10de:2291
 · 输出的画面分辨率很低 -> 使用的是基本显示适配器驱动，显卡官方驱动工作不正常
 · 显卡名字从`Microsoft 基本显示适配器`变成了`NVIDIA GeForce RTX 3050 Laptop GPU` -> 显卡被系统和驱动正确识别了，但工作不正常
 
-这时候我们就可以基本断定了，显卡驱动虽然安装成功了，但其并没有正常工作。<span class="heimu">Nvidia，Fuck you。</span>
+这时候我们就可以基本断定了，显卡穿透正常、显卡驱动安装成功了，但其并没有正常工作。<span class="heimu">驱动：我要验卡</span>
 
 
 > 前情提要，以下内容虽然精简而少，但探索过程异常曲折且艰难👊😭👊
@@ -372,9 +374,11 @@ security_driver = "none" #把这一行的值改成none
 
 ### 虚拟机伪装问题
 
-古早年间，Nvidia为了防止数据中心将Geforce系列显卡用于服务器虚拟化<span class="heimu">以强迫数据中心购买昂贵的Datacenter/Quardo系列，以及额外交一笔vGPU授权费</span>，在驱动中加入了关于虚拟机环境的检测机制，如果检测到当前环境是虚拟机，则会直接拒绝加载驱动并报错Error 43。
+古早年间，Nvidia为了防止数据中心将Geforce系列显卡用于服务器虚拟化<span class="heimu">以强迫数据中心购买昂贵的Datacenter/Quardo/GRID系列，以及额外交一笔vGPU授权费</span>，在驱动中加入了关于虚拟机环境的检测机制，如果检测到当前环境是虚拟机，则会直接拒绝加载驱动并报错Error 43。<span class="heimu">Nvidia,Fuck You.</span>
 
-尽管Nvidia在465[^6]版本后逐步放弃了对虚拟机的歧视，但为了避免这一潜在因素的影响，可以考虑做一些简单的伪装。通过添加sysinfo和部分feature，加入实体机才有的特征来迷惑驱动。
+尽管Nvidia在465[^6]版本后逐渐放弃了对虚拟机的歧视，但为了避免这一潜在因素的影响，可以考虑做一些简单的伪装。
+
+通过添加sysinfo和部分feature，加入实体机才有的特征来迷惑驱动。
 
 > 此外，无论如何都要保证acpi、apic和vapic加入，这影响后面的ACPI驱动和中断问题。
 
@@ -532,7 +536,7 @@ DefinitionBlock ("power_fix.aml", "SSDT", 1, "QUARK ", "PWRFIX", 0x00000001)
 
 ```xml
 <qemu:arg value='-acpitable'/>
- <qemu:arg value='file=/var/lib/libvirt/images/power_fix.aml'/>
+<qemu:arg value='file=/var/lib/libvirt/images/power_fix.aml'/>
 ```
 
 最后的配置应该如下：
@@ -559,7 +563,9 @@ DefinitionBlock ("power_fix.aml", "SSDT", 1, "QUARK ", "PWRFIX", 0x00000001)
 
 Windows默认输出环境会选择一个已经连接到显示器的显卡，这很有可能导致Windows会优先选择从Qemu虚拟的显卡中输出，而不是从穿透进虚拟机的独显中输出。
 
-如果你和我一样使用mstsc来连接到虚拟机，则可选移除。实测中Windows会优先选择穿透进虚拟机的独显来加速渲染，另外你还可以安装[Nvidia官方的OpenGL RDP加速补丁](https://developer.nvidia.com/nvidia-opengl-rdp)来让独显加速OpenGL渲染。(需要Nvidia账户登录)
+如果你和我一样使用mstsc来连接到虚拟机，则可以不移除。（毕竟如果机子出什么问题了至少还能从控制台看到虚拟显卡传出来的画面）
+
+实测中Windows会优先选择穿透进虚拟机的独显来加速渲染，另外你还可以安装[Nvidia官方的OpenGL RDP加速补丁](https://developer.nvidia.com/nvidia-opengl-rdp)来让独显加速OpenGL渲染。(需要Nvidia账户登录)
 
 ## 电源问题
 
