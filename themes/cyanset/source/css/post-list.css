@@ -38,7 +38,7 @@
 
 .post-list-item .cover-img {
   overflow: hidden;
-  height: 266px;
+  max-height: 266px;
 }
 
 .post-list-item .cover-img img {
