@@ -34,7 +34,7 @@ FullCone是什么？我是如何利用FullCone网络实现内网穿透的？为�
 
 在这之前，我们不妨回过头来，聊聊生活中司空见惯的NAT技术。
 
-## What is NAT
+# What is NAT
 
 NAT(Network Address Translation)是网络地址转换的缩写，是一种将私有网络地址转换为公有网络地址的技术，诞生的目的是为了解决IPv4地址不足的问题。其解决方案是将多个设备处于一个局域网内，通过共享一个公网ip地址来访问外部网络。
 
@@ -65,7 +65,7 @@ NAT(Network Address Translation)是网络地址转换的缩写，是一种将私
 
 ...吗？
 
-## NAT has 4 main types
+# NAT has 4 main types
 
 回头来看，事情的解决好像变得太过于简单了。固然，映射关系能够使发送至`39.0.0.1:54321`的数据包转发到`192.168.1.1:12345`，在百度的视角来看，我就像是拥有了公网ip，能够主动向`39.0.0.1:54321`发送信息。
 
@@ -96,7 +96,7 @@ External IP: 39.0.0.1
 External Port: 12463
 ```
 
-## Let us have a try - to build up a server with FullCone NAT
+# Let us have a try - to build up a server with FullCone NAT
 
 知道了原理，不来试试怎么加深理解呢？
 
@@ -174,7 +174,7 @@ http://39.1.1.1:12319
 
 缺点也十分明显，映射对本身需要长时间的心跳包才能维持，一旦映射长时间无数据包通过，映射就会被断掉，并且重新映射的端口不固定。此外，如果作为长期暴露在公网上供他人访问，还是需要有其他方法将探测到的映射对共享出去（类似DDNS）。
 
-## STUN - A formal protocol to detect NAT pair
+# STUN - A formal protocol to detect NAT pair
 
 事实上，上面的脚本只是一个简单的例子。然而，RFC5389定义了一种更加正式的协议，[STUN(Session Traversal Utilities for NAT)](https://zh.wikipedia.org/wiki/STUN)。STUN协议定义了一种用于检测NAT类型和获取映射对的协议，其探测协议为UDP。由于基于UDP的探测对不会在断开连接后立刻销毁，STUN协议能够有更大的成功率实现NAT互联。
 
@@ -194,7 +194,7 @@ http://39.1.1.1:12319
 
 ---
 
-## NAT2NAT - If we all can not get a Public IP
+# NAT2NAT - If we all can not get a Public IP
 
 上面所讲述的内容，都是在拥有FullCone的前提下，内网穿透了自己的ip到公网上。然而在大多数使用场景内，我们并不需要把自己的ip暴露在公网上，而是需要两个内网用户之间能够直接链接。
 
@@ -321,11 +321,11 @@ SuperNode的数据包应该远小于Edge之间的数据包，因为SuperNode仅�
 >
 > 重启SuperNode `sudo systemctl restart supernode` 即可生效。
 
-## How to Transform Home networks to get FullCone NAT
+# How to Transform Home networks to get FullCone NAT
 
 > 如果你已经拥有了公网IPV4，那么请直接略过这一节。
 
-### Disable Firewall
+## Disable Firewall
 
 控制面板进入`高级安全 Windows Defender 防火墙`，在入站规则添加规则，**允许**所有端口的`UDP`。在出站规则中也如法炮制。
 
@@ -343,7 +343,7 @@ SuperNode的数据包应该远小于Edge之间的数据包，因为SuperNode仅�
 
 如果你使用的是第三方防火墙，也请关闭防火墙或者添加规则。
 
-### Enable DMZ host
+## Enable DMZ host
 
 [DMZ技术](https://zh.wikipedia.org/zh-cn/DMZ)，Demilitarized Zone的缩写，是一种网络安全技术，用于将内部网络与外部网络隔离开来。而对于家庭网络而言，DMZ主机的则是路由器将所有端口的流量都转发到这台主机上。
 
@@ -370,7 +370,7 @@ ipconfig /all
 > 如果你的路由器不支持DMZ主机设置，可以尝试将你的电脑设置为静态ip，并将所有的UDP端口转发到你的电脑上。
 
 
-### Change to Bridge
+## Change to Bridge
 
 目前的家庭网络通常是 光纤入户 -> 运营商提供的智能网关 -> 用户路由器 -> 用户电脑的结构。其中智能网关通常是光猫+路由器+AP的缝合怪。按照大部分地区的安装指导，光猫默认会工作在NAT模式下，以便于用户能够直接使用，而无需拨号。
 
@@ -388,7 +388,7 @@ ipconfig /all
 
 通常来讲，设置好桥接 - 设置DMZ主机 - 关闭防火墙后，你的家庭网络应该已经变为了FullCone NAT。此时不妨利用pystun3测试一下你的NAT类型。如果已经为FullCone，那么恭喜你。如果没有，那么你当地的运营商很可能对网络进行了限制。
 
-## So, why I prefer FullCone NAT
+# So, why I prefer FullCone NAT
 
 第一个原因是，相对于公网IPV4，FullCone的改造更为廉价和安全。在大多数地区，公网IPV4的价格昂贵，而且公网IPV4的暴露会使得内网用户的安全性大大降低。~~此外，移动运营商由于本身v4资源匮乏，绝大多数地区已经不再提供公网IPV4~~
 
@@ -402,7 +402,7 @@ ipconfig /all
 
 然而除此之外，如果对FullCone网络进行恰当的改造，那么我就能在无法拥有公网ip（毕竟是移动）的情况下，享受公网ip的待遇。访问效果上等同于拥有了一组公网IP:端口。
 
-### Export My Server to Public Internet
+## Export My Server to Public Internet
 
 先前我的脚本已经证明，FullCone网络在通过恰当的方式打洞后，能够直接将内网ip暴露在公网上。事实上，Github已经有类似的项目能够探测FullCone NAT的映射对的程序，例如[NATMAP](https://github.com/heiher/natmap) 和 [Natter](https://github.com/MikeWang000000/Natter)。
 
@@ -420,7 +420,7 @@ ipconfig /all
 
 至于其他的RDP、SSH等服务，也可以通过类似的方式实现。不过建议还是只暴露Wireguard入口，然后通过Wireguard内网穿透到其他服务。~~毕竟安全第一~~
 
-### Get A HighID in P2P download
+## Get A HighID in P2P download
 
 在电驴下载中，存在这`LowID`和`HighID`的概念。`LowID`是指没有公网IPV4的用户，而`HighID`则是指拥有公网的用户。两个`LowID`之间无法直接链接，但是`HighID`可以直接链接到`LowID`和`HighID`。
 
@@ -438,7 +438,7 @@ ipconfig /all
 
 ...吗？
 
-## It is Hard to Get a FullCone NAT
+# It is Hard to Get a FullCone NAT
 
 你并没有那么容易获得全锥网络。由于大部分运营商的光猫已经被逐步替换为了智能网关，破解智能网关本身就具有这相当高的难度。
 
@@ -458,7 +458,7 @@ ipconfig /all
 
 最重要的原因是，运营商它怕你占用了大量的**上行**带宽...
 
-### ISP is Afraid of PCDN
+## ISP is Afraid of PCDN
 
 PCDN，Peer-to-Peer Content Delivery Network，即点对点内容分发网络。
 

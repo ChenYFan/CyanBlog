@@ -314,6 +314,7 @@ code {
 
 
 .admonition.warning {
+    background-color: #ff910017;
     border-color: #ff9100;
 }
 
@@ -328,7 +329,8 @@ code {
 
 .admonition.info,
 .admonition.todo {
-    border-color: #00b8d4;
+   background-color: #00b8d417;
+   border-color: #00b8d4;
 }
 
 .admonition.info .admonition-title,
@@ -344,7 +346,7 @@ code {
 .admonition.warning,
 .admonition.attention,
 .admonition.caution {
-    border-color: #ff9100;
+    background-color: #ff910017;
 }
 
 .admonition.warning .admonition-title,
@@ -362,6 +364,7 @@ code {
 .admonition.failure,
 .admonition.error,
 .admonition.fail {
+    background-color: #ff525217;
     border-color: #ff5252;
 }
 

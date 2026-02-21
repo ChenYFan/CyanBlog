@@ -24,7 +24,7 @@ date: 2023-08-21 10:42:01
 
 本着折腾的心态，尝试给这台机子加装上ubuntu。因为有着对服务器硬盘装双系统的经验，本以为装机过程是轻松加愉快，没想到扯出这么多问题。
 
-## 安装
+# 安装
 
 首先现有系统关闭Bitlocker（不然之后有够你受的）
 
@@ -71,7 +71,7 @@ GRUB_TERMINAL=console
 
 `reboot`重启时，机子关机关到一半突然卡住，tty无法切换，CAD连招也失效，推测应该是N卡驱动问题，长按电源键强制关机。
 
-## 将启动引导改为Grub
+# 将启动引导改为Grub
 
 Windows默认是不会识别Ubuntu引导的，而修改windows引导过于麻烦。不如直接将默认引导改为grub，由grub启动windows。
 
@@ -85,7 +85,7 @@ Windows默认是不会识别Ubuntu引导的，而修改windows引导过于麻烦
 
 ![SecureBoot](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/img%20(5).JPG)
 
-## 解决蛋疼的无线网卡问题
+# 解决蛋疼的无线网卡问题
 
 进入ubuntu的时候，尝试打开浏览器却提示无网络链接，心里不由得咯噔一下。
 
@@ -151,7 +151,7 @@ dpkg -i iwlwifi-ax101-dkms_6.1.15-2_amd64.deb
 
 ![SecureBoot](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/img%20(2).png)
 
-## Ubuntu关机时假死 - N卡驱动问题
+# Ubuntu关机时假死 - N卡驱动问题
 
 由于之前没有安装N卡驱动，导致电脑关机时会突然卡在徽标页面，加载圈也不转，~~所以之前的关机一直都是强制关机~~
 
@@ -194,7 +194,7 @@ service gdm stop #or lightdm
 
 然后懒人`bash *.run`开始安装。
 
-### 题外话：一不小心用了Nvidia驱动的XConf导致进不去系统怎么办
+## 题外话：一不小心用了Nvidia驱动的XConf导致进不去系统怎么办
 
 多半是当老黄问你要不要换成由Nvidia驱动X服务的时候手欠选了Yes(然而这里默认是no)
 
@@ -217,7 +217,7 @@ mv nvidia-xconfig-original.conf  xorg.conf
 
 重启即可，关机卡死问题也被成功解决
 
-### 题外话：更新内核导致掉驱动怎么解决
+## 题外话：更新内核导致掉驱动怎么解决
 
 老黄在安装驱动的时候会问你要不要安装dkms，在内核更新的时候自动更新。
 
@@ -227,7 +227,7 @@ mv nvidia-xconfig-original.conf  xorg.conf
 
 手动安装`dkms install -m nvidia -v 5xx.xx.xxx`
 
-## 安装蓝牙驱动
+# 安装蓝牙驱动
 
 这个还算是小问题，首先`dmesg`瞅一眼哪报错了。
 
@@ -242,9 +242,9 @@ mv nvidia-xconfig-original.conf  xorg.conf
 ![bluetooth](https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/img%20(4).png)
 
 
-## 其他一些小优化
+# 其他一些小优化
 
-### 系统默认进入Windows
+## 系统默认进入Windows
 
 已安装Windows后再安装ubuntu，grub的默认启动会优先进入ubuntu。
 
@@ -254,7 +254,7 @@ mv nvidia-xconfig-original.conf  xorg.conf
 GRUB_DEFAULT=2
 ```
 
-### Ubuntu下挂载Windows NTFS盘
+## Ubuntu下挂载Windows NTFS盘
 
 安装依赖`sudo apt install nfs-kernel-server fuse`
 
@@ -269,7 +269,7 @@ mount -t ntfs /dev/sdxx /Windows/D
 
 至于Windows下挂载ext4，用ext2fsd险些给我盘挂坏...win下挂载很麻烦，又因为是同一块盘没法用wsl挂载。windows下挂载还是先晾着有空再来解决。
 
-### Ubuntu与Windows时间差
+## Ubuntu与Windows时间差
 
 老生长谈的问题，22.04可以直接强制改为本地时间而避免时区错误`timedatectl set-local-rtc 1 --adjust-system-clock`
 
