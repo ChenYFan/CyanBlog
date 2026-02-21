@@ -11,7 +11,7 @@ des: 妙用黑科技为你的网站提速。
 key: 'serviceworker,sw'
 abbrlink: d3c51290
 hide: false
-cover_image: 'https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r17/files/main.jpg'
+cover_image: 'https://i.eurekac.cn/speed-up.png?_s=3aa636a1'
 date: 2022-06-7 10:28:12
 ---
 

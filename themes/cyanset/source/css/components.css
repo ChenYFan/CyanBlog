@@ -70,7 +70,7 @@
 
 .card .cover-img {
     overflow: hidden;
-    height: 266px;
+    max-height: 266px;
 }
 
 .card .cover-img img {

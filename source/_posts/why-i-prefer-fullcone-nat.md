@@ -11,7 +11,7 @@ categories:
 des: 利用FullCone，在不支付高昂独立ip费用的情况下，实现内网穿透
 key: 'FullCone,FullCone nat,standard ip'
 hide: true
-cover_image: 'https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r25/files/banner/why-i-prefer-fullcone.jpg'
+cover_image: 'https://i.eurekac.cn/why-i-prefer-full-cone-nat-as-my-favorite-network.png?_s=fc07727d'
 abbrlink: daa17206
 date: 2024-02-15 20:15:42
 ---

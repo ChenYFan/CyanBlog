@@ -8,7 +8,7 @@ tags:
 categories:
   - 解疑惑
 abbrlink: e73f73cf
-cover_image: https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r26/files/banner.jpg
+cover_image: https://i.eurekac.cn/install-double-platform-u-and-w-on-laptop.png?_s=05d50df8
 date: 2023-08-21 10:42:01
 ---
 

@@ -10,7 +10,7 @@ categories:
   - 叨叨念
 des: 关于国内各大厂商倾向于应用软件而非网页软件的想法
 key: '隐私,安全'
-cover_image: 'https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174784/files/data/npm/chenyfan-os/0.0.0-r25/files/banner/Why-it-always-be-an-APP.jpg'
+cover_image: 'https://i.eurekac.cn/why-it-always-be-an-app.jpg?_s=ee4f9035'
 lushkey: why-app-but-not-browser.md
 abbrlink: c0af86a9
 date: 2021-07-28 13:24:15
