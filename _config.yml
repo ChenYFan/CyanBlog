@@ -113,21 +113,30 @@ lazyload:
   enable: true 
   onlypost: false
   loadingImg: # eg ./images/loading.gif
+
 fancybox: 
   enable: true
+
 sitemap: 
     path: sitemap.xml
 
 markdown:
-  preset: 'default'
   plugins:
     - markdown-it-footnote
     - markdown-it-sub
     - markdown-it-sup
     - markdown-it-emoji
     - '@renbaoshuo/markdown-it-katex'
+    - name: markdown-it-anchor
+      options:
+        permalink: true
+        permalinkClass: headerlink # 关键：这里指定类名为 headerlink
+        permalinkSymbol: ''       # 锚点显示的符号
+        permalinkBefore: false     # 放在标题文字后面
+
   render:
     html: true
+    typography: true
     xhtmlOut: false
     quotes: '“”‘’'
   options:

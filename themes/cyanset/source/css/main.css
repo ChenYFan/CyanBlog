@@ -12,6 +12,18 @@ body {
     font-family: "LXGW WenKai Screen", sans-serif, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+sup,
+sub,
+a {
+    scroll-margin-top: 80px;
+}
+
 a:link {
     color: var(--link);
     text-decoration: none;
@@ -167,8 +179,24 @@ img.lazy {
 }
 
 img.lazy:not(.loaded) {
-    -webkit-filter: blur(4px) !important;
-    filter: blur(4px) !important;
+    /*添加动画，在未加载前缓慢重复闪烁（修改透明度）*/
+    animation: loadingAnimation 1.5s infinite;
+
+}
+
+/* 定义闪烁动画 */
+@keyframes loadingAnimation {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
 }
 
 .article-mask {
@@ -231,9 +259,9 @@ body:not(.heimu_toggle_on) .new:hover .heimu.off {
     color: var(--link) !important;
 }
 
-code{
-  white-space: normal !important; 
-  word-wrap: break-word !important;
+code {
+    white-space: normal !important;
+    word-wrap: break-word !important;
 }
 
 
@@ -278,7 +306,7 @@ code{
 
 }
 
-.admonition>p:not(.admonition-title){
+.admonition>p:not(.admonition-title) {
     padding: 0 16px !important;
     margin: .8em 0 !important;
     max-width: none !important;
@@ -352,4 +380,8 @@ code{
 /* 5. 结尾处理 */
 .admonition> :last-child {
     margin-bottom: 0 !important;
+}
+
+.atk-copyright {
+    display: none !important;
 }

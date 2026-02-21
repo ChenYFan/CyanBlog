@@ -1,14 +1,14 @@
 # REMEMBER TO EDIT THIS BEFORE DEPLOYING!!!
 
 # the path to your blog's icon:
-favicon: https://registry.npmmirror.com/@chenyfan/auto-img-filter/0.0.0-202410180052/files/demo/weblogo/32.png
+favicon: https://i.eurekac.cn/icon.png?args=%7B%22waterMark%22%3Afalse%2C%22resize%22%3A%7B%22width%22%3A64%2C%22height%22%3Anull%7D%7D&_s=ea49cdf6
 
 # the path to manifest.json
 manifest: 
 
 # [Open Graph Protocol](https://ogp.me/)
 og_enabled: true
-og_image: /favicon.png
+og_image: https://i.eurekac.cn/icon.png?args=%7B%22waterMark%22%3Afalse%2C%22resize%22%3A%7B%22width%22%3A512%2C%22height%22%3Anull%7D%7D&_s=e1a38756
 og:
   # customize og properties here which will replace the defaults
 

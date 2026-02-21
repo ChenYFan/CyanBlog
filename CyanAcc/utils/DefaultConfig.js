@@ -105,16 +105,20 @@ export default {
             weight: 10
         }
     ],
-    CyanAcc_Config :{
+    CyanAcc_Config: {
         enable: true,
         reinit: true,
         PersistentTasks: {
             enable: true,
-            interval: 1000
+            interval: 1000 * 5
         },
         AutoClear: {
             enable: true,
             interval: 1000 * 60
+        },
+        BlogVersionCheck: {
+            enable: true,
+            interval: 1000 * 60 * 60
         }
     }
 }

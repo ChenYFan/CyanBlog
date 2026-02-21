@@ -1,4 +1,5 @@
-
+import BlogRouter from './BlogRouter.js'
+import PreducePath from '../utils/PreducePath.js'
 const CyanAccRouter = async (request) => {
     const url = new URL(request.url)
     const path = url.pathname.replace('/CyanAcc', '')
@@ -14,8 +15,11 @@ const CyanAccRouter = async (request) => {
             case 'REINIT':
                 self.init = false
                 return new Response(JSON.stringify({ status: "OK", data: "SET INIT AS FALSE" }))
+            case 'TEMP_DISABLE':
+                self.self_disable = true
+                return new Response(JSON.stringify({ status: "OK", data: "CyanAcc Will Be Temporarily Disabled Until Next Restart" }))
             case 'DUMP_VAR_TASKLIST':
-                return new Response(JSON.stringify({ status: "OK", data: PersistentTasks.pool }))
+                return new Response(JSON.stringify({ status: "OK", data: self.PersistentTasksInstance.pool }))
             case 'GET_CACHE_SIZE':
                 const AssetsCache = await caches.open("AssetsCache")
                 const AssetsCachekeys = await AssetsCache.keys()
@@ -70,4 +74,12 @@ const CyanAccRouter = async (request) => {
             return CyanAccPanel(request)
     }
 }
+
+const GetResponseRealSize = async (res, precise) => {
+    const headers = res.headers
+    const body = res.body
+    const contentLength = precise ? (await res.arrayBuffer()).byteLength : (headers.get('content-length') || body.byteLength || (await res.arrayBuffer()).byteLength || 0)
+    return contentLength
+}
+
 export default CyanAccRouter

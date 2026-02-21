@@ -1,114 +1,86 @@
 <head<% if (theme.og_enabled) { %> prefix="og: https://ogp.me/ns#"<% } %>>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="color-scheme" content="light dark">
-  <meta name="baidu-site-verification" content="codeva-fKqX8ua7ka" />
-  <link rel="apple-touch-icon" sizes="76x76" href="https://registry.npmmirror.com/@chenyfan/auto-img-filter/0.0.0-202410180052/files/demo/logo/512.png">
-  <%
-  var title = page.title;
+    <meta charset="utf-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="color-scheme" content="light dark">
+    <meta name="baidu-site-verification" content="codeva-fKqX8ua7ka" />
+    <link rel="apple-touch-icon" sizes="512x512"
+      href="https://i.eurekac.cn/icon_white.png?args=%7B%22waterMark%22%3Afalse%2C%22resize%22%3A%7B%22width%22%3A512%2C%22height%22%3Anull%7D%7D&_s=b595034c">
+    <% var title=page.title; if (is_archive()){ title=__('archives'); if (is_month()){ title +=': ' + page.year + '/' +
+      page.month; } else if (is_year()){ title +=': ' + page.year; } } else if (is_category()){ title=__('category')
+      + ': ' + page.category; } else if (is_tag()){ if (theme.hashtag_prefix_before_tags) { title='#' + page.tag; } else
+      { title=__('tag') + ': ' + page.tag; } } else if (theme.search==true && page.type=='search' ) { title=__('search')
+      } else if (page.type=='tags' ) { title=__('tags'); } else if (page.type=='categories' ) { title=__('categories');
+      } %>
+      <title>
+        <% if (title){ %>
+          <%= title %> - <% } %>
+              <%= config.title %>
+      </title>
+      <% if (theme.favicon){ %>
+        <%- favicon_tag(theme.favicon) %>
+          <% } %>
+            <% if (theme.manifest) { %>
+              <link rel='manifest' href='<%= theme.manifest %>'>
+              <% } %>
 
-  if (is_archive()){
-    title = __('archives');
+                <% if (theme.og_enabled) { %>
+                  <% var og={}; og['title']=(title ? title + ' - ' : '' ) + config.title; og['type']=is_post()
+                    ? 'article' : 'website' ; og['url']=url; og['image']=page.cover_image ? page.cover_image :
+                    theme.og_image; if (is_post()) { og['article:published_time']=page.date.toISOString();
+                    og['article:author']=config.author; } if (theme['og']) { for (const i in theme.og) {
+                    og[i]=theme.og[i]; } } if (page['og']) { for (const i in page.og) { og[i]=page.og[i]; } } %>
+                    <% for (const i in og) { %>
+                      <meta property="og:<%= i %>" content="<%= og[i] %>" />
+                      <% } %>
+                        <% } %>
+                          <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/var.css'>
+                          <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/main.css'>
+                          <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/typography.css'>
+                          <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/code-highlighting.css'>
+                          <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/components.css'>
+                          <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/nav.css'>
+                          <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/paginator.css'>
+                          <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/footer.css'>
+                          <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/post-list.css'>
+                          <% if (theme.rainbow_banner) { %>
+                            <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/rainbow-banner.css'>
+                            <% } %>
+                              <% if (theme.toc) { %>
+                                <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/toc.css'>
+                                <% } %>
+                                  <% if (config.giscus) { %>
+                                    <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/giscus.css'>
+                                    <% } %>
+                                      <% if (page.path=="index.html" ) { %>
+                                        <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/index.css'>
+                                        <% } %>
+                                          <% if (page.path !="index.html" ) { %>
+                                            <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/post.css'>
+                                            <% } %>
+                                              <% if (is_archive() || is_category() || is_tag() || (theme.search==true &&
+                                                page.type=='search' ) || page.type=='tags' || page.type=='categories' )
+                                                { %>
+                                                <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/archive.css'>
+                                                <% } %>
+                                                  <% if (theme.search==true && page.type=='search' ) { %>
+                                                    <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/search.css'>
+                                                    <% } %>
+                                                      <% if (page.type=='tags' ) { %>
+                                                        <link rel="stylesheet"
+                                                          href='<%- theme.cdn_mirror %>css/tags.css'>
+                                                        <% } %>
+                                                          <% if (page.type=='categories' ) { %>
+                                                            <link rel="stylesheet"
+                                                              href='<%- theme.cdn_mirror %>css/categories.css'>
+                                                            <% } %>
+                                                              <!-- <link rel="stylesheet" href="https://cdn.eurekac.cn/npm/lxgw-wenkai-webfont/1.1.0/files/style.css" /> -->
+                                                              <% if (config.fancybox.enable) { %>
+                                                                <link rel="stylesheet"
+                                                                  href="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/@fancyapps/ui/4.0.31/files/dist/fancybox.css" />
+                                                                <% } %>
 
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    if (theme.hashtag_prefix_before_tags) {
-      title = '#' + page.tag;
-    } else {
-      title = __('tag') + ': ' + page.tag;
-    }
-  } else if (theme.search == true && page.type == 'search') {
-    title = __('search')
-  } else if (page.type == 'tags') {
-    title = __('tags');
-  } else if (page.type == 'categories') {
-    title = __('categories');
-  }
-  %>
-  <title><% if (title){ %><%= title %> - <% } %><%= config.title %></title>
-  <% if (theme.favicon){ %>
-    <%- favicon_tag(theme.favicon) %>
-  <% } %>
-  <% if (theme.manifest) { %>
-    <link rel='manifest' href='<%= theme.manifest %>'>
-  <% } %>
 
-  <% if (theme.og_enabled) { %>
-  <%
-  var og = {};
-
-  og['title'] = (title ? title + ' - ' : '') + config.title;
-  og['type'] = is_post() ? 'article' : 'website';
-  og['url'] = url;
-  og['image'] = page.cover_image ? page.cover_image : theme.og_image;
-  if (is_post()) {
-    og['article:published_time'] = page.date.toISOString();
-    og['article:author'] = config.author;
-  }
-
-  if (theme['og']) {
-    for (const i in theme.og) {
-      og[i] = theme.og[i];
-    }
-  }
-
-  if (page['og']) {
-    for (const i in page.og) {
-      og[i] = page.og[i];
-    }
-  }
-  %>
-  <% for (const i in og) { %>
-  <meta property="og:<%= i %>" content="<%= og[i] %>" />
-  <% } %>
-  <% } %>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/var.css'>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/main.css'>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/typography.css'>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/code-highlighting.css'>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/components.css'>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/nav.css'>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/paginator.css'>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/footer.css'>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/post-list.css'>
-  <% if (theme.rainbow_banner) { %>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/rainbow-banner.css'>
-  <% } %>
-  <% if (theme.toc) { %>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/toc.css'>
-  <% } %>
-  <% if (config.giscus) { %>
-    <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/giscus.css'>
-  <% } %>
-  <% if (page.path == "index.html") { %>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/index.css'>
-  <% } %>
-  <% if (page.path != "index.html") { %>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/post.css'>
-  <% } %>
-  <% if (is_archive() || is_category() || is_tag() || (theme.search == true && page.type == 'search') || page.type == 'tags' || page.type == 'categories') { %>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/archive.css'>
-  <% } %>
-  <% if (theme.search == true && page.type == 'search') { %>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/search.css'>
-  <% } %>
-  <% if (page.type == 'tags') { %>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/tags.css'>
-  <% } %>
-  <% if (page.type == 'categories') { %>
-  <link rel="stylesheet" href='<%- theme.cdn_mirror %>css/categories.css'>
-  <% } %>
-  <!-- <link rel="stylesheet" href="https://cdn.eurekac.cn/npm/lxgw-wenkai-webfont/1.1.0/files/style.css" /> -->
-  <% if (config.fancybox.enable) { %>
-    <link rel="stylesheet" href="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/@fancyapps/ui/4.0.31/files/dist/fancybox.css" />
-  <% } %>
-  
-
-  <link rel="stylesheet" href="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/notyf/3.10.0/files/notyf.min.css">
-</head>
+                                                                  <link rel="stylesheet"
+                                                                    href="https://registry.npmmirror.com/@chenyfan/npm-autosync/0.0.0-1729174143/files/data/npm/notyf/3.10.0/files/notyf.min.css">
+                                                                  </head>

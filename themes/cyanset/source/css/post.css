@@ -260,8 +260,6 @@ body[data-color-scheme="dark"] .tags .icon {
   opacity: 0;
   color: var(--grey);
   font-weight: normal;
-  position: absolute;
-  padding-right: 6px;
   transform: translateX(-100%);
   transition: opacity 0.2s;
 }

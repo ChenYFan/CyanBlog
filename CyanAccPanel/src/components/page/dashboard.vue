@@ -45,12 +45,7 @@ const GetPersistentTasks = async () => {
 }
 const fetchBlogVersion = async () => {
     const db = new CacheDB('CyanAcc', "CyanAccDB")
-    const blogMirror = JSON.parse(await db.read('Blog_Fetch_Config')).mirrors
-    for (const mirror of blogMirror) {
-        if (mirror.type === "npm") {
-            BlogVersion.value = new Date(Number(mirror.var.PACKAGE_VERSION.split("-")[1])).toLocaleString()
-        }
-    }
+    BlogVersion.value = new Date(await db.read('Blog_Version', { default: 0,type:"number" })).toLocaleString()
 }
 const GetInitTime = async () => {
     const time = await CyanAccAPI('GET_INIT_TIME')

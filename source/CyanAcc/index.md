@@ -33,7 +33,7 @@ window.clean_CyanAcc = async () => {
     await reinstall_CyanAcc()
 }
 window.reinstall_CyanAcc = async () => {
-    navigator.serviceWorker.register(`/CyanAcc.js?time=${new Date().getTime()}`).then(() => {
+    navigator.serviceWorker.register("/CyanAcc.js").then(() => {
         AccLog.innerText += '貌似安装是成功的，3s后此页面将尝试刷新以进入由CyanAcc托管的设置页面...\n'
         setTimeout(() => {
             location.search = '?t=' + new Date().getTime()
