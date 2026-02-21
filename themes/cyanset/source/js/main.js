@@ -175,7 +175,7 @@
                 case "TS":
                     return "TYPESCRIPT"
                 case "YML":
-                    return "YAML",
+                    return "YAML"
                 case 'SH':
                     return "SHELL"
                 default:
