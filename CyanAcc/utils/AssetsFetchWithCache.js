@@ -88,7 +88,7 @@ function AssetsFetchWithCache(origin, urls, CacheConfig) {
                 resolve(await FetchWithWriteCache())
                 return;
             } else {
-                if (cache_res.headers.get('Cache-Control') !== 'CyanAcc') {
+                if (cache_res.headers.get('Cache-Control').toLocaleLowerCase() !== 'cyanacc') {
                     cons.w(`${origin.url} Cannot Be Refreshed Because It Is Not A CyanAcc Cache`)
                     resolve(cache_res)
                     return;
@@ -97,15 +97,15 @@ function AssetsFetchWithCache(origin, urls, CacheConfig) {
                 if (cached_time > Number(cache_res.headers.get('Cache-L1'))) {
                     cons.i(`${origin.url} Is Expired L1,Refreshing...`)
                     if (cached_time > Number(cache_res.headers.get('Cache-L2'))) {
-                        cons.i(`${origin.url} Is Expired L2,Force Refreshing...`)
+                        cons.w(`${origin.url} Is Expired L2,Force Refreshing...`)
                         resolve(await FetchWithWriteCache())
                     } else {
                         resolve(
                             Promise.any([
                                 FetchWithWriteCache(),
-                                new Promise(async (resolve) => {
+                                new Promise(async (res) => {
                                     setTimeout(async () => {
-                                        resolve(cache_res.clone())
+                                        res(cache_res.clone())
                                     }, this.CacheConfig.timeoutL1)
                                 })
                             ])

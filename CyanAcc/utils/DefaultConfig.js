@@ -51,8 +51,8 @@ export default {
         timeoutL1: 2000,
         timeoutL2: 5000,
         cache: true,
-        cacheL1: 1000 * 60 * 60,
-        cacheL2: 1000 * 60 * 60 * 24
+        cacheL1: 1000 * 60 ,
+        cacheL2: 1000 * 60 * 60
     },
     CDN_Domain: [
         {
