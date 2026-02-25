@@ -312,6 +312,9 @@ code {
     max-width: none !important;
 }
 
+.admonition > ol {
+   padding-left: 50px!important;
+}
 
 .admonition.warning {
     background-color: #ff910017;
