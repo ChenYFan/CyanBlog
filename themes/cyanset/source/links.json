@@ -373,6 +373,13 @@
         "link": "https://blog.qyadbr.top/",
         "image": "https://source-admibrill.pages.dev/file/f69c9c86b22cb90df18a1.png",
         "relink": true
+    },
+    {
+        "title": "Modern Blog",
+        "intro": "分享技术，记录生活",
+        "link": "https://blog.andyjin.website",
+        "image": "https://filestorage0.oss-cn-hongkong.aliyuncs.com/avatar.png",
+        "relink": true
     }
 ]
 
